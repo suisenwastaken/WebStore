@@ -1,0 +1,14 @@
+.Category {
+  width: 100%;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.CardLine {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap:20px;
+}

@@ -1,0 +1,76 @@
+.FakeElement{
+    height: 101px;
+    background-color: #0C68F4;
+    position :re
+}
+
+.Header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #0C68F4;
+    z-index: 2;
+    top: 0;
+
+    background-color: white;
+}
+
+.Header > *{
+    min-height: 100px;
+}
+
+.Logo {
+    width: 20%;
+    /* background-color: aqua; */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LogoPicture {
+    height: 63px;
+    width: 56px;
+}
+
+.NavTools {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    gap: 50px;
+
+    width: 60%;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+.NavLinks > *, .NavLinks {
+    font-size: 20px;
+    text-decoration: none;
+    color:rgb(24, 24, 24);
+}
+
+.HeaderHover{
+    height: 100px;
+    line-height: 100px;
+}
+
+.UserTools {
+    width: 20%;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    gap: 10px;
+}
+
+.UserTools >*{
+    font-size: 28px;
+    text-decoration: none;
+    color:rgb(24, 24, 24) !important;
+    line-height: 20px;
+}

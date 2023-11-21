@@ -1,0 +1,42 @@
+.Card {
+  /* width: 18%;
+  min-width: 200px; */
+  width: max(18%, 200px);
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  -webkit-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+  -moz-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+  box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+  background-color: white;
+}
+
+.Card > * {
+  width: 80%;
+}
+
+.PictureContainer > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.PictureContainer {
+  height: 70%;
+  border-bottom: 1px solid #0c68f4;
+}
+.BottomInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Rate {
+  font-size: 18px;
+  color: #023179;
+  display: flex;
+  align-items: center;
+}
