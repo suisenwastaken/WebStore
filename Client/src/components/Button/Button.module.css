@@ -13,6 +13,8 @@
 }
 
 .text {
-  font-size: 20px;
+  /* font-size: 20px; */
+  /* font-size: 1.3vw; */
+  font-size: max(15 px, 1.3vw);
   margin: 15px;
 }

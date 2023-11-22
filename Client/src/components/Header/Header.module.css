@@ -40,7 +40,7 @@
     flex-direction: row;
     align-items: center;
     justify-content:center;
-    gap: 50px;
+    gap: max(20px, 3vw);
 
     width: 60%;
     height: 100%;
@@ -48,7 +48,9 @@
 }
 
 .NavLinks > *, .NavLinks {
-    font-size: 20px;
+    /* font-size: 20px; */
+    /* font-size: 1.3vw; */
+    font-size: max(15px, 1.3vw);
     text-decoration: none;
     color:rgb(24, 24, 24);
 }
@@ -69,7 +71,9 @@
 }
 
 .UserTools >*{
-    font-size: 28px;
+    /* font-size: 28px; */
+    /* font-size: 1.8vw; */
+    font-size: max(20px, 1.8vw);
     text-decoration: none;
     color:rgb(24, 24, 24) !important;
     line-height: 20px;

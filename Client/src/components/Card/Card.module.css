@@ -11,6 +11,8 @@
   -moz-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
   box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
   background-color: white;
+  font-size: 1.1vw;
+  font-size: max(18px, 1.1vw);
 }
 
 .Card > * {
@@ -35,7 +37,9 @@
 }
 
 .Rate {
-  font-size: 18px;
+  /* font-size: 18px; */
+  /* font-size: 1.2vw; */
+
   color: #023179;
   display: flex;
   align-items: center;
