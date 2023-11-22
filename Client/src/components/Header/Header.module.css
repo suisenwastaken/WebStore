@@ -31,8 +31,7 @@
 }
 
 .LogoPicture {
-    height: 63px;
-    width: 56px;
+    width: min(56px, 100%)
 }
 
 .NavTools {
@@ -55,6 +54,10 @@
     font-size: max(15px, 1.3vw);
     text-decoration: none;
     color:rgb(24, 24, 24);
+}
+
+.NavLinks:hover{
+    cursor: pointer;
 }
 
 .HeaderHoverBlock {

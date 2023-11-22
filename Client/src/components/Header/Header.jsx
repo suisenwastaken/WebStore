@@ -1,5 +1,5 @@
 import styles from './Header.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { BiSearch, BiUser, BiCart } from 'react-icons/bi'
 import { useState } from 'react'
@@ -8,6 +8,7 @@ import HeaderHover from '../HeaderHover/HeaderHover'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
     const [showedCategory, setShowedCategory] = useState('_brands')
+    const navigate = useNavigate();
     // console.log(showModal)
     return (
         <>
@@ -25,7 +26,9 @@ const Header = ({}) => {
                     position: !showModal ? 'relative' : 'fixed',
                 }}
             >
-                <div className={styles.Logo}>
+                <div className={styles.Logo}
+                    onClick={() => navigate('/')}
+                >
                     <img
                         className={styles.LogoPicture}
                         src="logo.png"

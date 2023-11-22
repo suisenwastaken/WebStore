@@ -1,6 +1,12 @@
 import axios from 'axios'
+import DeviceStore from '../../storage/DeviceStore'
 
-export const getDevices = async(id) =>{
+export const getDeviceById = async(id) =>{
+
+    const device = new DeviceStore();
+    return(device.devices.filter((d) =>{
+        return d.id == id;
+    })[0])
 
     try{
         const respons = await axios.get('/device', {id})
