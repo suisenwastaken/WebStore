@@ -36,29 +36,31 @@ const Header = ({}) => {
                     <div className={styles.NavLinks}>
                         <Link to="/">Главная</Link>
                     </div>
-                    <div
-                        className={[styles.NavLinks, styles.HeaderHover].join(
-                            ' '
-                        )}
-                        onMouseLeave={() => setShowModal(false)}
-                        onMouseOver={() => {
-                            setShowModal(true)
-                            setShowedCategory('_brands')
-                        }}
+                    <div className={styles.HeaderHoverBlock}
+                        onMouseOver={() => setShowModal(true)}
                     >
-                        Бренды
-                    </div>
-                    <div
-                        className={[styles.NavLinks, styles.HeaderHover].join(
-                            ' '
-                        )}
-                        onMouseLeave={() => setShowModal(false)}
-                        onMouseOver={() => {
-                            setShowModal(true)
-                            setShowedCategory('_types')
-                        }}
-                    >
-                        Категории
+                        <div
+                            className={[styles.NavLinks, styles.HeaderHover].join(
+                                ' '
+                            )}
+                            onMouseLeave={() => setShowModal(false)}
+                            onMouseOver={() => {
+                                setShowedCategory('_brands')
+                            }}
+                        >
+                            Бренды
+                        </div>
+                        <div
+                            className={[styles.NavLinks, styles.HeaderHover].join(
+                                ' '
+                            )}
+                            onMouseLeave={() => setShowModal(false)}
+                            onMouseOver={() => {
+                                setShowedCategory('_types')
+                            }}
+                        >
+                            Категории
+                        </div>
                     </div>
                     <div className={styles.NavLinks}>
                         <Link to="/">О нас</Link>

@@ -47,12 +47,20 @@
     /* background-color: blue; */
 }
 
+
+
 .NavLinks > *, .NavLinks {
     /* font-size: 20px; */
     /* font-size: 1.3vw; */
     font-size: max(15px, 1.3vw);
     text-decoration: none;
     color:rgb(24, 24, 24);
+}
+
+.HeaderHoverBlock {
+  display: flex;
+  flex-direction: row;
+  gap: max(20px, 3vw);
 }
 
 .HeaderHover{
