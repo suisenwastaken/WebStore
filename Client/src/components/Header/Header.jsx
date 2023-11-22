@@ -87,7 +87,7 @@ const Header = ({}) => {
 
             <HeaderHover
                 style={{
-                    display: !showModal ? 'none' : 'flex',
+                    display: !showModal ? 'none' : 'flex'
                 }}
                 setShowState={setShowModal}
                 showState={showModal}

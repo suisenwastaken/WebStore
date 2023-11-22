@@ -1,9 +1,9 @@
 import styles from './Card.module.css'
 import { BiSolidStar } from 'react-icons/bi'
 
-const Card = ({ img, brandName, deviceName, devicePrice, deviceRate }) => {
+const Card = ({ img, brandName, deviceName, devicePrice, deviceRate, onClick }) => {
     return (
-        <div className={styles.Card}>
+        <div className={styles.Card} onClick={onClick}>
             <div className={styles.PictureContainer}>
                 <img src={img} alt="DevicePicture" />
             </div>
