@@ -19,7 +19,7 @@ const Card = ({
             onMouseOut={() => setHoverState(false)}
         >
             <div className={styles.PictureContainer}>
-                <img src={img} alt="DevicePicture" />
+                <img src={'/'+img} alt="DevicePicture" />
             </div>
             <div
                 className={styles.DeviceName}
@@ -27,7 +27,7 @@ const Card = ({
                     color: hoverState ? '#0c68f4' : 'black',
                 }}
             >
-                {brandName[0].name} - {deviceName}
+                {brandName   + ' - ' + deviceName}
             </div>
             {devicePrice ? (
                 <div className={styles.BottomInfo}>

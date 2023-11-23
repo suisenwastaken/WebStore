@@ -31,7 +31,7 @@ const Header = ({}) => {
                 >
                     <img
                         className={styles.LogoPicture}
-                        src="logo.png"
+                        src="/logo.png"
                         alt="logo"
                     />
                 </div>

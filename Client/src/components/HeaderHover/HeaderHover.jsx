@@ -31,7 +31,7 @@ const HeaderHover = ({
                     <Card
                         key={i}
                         deviceName={t.name}
-                        brandName={[{ name: '' }]}
+                        brandName={''}
                         img={
                             device.devices.filter((obj) => {
                                 if (categoryState === '_brands') {

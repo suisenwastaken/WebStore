@@ -16,9 +16,7 @@ const CardSlider = ({ SliderName }) => {
                     <Card
                         key={i}
                         img={d.img}
-                        brandName={device.brands.filter((obj) => {
-                            return obj.id === d.brandId
-                        })}
+                        brandName={d.brand}
                         deviceName={d.name}
                         devicePrice={d.price}
                         deviceRate={d.rating}
