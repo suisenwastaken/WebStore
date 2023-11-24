@@ -16,6 +16,7 @@ const GreetingsCard = () => {
           text="О нас"
           className={styles.Button}
           onClick={() => navigate("about")}
+          styles={{backgroundColor: '#ee7300'}}
         />
       </div>
       <div className={styles.Picture}>
