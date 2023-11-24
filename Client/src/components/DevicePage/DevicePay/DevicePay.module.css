@@ -1,0 +1,104 @@
+.PriceBlock {
+    width: 25%;
+    height: auto;
+
+    -webkit-box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
+    -moz-box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
+    box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
+
+    border-radius: 20px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    gap: 20px;
+}
+
+.Prices{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.PriceRow {
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.PriceNow {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.Discount {
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    color: #ff3e0e;
+    font-size: 20px;
+}
+
+.LastPrice {
+  color: #717171;
+}
+
+.PayDataChoose {
+  display: flex;
+  flex-direction: column;
+  gap:10px
+}
+
+.PayDataCheckRow {
+  display: flex;
+  height: 30px;
+  gap: 10px;
+  align-items: center;
+  font-size: 17px;
+}
+
+.CustomCheckBox {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border: #7171715b solid 2px;
+    border-radius: 15px;
+}
+
+.CreditRowChoose {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap:10px;
+}
+
+.CreditRowMonth{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+    border: #7171715b solid 2px;
+    border-radius: 5px;
+    padding: 2px;
+    font-size: 14px;
+    color: #717171;
+}
+
+.CrediRowNumber {
+  font-size: 18px;
+  color:black;
+}
+
+.Buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.Button{
+    width: 100%;
+}

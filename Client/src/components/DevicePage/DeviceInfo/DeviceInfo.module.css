@@ -1,0 +1,96 @@
+.InfoBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    
+    height: 100%;
+    width: 35%;
+    gap: 20px;
+}
+
+.Name {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.RateRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 15px;
+    gap: 5px;
+}
+
+.Rate {
+    background-color: #023179;
+    border-radius: 5px;
+    color: white;
+    padding: 3px;
+}
+
+.SoldCount {
+    color: #717171;
+}
+
+.Statuses {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.Icon {
+    color: #0c68f4;
+    font-size: 20px;
+}
+
+.StatusGroup {
+    color: #717171;
+    height: 20px;
+    font-size: 15px;
+
+    display: flex;
+    align-items: center;
+}
+
+.SelectColor {
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.SelectColorRound {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.SelectColorRound:nth-child(1) {
+    background-color: grey;
+    margin-left: 40px;
+}
+
+.ShortInfo {
+    font-size: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.ShortInfoRow {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+.InfoKey {
+    color:#717171;
+    width: 50%;
+}
+

@@ -5,11 +5,14 @@
 .TopBlock {
     width: 100%;
     height: 500px;
+    margin-top: 70px;
 
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    gap: min(100px, 5%);
 }
 
 .ImageBlock {
@@ -22,12 +25,4 @@
     width: 100%;
     height: 100%;
     object-fit:contain;
-}
-
-.InfoBlock {
-  width: 30%;
-}
-
-.PriceBlock {
-  width: 30%;
 }
