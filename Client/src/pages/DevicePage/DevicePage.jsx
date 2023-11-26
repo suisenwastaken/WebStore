@@ -2,10 +2,14 @@ import { useParams } from 'react-router-dom'
 import styles from './DevicePage.module.css'
 import DevicePay from '../../components/DevicePage/DevicePay/DevicePay'
 import DeviceInfo from '../../components/DevicePage/DeviceInfo/DeviceInfo'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { getDeviceById } from '../../api/devices/getDeviceById'
+import { Context } from '../../storage/Context'
+import { observer } from 'mobx-react-lite'
+
 
 const DevicePage = () => {
+    const { cart } = useContext(Context)
     const { id } = useParams()
     const [data, setData] = useState({})
     const [deviceInfo, setDeviceInfo] = useState([])
@@ -26,11 +30,11 @@ const DevicePage = () => {
                     <img src={'/' + data.img} />
                 </div>
 
-                <DeviceInfo data={data} deviceInfo={deviceInfo} />
-                <DevicePay data={data} />
+                <DeviceInfo data={data} deviceInfo={deviceInfo} setData={setData} />
+                <DevicePay data={data} cart={cart} />
             </div>
         </div>
     )
 }
 
-export default DevicePage
+export default observer(DevicePage)

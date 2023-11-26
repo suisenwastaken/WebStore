@@ -51,7 +51,7 @@
 .NavLinks > *, .NavLinks {
     /* font-size: 20px; */
     /* font-size: 1.3vw; */
-    font-size: max(15px, 1.3vw);
+    font-size: max(20px, 1.3vw);
     text-decoration: none;
     color:rgb(24, 24, 24);
 }

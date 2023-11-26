@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    
+
     height: 100%;
     width: 35%;
     gap: 20px;
@@ -11,14 +11,16 @@
 
 .Name {
     font-weight: bold;
-    font-size: 30px;
+    /* font-size: 30px; */
+    font-size: max(30px, 2.4vw);
 }
 
 .RateRow {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 15px;
+    /* font-size: 15px; */
+    font-size: max(15px, 1vw);
     gap: 5px;
 }
 
@@ -43,20 +45,23 @@
 
 .Icon {
     color: #0c68f4;
+    font-size: max(20px, 1.5vw);
     font-size: 20px;
 }
 
 .StatusGroup {
     color: #717171;
     height: 20px;
-    font-size: 15px;
+    /* font-size: 15px; */
+    font-size: max(15px, 1vw);
 
     display: flex;
     align-items: center;
 }
 
 .SelectColor {
-    font-size: 17px;
+    /* font-size: 17px; */
+    font-size: max(17px, 1.1vw);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -64,10 +69,19 @@
 }
 
 .SelectColorRound {
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 30px;
     height: 30px;
     background-color: black;
-    border-radius: 15px;
+    color: white;
+
+    border-radius: 20px;
+    cursor: pointer;
 }
 
 .SelectColorRound:nth-child(1) {
@@ -76,11 +90,12 @@
 }
 
 .ShortInfo {
-    font-size: 15px;
+    /* font-size: 15px; */
+    font-size: max(15px, 1vw);
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
 }
 
 .ShortInfoRow {
@@ -90,7 +105,6 @@
 }
 
 .InfoKey {
-    color:#717171;
+    color: #717171;
     width: 50%;
 }
-

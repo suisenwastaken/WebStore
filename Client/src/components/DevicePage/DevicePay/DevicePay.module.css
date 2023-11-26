@@ -14,10 +14,10 @@
     gap: 20px;
 }
 
-.Prices{
+.Prices {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap: 10px;
 }
 
 .PriceRow {
@@ -29,7 +29,8 @@
 }
 
 .PriceNow {
-    font-size: 22px;
+    /* font-size: 22px; */
+    font-size: max(22px, 1.6vw);
     font-weight: bold;
 }
 
@@ -38,67 +39,85 @@
     justify-content: center;
     line-height: 20px;
     color: #ff3e0e;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: max(20px, 1.5vw);
 }
 
 .LastPrice {
-  color: #717171;
+    color: #717171;
+    text-decoration: line-through;
 }
 
 .PayDataChoose {
-  display: flex;
-  flex-direction: column;
-  gap:10px
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .PayDataCheckRow {
-  display: flex;
-  height: 30px;
-  gap: 10px;
-  align-items: center;
-  font-size: 17px;
+    display: flex;
+    height: 30px;
+    gap: 10px;
+    align-items: center;
+    /* font-size: 17px; */
+    font-size: max(17px, 1.1vw);
 }
 
 .CustomCheckBox {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 25px;
     height: 25px;
     background-color: white;
+    color: white;
     border: #7171715b solid 2px;
     border-radius: 15px;
 }
 
 .CreditRowChoose {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap:10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.CreditRowMonth{
+.CreditRowMonth {
+    cursor: pointer;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    
+
+    width: 20%;
+
     border: #7171715b solid 2px;
     border-radius: 5px;
     padding: 2px;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: max(1px, 0.8vw);
     color: #717171;
 }
 
 .CrediRowNumber {
-  font-size: 18px;
-  color:black;
+    font-size: 18px;
+    font-size: max(18px, 1.1vw);
+    color: black;
 }
 
 .Buttons {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-.Button{
-    width: 100%;
+.Button {
+    width: 100% !important;
 }
