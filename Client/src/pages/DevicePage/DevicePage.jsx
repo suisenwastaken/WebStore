@@ -30,7 +30,7 @@ const DevicePage = () => {
                     <img src={'/' + data.img} />
                 </div>
 
-                <DeviceInfo data={data} deviceInfo={deviceInfo} setData={setData} />
+                <DeviceInfo data={data} deviceInfo={deviceInfo} />
                 <DevicePay data={data} cart={cart} />
             </div>
         </div>

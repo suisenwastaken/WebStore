@@ -2,20 +2,49 @@ import styles from './DevicePay.module.css'
 import { BiSolidDiscount } from 'react-icons/bi'
 import Button from '../../../components/Button/Button'
 import { useContext, useState } from 'react'
-import { Context } from '../../../storage/Context'
 import { observer } from 'mobx-react-lite'
+import AlertContext from '../../../storage/AlertContext'
 
 const DevicePay = ({ data, cart }) => {
     const [cartButton, setCartButton] = useState(false)
     const [paymentState, setPaymentState] = useState('')
     const [creditState, setCreditState] = useState(0)
+    const [, setAlert] = useContext(AlertContext)
     // console.log(cart)
 
     const HandleAddToCart = (data) => {
         if (!cartButton) {
+            if (!paymentState) {
+                setAlert({
+                    headText: 'Ошибка',
+                    mainText: 'Вы не выбрали вид оплаты!',
+                    color: 'red',
+                })
+                return
+            }
+
+            if (!creditState && paymentState === 'later') {
+                setAlert({
+                    headText: 'Ошибка',
+                    mainText: 'Вы не выбрали время рассрочки!',
+                    color: 'red',
+                })
+                return
+            }
+
+            setAlert({
+                headText: 'Успех!',
+                mainText: 'Товар добавлен в корзину!',
+                color: 'green',
+            })
             cart.addDeviceToCart(data)
             setCartButton(true)
         } else {
+            setAlert({
+                headText: 'Успех!',
+                mainText: 'Товар удален из корзины!',
+                color: 'green',
+            })
             setCartButton(false)
             cart.deleteDeviceFromCart(data)
         }
@@ -48,7 +77,8 @@ const DevicePay = ({ data, cart }) => {
                             backgroundColor:
                                 paymentState === 'now' ? '#0c68f4' : 'white',
                         }}
-                    >{paymentState === 'now' ? '✔' : ''}
+                    >
+                        {paymentState === 'now' ? '✔' : ''}
                     </div>
                     Заплатить сейчас
                 </div>
@@ -62,7 +92,8 @@ const DevicePay = ({ data, cart }) => {
                             backgroundColor:
                                 paymentState === 'later' ? '#0c68f4' : 'white',
                         }}
-                    >{paymentState === 'later' ? '✔' : ''}
+                    >
+                        {paymentState === 'later' ? '✔' : ''}
                     </div>
                     Купить в расрочку
                 </div>
