@@ -7,6 +7,7 @@ import AdminPage from './AdminPage'
 import AuthorizedPage from './AuthorizedPage'
 import Store from '../pages/Store'
 import Alert from '../components/Alert/Alert'
+import { DevicePageProvider } from '../storage/DevicePageContext'
 
 const Router = () => {
     const location = useLocation()
@@ -30,9 +31,16 @@ const Router = () => {
                 }
             />
 
-            <Route element={<Alert/>} path='/alert'/>
+            <Route element={<Alert />} path="/alert" />
             <Route element={<Auth />} path="/auth" />
-            <Route element={<DevicePage />} path="/device/:id" />
+            <Route
+                element={
+                    <DevicePageProvider>
+                        <DevicePage />
+                    </DevicePageProvider>
+                }
+                path="/device/:id"
+            />
             <Route element={<Store />} path="/" />
         </Routes>
     )

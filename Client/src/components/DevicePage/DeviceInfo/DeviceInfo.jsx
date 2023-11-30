@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './DeviceInfo.module.css'
 
 import { BiShoppingBag, BiBadgeCheck, BiBox, BiSolidStar } from 'react-icons/bi'
+import DevicePageContext from '../../../storage/DevicePageContext'
 
 const DeviceInfo = ({ data, deviceInfo, setData }) => {
-    const [colorState, setColorState] = useState('')
+    const {colorState, setColorState} = useContext(DevicePageContext)
 
     return (
         <div className={styles.InfoBlock}>

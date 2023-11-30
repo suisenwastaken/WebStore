@@ -4,47 +4,46 @@ import Button from '../../../components/Button/Button'
 import { useContext, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import AlertContext from '../../../storage/AlertContext'
+import AlertState from '../../Alert/AlertState'
+import DevicePageContext from '../../../storage/DevicePageContext'
+import CreditRowMonth from '../CreditRowMonth/CreditRowMonth'
 
 const DevicePay = ({ data, cart }) => {
-    const [cartButton, setCartButton] = useState(false)
-    const [paymentState, setPaymentState] = useState('')
-    const [creditState, setCreditState] = useState(0)
-    const [, setAlert] = useContext(AlertContext)
-    // console.log(cart)
+    const {
+        cartButton,
+        setCartButton,
+        paymentState,
+        setPaymentState,
+        colorState,
+        setColorState,
+        creditState,
+        setCreditState,
+    } = useContext(DevicePageContext)
+    const [,setAlert] = useContext(AlertContext)
 
     const HandleAddToCart = (data) => {
         if (!cartButton) {
+
+            if(!colorState){
+                setAlert(AlertState['dontChooseColor'])
+                return
+            }
+
             if (!paymentState) {
-                setAlert({
-                    headText: 'Ошибка',
-                    mainText: 'Вы не выбрали вид оплаты!',
-                    color: 'red',
-                })
+                setAlert(AlertState['dontChoosePayMethod'])
                 return
             }
 
             if (!creditState && paymentState === 'later') {
-                setAlert({
-                    headText: 'Ошибка',
-                    mainText: 'Вы не выбрали время рассрочки!',
-                    color: 'red',
-                })
+                setAlert(AlertState['dontChooseCreditDate'])
                 return
             }
 
-            setAlert({
-                headText: 'Успех!',
-                mainText: 'Товар добавлен в корзину!',
-                color: 'green',
-            })
+            setAlert(AlertState['addedToCart'])
             cart.addDeviceToCart(data)
             setCartButton(true)
         } else {
-            setAlert({
-                headText: 'Успех!',
-                mainText: 'Товар удален из корзины!',
-                color: 'green',
-            })
+            setAlert(AlertState['deletedFromCart'])
             setCartButton(false)
             cart.deleteDeviceFromCart(data)
         }
@@ -111,82 +110,11 @@ const DevicePay = ({ data, cart }) => {
                           }
                 }
             >
-                <div
-                    className={styles.CreditRowMonth}
-                    onClick={() => {
-                        setCreditState(3)
-                    }}
-                    style={
-                        creditState === 3
-                            ? {
-                                  border: '#0c68f4 solid 2px',
-                                  color: '#0c68f4',
-                              }
-                            : {
-                                  border: '#7171715b solid 2px',
-                                  color: '#717171',
-                              }
-                    }
-                >
-                    <div className={styles.CrediRowNumber}>3</div> Месяцев
-                </div>
-                <div
-                    className={styles.CreditRowMonth}
-                    onClick={() => {
-                        setCreditState(6)
-                    }}
-                    style={
-                        creditState === 6
-                            ? {
-                                  border: '#0c68f4 solid 2px',
-                                  color: '#0c68f4',
-                              }
-                            : {
-                                  border: '#7171715b solid 2px',
-                                  color: '#717171',
-                              }
-                    }
-                >
-                    <div className={styles.CrediRowNumber}>6</div> Месяцев
-                </div>
-                <div
-                    className={styles.CreditRowMonth}
-                    onClick={() => {
-                        setCreditState(9)
-                    }}
-                    style={
-                        creditState === 9
-                            ? {
-                                  border: '#0c68f4 solid 2px',
-                                  color: '#0c68f4',
-                              }
-                            : {
-                                  border: '#7171715b solid 2px',
-                                  color: '#717171',
-                              }
-                    }
-                >
-                    <div className={styles.CrediRowNumber}>9</div> Месяцев
-                </div>
-                <div
-                    className={styles.CreditRowMonth}
-                    onClick={() => {
-                        setCreditState(12)
-                    }}
-                    style={
-                        creditState === 12
-                            ? {
-                                  border: '#0c68f4 solid 2px',
-                                  color: '#0c68f4',
-                              }
-                            : {
-                                  border: '#7171715b solid 2px',
-                                  color: '#717171',
-                              }
-                    }
-                >
-                    <div className={styles.CrediRowNumber}>12</div> Месяцев
-                </div>
+                <CreditRowMonth number={3}/>
+                <CreditRowMonth number={6}/>
+                <CreditRowMonth number={9}/>
+                <CreditRowMonth number={12}/>
+                
             </div>
 
             <div className={styles.Buttons}>
