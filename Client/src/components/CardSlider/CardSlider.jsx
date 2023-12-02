@@ -1,21 +1,34 @@
-import { useContext } from 'react'
 import styles from './CardSlider.module.css'
+import { useContext, useState, useEffect } from 'react'
 import { Context } from '../../storage/Context'
 import Card from '../Card/Card'
 import { Link, redirect, useNavigate } from 'react-router-dom'
+import { getDevices } from '../../api/devices/getDevices'
+import { getDeviceById } from '../../api/devices/getDeviceById'
 
 const CardSlider = ({ SliderName }) => {
-    const { device } = useContext(Context)
-    const navigate = useNavigate()
 
+    const navigate = useNavigate()
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+            const result = await getDevices()
+            setData(result)
+        }
+        getData()
+    }, [])
+    
     return (
         <>
+        {console.log(data)}
             <div className={styles.Category}>{SliderName}</div>
             <div className={styles.CardLine}>
-                {device.devices.map((d, i) => (
+                {data.map((d, i) => (
                     <Card
                         key={i}
                         img={d.img}
+                        // brandName={d.brand.name}
                         brandName={d.brand}
                         deviceName={d.name}
                         devicePrice={d.price}

@@ -2,6 +2,7 @@ import {v4} from 'uuid'
 import path from 'path'
 import model from '../models/models.js'
 import ApiError from '../error/apiError.js';
+import { where } from 'sequelize';
 
 export async function post(req,res, next){
 
@@ -41,7 +42,7 @@ export async function get(req,res){
     let devices;
 
     if(!brandId && !typeId){
-        devices = await model.Device.findAndCountAll({limit, offset});
+        devices = await model.Device.findAndCountAll({include: {model: model.Brand, as: 'brand'}});
     }
 
     if(!brandId && typeId){
