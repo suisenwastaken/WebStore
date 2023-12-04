@@ -4,11 +4,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import { BiSearch, BiUser, BiCart } from 'react-icons/bi'
 import { useState } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
+import LoginCard from '../Login/LoginCard'
 
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
     const [showedCategory, setShowedCategory] = useState('_brands')
-    const navigate = useNavigate();
+    const [showLoginCard, setShowLoginCard] = useState(false)
+    const navigate = useNavigate()
     // console.log(showModal)
     return (
         <>
@@ -26,9 +28,7 @@ const Header = ({}) => {
                     position: !showModal ? 'relative' : 'fixed',
                 }}
             >
-                <div className={styles.Logo}
-                    onClick={() => navigate('/')}
-                >
+                <div className={styles.Logo} onClick={() => navigate('/')}>
                     <img
                         className={styles.LogoPicture}
                         src="/logo.png"
@@ -39,13 +39,15 @@ const Header = ({}) => {
                     <div className={styles.NavLinks}>
                         <Link to="/">Главная</Link>
                     </div>
-                    <div className={styles.HeaderHoverBlock}
+                    <div
+                        className={styles.HeaderHoverBlock}
                         onMouseOver={() => setShowModal(true)}
                     >
                         <div
-                            className={[styles.NavLinks, styles.HeaderHover].join(
-                                ' '
-                            )}
+                            className={[
+                                styles.NavLinks,
+                                styles.HeaderHover,
+                            ].join(' ')}
                             onMouseLeave={() => setShowModal(false)}
                             onMouseOver={() => {
                                 setShowedCategory('_brands')
@@ -54,9 +56,10 @@ const Header = ({}) => {
                             Бренды
                         </div>
                         <div
-                            className={[styles.NavLinks, styles.HeaderHover].join(
-                                ' '
-                            )}
+                            className={[
+                                styles.NavLinks,
+                                styles.HeaderHover,
+                            ].join(' ')}
                             onMouseLeave={() => setShowModal(false)}
                             onMouseOver={() => {
                                 setShowedCategory('_types')
@@ -81,21 +84,34 @@ const Header = ({}) => {
                         </Link>
                     </div>
                     <div className={styles.UserLinks}>
-                        <Link style={{ color: 'black' }} to="/">
+                        <div
+                            style={{ color: 'black' }}
+                            onClick={() => setShowLoginCard(true)}
+                        >
                             <BiUser />
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <HeaderHover
                 style={{
-                    display: !showModal ? 'none' : 'flex'
+                    display: !showModal ? 'none' : 'flex',
                 }}
                 setShowState={setShowModal}
                 showState={showModal}
                 categoryState={showedCategory}
             />
+
+            <div
+                className={styles.LoginModalBackground}
+                onClick={() => setShowLoginCard(false)}
+                style={!showLoginCard ? {display: 'none'} : {display: 'flex'}}
+            >
+                <LoginCard
+                    onClick={e => e.stopPropagation()}
+                 />
+            </div>
         </>
     )
 }

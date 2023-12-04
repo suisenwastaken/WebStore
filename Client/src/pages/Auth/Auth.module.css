@@ -1,0 +1,7 @@
+.Card{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 101px);
+    justify-content: center;
+    align-items: center;
+}

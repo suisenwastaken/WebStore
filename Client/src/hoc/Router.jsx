@@ -8,6 +8,7 @@ import AuthorizedPage from './AuthorizedPage'
 import Store from '../pages/Store'
 import Alert from '../components/Alert/Alert'
 import { DevicePageProvider } from '../storage/DevicePageContext'
+import Profile from '../pages/Profile'
 
 const Router = () => {
     const location = useLocation()
@@ -23,15 +24,14 @@ const Router = () => {
                 }
             />
             <Route
-                path="/basket"
+                path="/profile"
                 element={
                     <AuthorizedPage>
-                        <Basket />
+                        <Profile />
                     </AuthorizedPage>
                 }
             />
 
-            <Route element={<Alert />} path="/alert" />
             <Route element={<Auth />} path="/auth" />
             <Route
                 element={

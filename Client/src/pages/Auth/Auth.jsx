@@ -1,7 +1,11 @@
-const auth = () => {
+import LoginCard from '../../components/Login/LoginCard';
+import styles from './Auth.module.css'
+const Auth = () => {
     return (
-        Auth
+        <div className={styles.Card}>
+            <LoginCard/>
+        </div>
     );
 }
 
-export default auth;
+export default Auth;

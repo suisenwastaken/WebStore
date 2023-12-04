@@ -9,7 +9,7 @@ const AuthorizedPage = ({children}) => {
         return children;
     }else{
         console.log(user);
-        return <Navigate to = '/'/>
+        return <Navigate to = '/auth'/>
     }
 }
 
