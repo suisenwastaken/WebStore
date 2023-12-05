@@ -1,4 +1,4 @@
-import LoginCard from '../../components/Login/LoginCard';
+import LoginCard from '../../components/LoginCard/LoginCard';
 import styles from './Auth.module.css'
 const Auth = () => {
     return (

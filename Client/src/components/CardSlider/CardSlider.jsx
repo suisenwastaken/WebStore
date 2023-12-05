@@ -21,7 +21,7 @@ const CardSlider = ({ SliderName }) => {
     
     return (
         <>
-        {console.log(data)}
+        {/* {console.log(data)} */}
             <div className={styles.Category}>{SliderName}</div>
             <div className={styles.CardLine}>
                 {data.map((d, i) => (

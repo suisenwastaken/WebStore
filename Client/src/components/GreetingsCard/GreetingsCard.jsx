@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import styles from "./GreetingsCard.module.css";
+import LoginModalContext from "../../storage/LoginModalContext";
+import { useContext } from "react";
 
 const GreetingsCard = () => {
   const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
 
   return (
     <div className={styles.Card}>
@@ -15,7 +18,7 @@ const GreetingsCard = () => {
         <Button
           text="О нас"
           className={styles.Button}
-          onClick={() => navigate("about")}
+          onClick={() => setShowLoginModal(true)}
           styles={{backgroundColor: '#ee7300'}}
         />
       </div>

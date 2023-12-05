@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { BiSearch, BiUser, BiCart } from 'react-icons/bi'
 import { useState } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
-import LoginCard from '../Login/LoginCard'
+import LoginCard from '../LoginCard/LoginCard'
 
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
@@ -84,12 +84,9 @@ const Header = ({}) => {
                         </Link>
                     </div>
                     <div className={styles.UserLinks}>
-                        <div
-                            style={{ color: 'black' }}
-                            onClick={() => setShowLoginCard(true)}
-                        >
+                        <Link style={{ color: 'black' }} to="/profile">
                             <BiUser />
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -102,16 +99,6 @@ const Header = ({}) => {
                 showState={showModal}
                 categoryState={showedCategory}
             />
-
-            <div
-                className={styles.LoginModalBackground}
-                onClick={() => setShowLoginCard(false)}
-                style={!showLoginCard ? {display: 'none'} : {display: 'flex'}}
-            >
-                <LoginCard
-                    onClick={e => e.stopPropagation()}
-                 />
-            </div>
         </>
     )
 }

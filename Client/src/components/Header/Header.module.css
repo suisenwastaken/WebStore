@@ -89,6 +89,7 @@
     text-decoration: none;
     color:rgb(24, 24, 24) !important;
     line-height: 20px;
+    cursor: pointer;
 }
 
 .LoginModalBackground{

@@ -146,4 +146,4 @@ const DevicePay = ({ data, cart }) => {
     )
 }
 
-export default observer(DevicePay)
+export default DevicePay

@@ -9,6 +9,7 @@ import Store from '../pages/Store'
 import Alert from '../components/Alert/Alert'
 import { DevicePageProvider } from '../storage/DevicePageContext'
 import Profile from '../pages/Profile'
+import LoginModal from '../components/LoginModal/LoginModal'
 
 const Router = () => {
     const location = useLocation()
@@ -31,6 +32,8 @@ const Router = () => {
                     </AuthorizedPage>
                 }
             />
+
+            <Route path="/asd" element={<LoginModal/>}/>
 
             <Route element={<Auth />} path="/auth" />
             <Route
