@@ -8,8 +8,8 @@ const LoginModal = () => {
     const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
 
 
-    if (showLoginModal === true) {
-        console.log(showLoginModal)
+    if (showLoginModal) {
+        console.log('showLoginModal')
         return (
             <div
                 className={styles.LoginModalBackground}

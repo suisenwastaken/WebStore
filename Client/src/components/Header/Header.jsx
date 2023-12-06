@@ -2,16 +2,23 @@ import styles from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { BiSearch, BiUser, BiCart } from 'react-icons/bi'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
 import LoginCard from '../LoginCard/LoginCard'
-
+import { Context } from '../../storage/Context'
+import LoginModalContext from '../../storage/LoginModalContext'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
     const [showedCategory, setShowedCategory] = useState('_brands')
-    const [showLoginCard, setShowLoginCard] = useState(false)
+    const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
     const navigate = useNavigate()
+    const { user } = useContext(Context)
     // console.log(showModal)
+
+    const handleProfile = () =>{    
+        user.isAuth ? navigate('/profile') : setShowLoginModal(true)
+    }
+
     return (
         <>
             <div
@@ -84,9 +91,12 @@ const Header = ({}) => {
                         </Link>
                     </div>
                     <div className={styles.UserLinks}>
-                        <Link style={{ color: 'black' }} to="/profile">
+                        <div
+                            style={{ color: 'black' }}
+                            onClick={handleProfile}
+                        >
                             <BiUser />
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>

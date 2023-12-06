@@ -4,6 +4,7 @@ import Header from './components/Header'
 import { useContext, useEffect, useState } from 'react'
 import { Context } from './storage/Context'
 import Alert from './components/Alert/Alert'
+import LoginModal from './components/LoginModal/LoginModal'
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const App = () => {
         <BrowserRouter>
             <Alert />
             <Header />
+            <LoginModal/>
             <Router />
         </BrowserRouter>
     )

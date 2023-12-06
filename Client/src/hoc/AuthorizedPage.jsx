@@ -13,13 +13,15 @@ const AuthorizedPage = ({ children }) => {
     const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
     const isMount = useIsMount()
 
-    if (user.isAuth) {
-        return children
-    } else {
-        console.log('я в хоке авторизации')
-        setShowLoginModal(true)
-        navigate('/')
-    }
+    useEffect(() => {
+        if (user.isAuth) {
+            return children
+        } else {
+            console.log('я в хоке авторизации')
+            setShowLoginModal(true)
+            navigate('/')
+        }
+    })
 }
 
 export default AuthorizedPage
