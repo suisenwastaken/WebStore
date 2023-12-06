@@ -4,8 +4,8 @@
     flex-direction: column;
     align-items: center;
 
-    /* width: max(30%, 350px); */
-    width: 30%;
+    width: max(30%, 400px);
+    /* width: 30%; */
     height: auto;
     gap: 20px;
 

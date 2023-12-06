@@ -9,14 +9,10 @@ const LoginModal = () => {
 
 
     if (showLoginModal) {
-        console.log('showLoginModal')
         return (
             <div
                 className={styles.LoginModalBackground}
                 onClick={() => setShowLoginModal(false)}
-                style={
-                    !showLoginModal ? { display: 'none' } : { display: 'flex' }
-                }
             >
                 <LoginCard onClick={(e) => e.stopPropagation()} />
             </div>

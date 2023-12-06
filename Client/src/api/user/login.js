@@ -1,15 +1,20 @@
 import axios from 'axios'
 
-export const registration = async(email, password) =>{
+export const login = async (email, password) => {
+    // return true;
 
-    try{
-        const respons = await axios.post('/user/login', {email, password})
+    try {
+        const response = await axios.post(
+            'http://localhost:5500/api/user/login',
+            { email, password }
+        )
 
-        if(respons.status === 200){
-            return { isPosted: true, respons }
+        if (response.status === 200) {
+            console.log('логинюсь')
+            return response
         }
-    }catch(error){
+    } catch (error) {
         console.log('Ошибка входа: ', error)
-        return { isPosted: false, error }
+        return error
     }
 }
