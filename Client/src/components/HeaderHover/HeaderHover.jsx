@@ -42,14 +42,27 @@ const HeaderHover = ({ style, showState, setShowState }) => {
                                       {t.name}
                                   </div>
                                   {t.values.map((c, i) => (
-                                      <div className={styles.CategoryName}>
+                                      <div
+                                          className={styles.CategoryName}
+                                          onClick={() => {
+                                              navigate(`/type/${t.url}`)
+                                              setShowState(false)
+                                          }}
+                                      >
                                           {c}
                                       </div>
                                   ))}
                               </div>
                           ))
                         : HeaderCategories.brands.values.map((t, i) => (
-                              <div className={styles.BrandBlock} key={i}>
+                              <div
+                                  className={styles.BrandBlock}
+                                  key={i}
+                                  onClick={() => {
+                                      navigate(`/brand/${t.name}`)
+                                      setShowState(false)
+                                  }}
+                              >
                                   <div className={styles.Image}>
                                       <img src={t.logo} alt="logo" />
                                   </div>

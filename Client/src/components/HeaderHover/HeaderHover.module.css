@@ -81,16 +81,21 @@
     margin-bottom: 5px;
 }
 
+.CategoryName {
+  cursor: pointer;
+}
+
 .BrandBlock {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    width: 22%;
+    width: 23%;
     height: 50px;
     gap: 10px;
     /* background-color: aqua; */
+    cursor: pointer;
 }
 
 .Image {

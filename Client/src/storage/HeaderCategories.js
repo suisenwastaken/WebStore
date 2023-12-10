@@ -33,6 +33,7 @@ export default {
         name: 'Категории',
         values: [
             {
+                url: 'smartphones',
                 name: 'Смартфоны',
                 values: [
                     'Премиум смартфоны',
@@ -42,6 +43,7 @@ export default {
                 ],
             },
             {
+                url: 'headphones',
                 name: 'Наушники',
                 values: [
                     'Бесппроводные наушники',
@@ -51,6 +53,7 @@ export default {
                 ],
             },
             {
+                url: 'laptops',
                 name: 'Ноутбуки',
                 values: [
                     'Недорогие ноутбуки',
@@ -59,10 +62,12 @@ export default {
                 ],
             },
             {
+                url: 'pc',
                 name: 'Компьютеры',
                 values: ['Системные блоки', 'Моноблоки'],
             },
             {
+                url: 'appliances',
                 name: 'Бытовая техника',
                 values: [
                     'Холодильники',
