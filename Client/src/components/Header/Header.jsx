@@ -9,7 +9,6 @@ import { Context } from '../../storage/Context'
 import LoginModalContext from '../../storage/LoginModalContext'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
-    const [showedCategory, setShowedCategory] = useState('_brands')
     const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
     const navigate = useNavigate()
     const { user } = useContext(Context)
@@ -34,6 +33,7 @@ const Header = ({}) => {
                 style={{
                     position: !showModal ? 'relative' : 'fixed',
                 }}
+                onClick={() => showModal? setShowModal(false) : ''}
             >
                 <div className={styles.Logo} onClick={() => navigate('/')}>
                     <img
@@ -78,7 +78,6 @@ const Header = ({}) => {
                 }}
                 setShowState={setShowModal}
                 showState={showModal}
-                categoryState={showedCategory}
             />
         </>
     )
