@@ -43,6 +43,7 @@ const HeaderHover = ({ style, showState, setShowState }) => {
                                   </div>
                                   {t.values.map((c, i) => (
                                       <div
+                                      key={i}
                                           className={styles.CategoryName}
                                           onClick={() => {
                                               navigate(`/type/${t.url}`)

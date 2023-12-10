@@ -2,8 +2,9 @@
   width: 100%;
   /* font-size: 25px; */
   font-size: 1.5vw;
-  font-size: max(20px, 1.5vw);
+  font-size: max(25px, 1.7vw);
   margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .CardLine {
@@ -11,6 +12,7 @@
   flex-direction: row;
   align-items: stretch;
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  overflow-x: hidden;
   gap:20px;
 }

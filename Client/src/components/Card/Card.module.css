@@ -1,28 +1,42 @@
 .Card {
+    position: relative;
     /* width: 18%;
   min-width: 200px; */
-    width: max(18%, 200px);
-    height: 300px;
+    /* width: max(18%, 300px); */
+    /* height: max(18%, 200px); */
+    /* background-color: #023179; */
+    /* height: 300px; */
     display: flex;
     flex-direction: column;
     /* flex-grow: 1; */
-    /* flex-basis: 200px; */
-    align-items: center;
-    justify-content: space-around;
-    -webkit-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+    /* flex-basis: 250px; */
+    /* height: 350px; */
+    width: 250px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    /* -webkit-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
     -moz-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
-    box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
-    background-color: white;
-    font-size: 1.1vw;
+    box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18); */
+    /* background-color: white; */
+    /* font-size: 1.1vw; */
     font-size: max(18px, 1.1vw);
+
+    /* background: rgb(254, 244, 255);
+    background: linear-gradient(
+        90deg,
+        rgba(254, 244, 255, 1) 0%,
+        rgba(230, 228, 255, 1) 90%
+    ); */
+    background-color: #fffdff;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.Card:hover {
-    cursor: pointer;
-}
 
 .Card > * {
-    width: 80%;
+    /* width: 80%; */
 }
 
 .PictureContainer > img {
@@ -32,14 +46,78 @@
 }
 
 .PictureContainer {
-    height: 70%;
-    border-bottom: 1px solid #0c68f4;
+    height: 250px;
+    width: 250px;
+    cursor: pointer;
+    /* background-color: aliceblue; */
+    /* border-bottom: 1px solid #0c68f4; */
 }
-.BottomInfo {
+
+.PriceInfo {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.Price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.PreviousPrice {
+    color: #aaaaaa;
+    font-size: 15px;
+    text-decoration: line-through;
+}
+
+.Discount {
+    color: #ff0000;
+    font-size: 15px;
+}
+
+.DeviceName {
+    overflow: hidden;
+    height: 50px;
+    width: 100%;
+    font-size: 20px;
+    line-height: 25px;
+    text-overflow: ellipsis;
+}
+
+.PromoTag {
+    pointer-events: none;
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 5;
+    margin-top: 10px;
+    margin-left: 10px;
+
+    color: white;
+    background: rgb(0, 4, 221);
+    background: linear-gradient(
+        90deg,
+        rgba(0, 4, 221, 1) 5%,
+        rgba(231, 0, 0, 1) 100%
+    );
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.Buttons {
+    box-sizing: border-box;
+    /* padding: 0 10px; */
+    gap:10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.Button {
+    height: 45px;
 }
 
 .Rate {

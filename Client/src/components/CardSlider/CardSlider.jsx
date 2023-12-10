@@ -28,7 +28,7 @@ const CardSlider = ({ SliderName }) => {
                     <Card
                         key={i}
                         img={d.img}
-                        // brandName={d.brand.name}
+                        type={d.type}
                         brandName={d.brand}
                         deviceName={d.name}
                         devicePrice={d.price}
