@@ -27,5 +27,35 @@ export default {
         headText: 'Успех!',
         mainText: 'Товар удален из корзины!',
         color: 'green',
-    }
+    },
+
+    notValidInput: {
+        headText: 'Неправильный формат!',
+        mainText: 'Вы неправильно ввели данные!',
+        color: 'red'
+    },
+    
+    notUserFound: {
+        headText: 'Пользователь не найден',
+        mainText: 'Вы неправильно ввели данные!',
+        color: 'red'
+    },
+
+    userAlreadyRegistrated: {
+        headText: 'Мы уже знакомы',
+        mainText: 'Такой пользователь уже зарегистрирован!',
+        color: 'red'
+    },
+
+    registrationSuccess: {
+        headText: 'Успех!',
+        mainText: 'Вы успешно зарегистрировались!',
+        color: 'green'
+    },
+
+    loginSuccess: {
+        headText: 'Успех!',
+        mainText: 'Вы успешно зашли в систему!',
+        color: 'green'
+    },
 }

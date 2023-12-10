@@ -24,8 +24,6 @@ const HeaderHover = ({
             <div
                 className={styles.Container}
                 style={style}
-                onMouseLeave={() => setShowState(false)}
-                onMouseOver={() => setShowState(true)}
             >
                 {list.map((t, i) => (
                     <Card

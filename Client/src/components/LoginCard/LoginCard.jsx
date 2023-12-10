@@ -3,12 +3,16 @@ import Button from '../Button/Button'
 import styles from './LoginCard.module.css'
 import { BiSolidKey, BiUser, BiLogoGmail } from 'react-icons/bi'
 import { login } from '../../api/user/login'
-import UserContext from '../../storage/UserContext'
 import { registration } from '../../api/user/registration'
+import { validEmail, validPassword } from './LoginCardValidation'
+import AlertContext from '../../storage/AlertContext'
+import AlertState from '../Alert/AlertState'
+import LoginModalContext from '../../storage/LoginModalContext'
 
 const LoginCard = ({ onClick }) => {
     const [loginState, setLoginState] = useState('login')
-    const [globalUser, setGlobalUser] = useContext(UserContext)
+    const [alert, setAlert] = useContext(AlertContext)
+    const [,setShowLoginModal] = useContext(LoginModalContext)
     const [candidate, setCandidate] = useState({
         name: '',
         email: '',
@@ -23,12 +27,34 @@ const LoginCard = ({ onClick }) => {
         }))
     }
 
+    const validateLogin = () =>{
+        if(validEmail.test(candidate.email) && validPassword.test(candidate.password)){
+            handleLogin()
+        }else{
+            setAlert(AlertState['notValidInput'])
+        }
+    }
+
+    const validateRegistration = () =>{
+        if(validEmail.test(candidate.email) && validPassword.test(candidate.password)){
+            handleRegistration()
+        }else{
+            console.log(validEmail.test(candidate.email))
+            console.log(validPassword.test(candidate.password))
+            setAlert(AlertState['notValidInput'])
+        }
+    }
+
     const handleLogin = async () => {
         const response = await login(candidate.email, candidate.password)
         if (response.status === 200) {
             document.cookie = `token = ${
                 response.data.token
             }; path = /; expiers = ${Date.now() + 86400e3}`
+            setShowLoginModal(false)
+            setAlert(AlertState['loginSuccess'])
+        }else{
+            setAlert(AlertState['notUserFound'])
         }
     }
 
@@ -42,6 +68,10 @@ const LoginCard = ({ onClick }) => {
             document.cookie = `token = ${
                 response.data.token
             }; path = /; expiers = ${Date.now() + 86400e3}`
+            setShowLoginModal(false)
+            setAlert(AlertState['registrationSuccess'])
+        }else{
+            setAlert(AlertState['userAlreadyRegistrated'])
         }
     }
 
@@ -148,8 +178,8 @@ const LoginCard = ({ onClick }) => {
                     className={styles.Button}
                     onClick={
                         loginState === 'login'
-                            ? handleLogin
-                            : handleRegistration
+                            ? validateLogin
+                            : validateRegistration
                     }
                 />
 

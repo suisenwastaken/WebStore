@@ -1,7 +1,7 @@
 import styles from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { BiSearch, BiUser, BiCart } from 'react-icons/bi'
+import { BiSearch, BiUser, BiCart, BiMenu } from 'react-icons/bi'
 import { useState, useContext } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
 import LoginCard from '../LoginCard/LoginCard'
@@ -15,7 +15,7 @@ const Header = ({}) => {
     const { user } = useContext(Context)
     // console.log(showModal)
 
-    const handleProfile = () =>{    
+    const handleProfile = () => {
         user.isAuth ? navigate('/profile') : setShowLoginModal(true)
     }
 
@@ -38,63 +38,34 @@ const Header = ({}) => {
                 <div className={styles.Logo} onClick={() => navigate('/')}>
                     <img
                         className={styles.LogoPicture}
-                        src="/logo.png"
+                        src="/HeaderLogo.png"
                         alt="logo"
                     />
                 </div>
                 <div className={styles.NavTools}>
-                    <div className={styles.NavLinks}>
-                        <Link to="/">Главная</Link>
-                    </div>
                     <div
-                        className={styles.HeaderHoverBlock}
-                        onMouseOver={() => setShowModal(true)}
+                        className={styles.Catalog}
+                        onClick={() => setShowModal(!showModal)}
                     >
-                        <div
-                            className={[
-                                styles.NavLinks,
-                                styles.HeaderHover,
-                            ].join(' ')}
-                            onMouseLeave={() => setShowModal(false)}
-                            onMouseOver={() => {
-                                setShowedCategory('_brands')
-                            }}
-                        >
-                            Бренды
-                        </div>
-                        <div
-                            className={[
-                                styles.NavLinks,
-                                styles.HeaderHover,
-                            ].join(' ')}
-                            onMouseLeave={() => setShowModal(false)}
-                            onMouseOver={() => {
-                                setShowedCategory('_types')
-                            }}
-                        >
-                            Категории
-                        </div>
+                        <BiMenu /> 	&nbsp; Каталог
                     </div>
-                    <div className={styles.NavLinks}>
-                        <Link to="/">О нас</Link>
+
+                    <div className={styles.SearchBlock}>
+                        <input type="text" placeholder='Найдем все'/>
+                        <div className={styles.SearchButton}>
+                            <BiSearch />
+                        </div>
                     </div>
                 </div>
+
                 <div className={styles.UserTools}>
                     <div className={styles.UserLinks}>
-                        <Link style={{ color: 'black' }} to="/">
-                            <BiSearch />
-                        </Link>
-                    </div>
-                    <div className={styles.UserLinks}>
-                        <Link style={{ color: 'black' }} to="/">
+                        <Link style={{ color: '#594ae3' }} to="/">
                             <BiCart />
                         </Link>
                     </div>
                     <div className={styles.UserLinks}>
-                        <div
-                            style={{ color: 'black' }}
-                            onClick={handleProfile}
-                        >
+                        <div style={{ color: '#594ae3' }} onClick={handleProfile}>
                             <BiUser />
                         </div>
                     </div>

@@ -3,6 +3,8 @@
 }
 
 .Page {
-  padding: 0 5%;
-  margin-bottom: 100px;
+  padding: 50px 10%;
+  padding-bottom: 100px;
+
+  background-color: #594ae305;
 }

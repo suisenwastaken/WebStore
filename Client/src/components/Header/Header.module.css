@@ -1,24 +1,29 @@
 .FakeElement{
-    height: 101px;
+    height: 80px;
     background-color: #0C68F4;
     position :re
 }
 
 .Header {
     width: 100%;
+    box-sizing: border-box;
+    padding: 0 5%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #0C68F4;
+    /* border-bottom: 1px solid #0C68F4; */
     z-index: 2;
     top: 0;
-
     background-color: white;
+
+    -webkit-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+    -moz-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+    box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
 }
 
 .Header > *{
-    min-height: 100px;
+    min-height: 80px;
 }
 
 .Logo {
@@ -31,7 +36,7 @@
 }
 
 .LogoPicture {
-    width: min(56px, 100%);
+    width: 60%;
     cursor: pointer;
 }
 
@@ -39,26 +44,65 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content:center;
+    justify-content:flex-start;
     gap: max(20px, 3vw);
 
-    width: 60%;
+    width: 50%;
     height: 100%;
     /* background-color: blue; */
 }
 
+.Catalog{
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: max(18px, 1.2vw);
+    padding: 0px 20px;
+    border-radius: 10px;
 
-
-.NavLinks > *, .NavLinks {
-    /* font-size: 20px; */
-    /* font-size: 1.3vw; */
-    font-size: max(20px, 1.3vw);
-    text-decoration: none;
-    color:rgb(24, 24, 24);
+    color: white;
+    background-color: #594ae3;
+    cursor: pointer;
 }
 
-.NavLinks:hover{
-    cursor: pointer;
+
+.SearchBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 60%;
+  height: 45px;
+}
+
+.SearchBlock > input{
+    box-sizing: border-box;
+    border: solid 1px #71717156;
+    border-radius: 10px 0 0 10px;
+    line-height: 35px;
+
+    width: 80%;
+    height: 100%;
+    padding: 15px;
+
+    font-size: 15px;
+    font-family: 'Inter';
+}
+
+.SearchButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #594ae3;
+    color: white;
+
+    height: 100%;
+    width: 50px;
+    font-size: 20px;
+    border-radius: 0 10px 10px 0;
+
 }
 
 .HeaderHoverBlock {
@@ -68,18 +112,17 @@
 }
 
 .HeaderHover{
-    height: 100px;
-    line-height: 100px;
+    height: 80px;
+    line-height: 80px;
 }
 
 .UserTools {
-    width: 20%;
-    color: black;
+    width: 15%;
+    color: #594ae3;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content:center;
-    gap: 10px;
+    justify-content:space-evenly;
 }
 
 .UserTools >*{
@@ -87,14 +130,17 @@
     /* font-size: 1.8vw; */
     font-size: max(20px, 1.8vw);
     text-decoration: none;
-    color:rgb(24, 24, 24) !important;
+    color: #594ae3 !important;
+    background-color: #594ae318;
+    border-radius: 5px;
+    padding: 10px;
     line-height: 20px;
     cursor: pointer;
 }
 
 .LoginModalBackground{
     position: fixed;
-    margin-top: -101px;
+    margin-top: -80px;
     width: 100%;
     height: 100vh;
     z-index: 2;
