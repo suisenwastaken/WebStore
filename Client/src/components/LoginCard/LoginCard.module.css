@@ -101,7 +101,7 @@
 
 .Input:focus {
     outline: none;
-    border: solid 2px #0c68f4;
+    border: solid 2px #594ae3;
 }
 
 
@@ -113,6 +113,6 @@
 }
 
 .LastRowSecond {
-  color:#0c68f4;
+  color:#594ae3;
   cursor: pointer;
 }

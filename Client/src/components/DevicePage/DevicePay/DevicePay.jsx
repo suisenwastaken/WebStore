@@ -74,7 +74,7 @@ const DevicePay = ({ data, cart }) => {
                         }}
                         style={{
                             backgroundColor:
-                                paymentState === 'now' ? '#0c68f4' : 'white',
+                                paymentState === 'now' ? '#594ae3' : 'white',
                         }}
                     >
                         {paymentState === 'now' ? '✔' : ''}
@@ -89,7 +89,7 @@ const DevicePay = ({ data, cart }) => {
                         }}
                         style={{
                             backgroundColor:
-                                paymentState === 'later' ? '#0c68f4' : 'white',
+                                paymentState === 'later' ? '#594ae3' : 'white',
                         }}
                     >
                         {paymentState === 'later' ? '✔' : ''}
@@ -120,7 +120,7 @@ const DevicePay = ({ data, cart }) => {
             <div className={styles.Buttons}>
                 <Button
                     className={styles.Button}
-                    style={{ backgroundColor: '#0C68F4' }}
+                    style={{ backgroundColor: '#594ae3' }}
                     text={'Купить'}
                 />
                 <Button
@@ -129,14 +129,14 @@ const DevicePay = ({ data, cart }) => {
                     style={
                         cartButton
                             ? {
-                                  backgroundColor: '#ee7300',
-                                  border: '#ee7300 solid 2px',
-                                  color: 'white',
+                                  backgroundColor: '#594ae318',
+                                  border: '#594ae318 solid 2px',
+                                  color: '#594ae3',
                               }
                             : {
                                   backgroundColor: 'white',
-                                  border: '#0c68f4 solid 2px',
-                                  color: '#0c68f4',
+                                  border: '#594ae3 solid 2px',
+                                  color: '#594ae3',
                               }
                     }
                     text={cartButton ? 'Добавлено!' : 'Добавить в корзину'}

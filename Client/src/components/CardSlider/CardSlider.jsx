@@ -5,11 +5,11 @@ import Card from '../Card/Card'
 import { Link, redirect, useNavigate } from 'react-router-dom'
 import { getDevices } from '../../api/devices/getDevices'
 import { getDeviceById } from '../../api/devices/getDeviceById'
+import Carousel from 'nuka-carousel'
 
 const CardSlider = ({ SliderName }) => {
-
     const navigate = useNavigate()
-    const [data, setData] = useState([]);
+    const [data, setData] = useState([])
 
     useEffect(() => {
         const getData = async () => {
@@ -18,12 +18,17 @@ const CardSlider = ({ SliderName }) => {
         }
         getData()
     }, [])
-    
+
     return (
         <>
-        {/* {console.log(data)} */}
+            {/* {console.log(data)} */}
             <div className={styles.Category}>{SliderName}</div>
-            <div className={styles.CardLine}>
+            <Carousel
+                speed={1000}
+                disableEdgeSwiping={true}
+                className={styles.CardLine}
+                wrapAround={true}
+            >
                 {data.map((d, i) => (
                     <Card
                         key={i}
@@ -36,7 +41,7 @@ const CardSlider = ({ SliderName }) => {
                         onClick={() => navigate('/device/' + d.id)}
                     />
                 ))}
-            </div>
+            </Carousel>
         </>
     )
 }

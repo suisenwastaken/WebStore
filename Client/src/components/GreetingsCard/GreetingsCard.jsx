@@ -11,7 +11,7 @@ const GreetingsCard = () => {
     const navigate = useNavigate()
     return(
         <Carousel
-            // autoplay={true}
+            autoplay={true}
             autoplayInterval={4000}
             speed={1000}
             disableEdgeSwiping={true}

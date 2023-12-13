@@ -25,7 +25,7 @@
 }
 
 .Rate {
-    background-color: #023179;
+    background-color: #594ae3;
     border-radius: 5px;
     color: white;
     padding: 3px;
@@ -44,7 +44,7 @@
 }
 
 .Icon {
-    color: #0c68f4;
+    color: #594ae3;
     font-size: max(20px, 1.5vw);
     font-size: 20px;
 }

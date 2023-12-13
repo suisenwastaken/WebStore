@@ -40,7 +40,7 @@ const DeviceInfo = ({ data, deviceInfo, setData }) => {
                     style={{
                         border:
                             colorState === 'gray'
-                                ? '#0c68f4 solid 2px'
+                                ? '#594ae3 solid 2px'
                                 : '#7171715b solid 2px',
                     }}
                 >
@@ -52,7 +52,7 @@ const DeviceInfo = ({ data, deviceInfo, setData }) => {
                     style={{
                         border:
                             colorState === 'black'
-                                ? '#0c68f4 solid 2px'
+                                ? '#594ae3 solid 2px'
                                 : '#7171715b solid 2px',
                     }}
                 >

@@ -85,8 +85,8 @@ const LoginCard = ({ onClick }) => {
                         style={
                             loginState === 'login'
                                 ? {
-                                      color: '#0c68f4',
-                                      borderBottom: '2px solid #0c68f4',
+                                      color: '#594ae3',
+                                      borderBottom: '2px solid #594ae3',
                                   }
                                 : {}
                         }
@@ -99,8 +99,8 @@ const LoginCard = ({ onClick }) => {
                         style={
                             loginState === 'register'
                                 ? {
-                                      color: '#0c68f4',
-                                      borderBottom: '2px solid #0c68f4',
+                                      color: '#594ae3',
+                                      borderBottom: '2px solid #594ae3',
                                   }
                                 : {}
                         }
@@ -169,7 +169,7 @@ const LoginCard = ({ onClick }) => {
                     style={{
                         width: '100%',
                         height: '35px',
-                        backgroundColor: '#0c68f4',
+                        backgroundColor: '#594ae3',
                         borderRadius: '5px',
                     }}
                     pStyle={{

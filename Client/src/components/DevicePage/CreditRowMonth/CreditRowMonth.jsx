@@ -15,8 +15,8 @@ const CreditRowMonth = ({number}) => {
             style={
                 creditState === number
                     ? {
-                          border: '#0c68f4 solid 2px',
-                          color: '#0c68f4',
+                          border: '#594ae3 solid 2px',
+                          color: '#594ae3',
                       }
                     : {
                           border: '#7171715b solid 2px',
