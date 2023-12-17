@@ -19,7 +19,7 @@ const AuthorizedPage = ({ children }) => {
             return children
         } else {
             // console.log('я в хоке авторизации')
-            console.log(user)
+            // console.log(user)
             setShowLoginModal(true)
             navigate('/')
         }

@@ -9,7 +9,7 @@ export const getDeviceById = async(id) =>{
     })[0])
 
     try{
-        const respons = await axios.get('/device', {id})
+        const respons = await axios.get('http://localhost:5500/api/device/', {params: {id}})
 
         if(respons.status === 200){
             return { isGetted: true, respons }
