@@ -28,6 +28,14 @@ const CardSlider = ({ SliderName }) => {
                 disableEdgeSwiping={true}
                 className={styles.CardLine}
                 wrapAround={true}
+                slidesToScroll={2}
+                defaultControlsConfig={{
+                    pagingDotsClassName: styles.Dots,
+                    prevButtonClassName: styles.Arrow,
+                    nextButtonClassName: styles.Arrow,
+                    prevButtonText: '<',
+                    nextButtonText: '>',
+                }}
             >
                 {data.map((d, i) => (
                     <Card
