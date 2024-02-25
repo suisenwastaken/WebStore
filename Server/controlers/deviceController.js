@@ -67,7 +67,9 @@ export async function getById(req,res){
             where:{id},
             include: [{model: model.DeviceInfo, as: 'info'}],
             where: {id},
-            include: [{model: model.Rating, as: 'ratings'}]
+            include: [{model: model.Rating, as: 'ratings'}],
+            where: {id},
+            include: [{model: model.DeviceComment, as: 'comments'}]
         });
 
     return res.json(device);
