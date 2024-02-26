@@ -1,7 +1,7 @@
 import styles from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { BiSearch, BiUser, BiCart, BiMenu } from 'react-icons/bi'
+import { BiSearch, BiUser, BiCart, BiMenu, BiHeart } from 'react-icons/bi'
 import { useState, useContext } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
 import LoginCard from '../LoginCard/LoginCard'
@@ -33,7 +33,7 @@ const Header = ({}) => {
                 style={{
                     position: !showModal ? 'relative' : 'fixed',
                 }}
-                onClick={() => showModal? setShowModal(false) : ''}
+                onClick={() => (showModal ? setShowModal(false) : '')}
             >
                 <div className={styles.Logo} onClick={() => navigate('/')}>
                     <img
@@ -47,11 +47,11 @@ const Header = ({}) => {
                         className={styles.Catalog}
                         onClick={() => setShowModal(!showModal)}
                     >
-                        <BiMenu /> 	&nbsp; Каталог
+                        <BiMenu /> &nbsp; Каталог
                     </div>
 
                     <div className={styles.SearchBlock}>
-                        <input type="text" placeholder='Найдем все'/>
+                        <input type="text" placeholder="Найдем все" />
                         <div className={styles.SearchButton}>
                             <BiSearch />
                         </div>
@@ -60,14 +60,22 @@ const Header = ({}) => {
 
                 <div className={styles.UserTools}>
                     <div className={styles.UserLinks}>
+                        <div
+                            style={{ color: '#594ae3' }}
+                            onClick={handleProfile}
+                        >
+                            <BiUser />
+                        </div>
+                    </div>
+                    <div className={styles.UserLinks}>
                         <Link style={{ color: '#594ae3' }} to="/">
-                            <BiCart />
+                            <BiHeart />
                         </Link>
                     </div>
                     <div className={styles.UserLinks}>
-                        <div style={{ color: '#594ae3' }} onClick={handleProfile}>
-                            <BiUser />
-                        </div>
+                        <Link style={{ color: '#594ae3' }} to="/">
+                            <BiCart />
+                        </Link>
                     </div>
                 </div>
             </div>

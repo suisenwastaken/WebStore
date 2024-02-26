@@ -97,11 +97,11 @@
     margin-left: 10px;
 
     color: white;
-    background: rgb(0, 4, 221);
+    background: rgb(247, 163, 255);
     background: linear-gradient(
         90deg,
-        rgba(0, 4, 221, 1) 5%,
-        rgba(231, 0, 0, 1) 100%
+        rgb(238, 46, 255) 0%,
+        rgb(116, 106, 255) 90%
     );
     padding: 3px;
     border-radius: 5px;

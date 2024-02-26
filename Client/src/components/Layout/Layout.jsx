@@ -6,9 +6,11 @@ import styles from './Layout.module.css'
 const Layout = () => {
     return (
         <>
-            <Header />
-            <Outlet />
-            <Footer />
+            <div className={styles.PageContainer}>
+                <Header />
+                <Outlet />
+                <Footer />
+            </div>
         </>
     )
 }
