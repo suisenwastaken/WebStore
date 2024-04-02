@@ -4,9 +4,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { BiSearch, BiUser, BiCart, BiMenu, BiHeart } from 'react-icons/bi'
 import { useState, useContext } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
-import LoginCard from '../LoginCard/LoginCard'
 import { Context } from '../../storage/Context'
 import LoginModalContext from '../../storage/LoginModalContext'
+import CustomInput2 from '../CustomInput2/CustomInput2'
+import CustomButton from '../CustomButton/CustomButton'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
     const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
@@ -43,40 +44,42 @@ const Header = ({}) => {
                     />
                 </div>
                 <div className={styles.NavTools}>
-                    <div
-                        className={styles.Catalog}
+                    <CustomButton
                         onClick={() => setShowModal(!showModal)}
-                    >
-                        <BiMenu /> &nbsp; Каталог
-                    </div>
+                        icon={<BiMenu />}
+                        text={'Каталог'}
+                    />
 
                     <div className={styles.SearchBlock}>
-                        <input type="text" placeholder="Найдем все" />
-                        <div className={styles.SearchButton}>
-                            <BiSearch />
-                        </div>
+                        <CustomInput2
+                            buttonText={<BiSearch />}
+                            buttonStyle={{ fontSize: '20px' }}
+                        />
                     </div>
                 </div>
 
                 <div className={styles.UserTools}>
-                    <div className={styles.UserLinks}>
-                        <div
-                            style={{ color: '#594ae3' }}
-                            onClick={handleProfile}
-                        >
-                            <BiUser />
-                        </div>
-                    </div>
-                    <div className={styles.UserLinks}>
-                        <Link style={{ color: '#594ae3' }} to="/">
-                            <BiHeart />
-                        </Link>
-                    </div>
-                    <div className={styles.UserLinks}>
-                        <Link style={{ color: '#594ae3' }} to="/">
-                            <BiCart />
-                        </Link>
-                    </div>
+                    <CustomButton
+                        icon={<BiUser />}
+                        style={{ padding: '15px', border: 'none' }}
+                        pStyle={{ fontSize: '20px' }}
+                        type="light"
+                        onClick={handleProfile}
+                    />
+                    <CustomButton
+                        icon={<BiHeart />}
+                        style={{ padding: '15px', border: 'none' }}
+                        pStyle={{ fontSize: '20px' }}
+                        type="light"
+                        onClick={''}
+                    />
+                    <CustomButton
+                        icon={<BiCart />}
+                        style={{ padding: '15px', border: 'none' }}
+                        pStyle={{ fontSize: '20px' }}
+                        type="light"
+                        onClick={''}
+                    />
                 </div>
             </div>
 

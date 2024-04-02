@@ -6,6 +6,7 @@ import { useEffect, useState, useContext } from 'react'
 import { getDeviceById } from '../../api/devices/getDeviceById'
 import { Context } from '../../storage/Context'
 import { observer } from 'mobx-react-lite'
+import CommentSection from '../../components/DevicePage/CommentSection/CommentSection'
 
 
 const DevicePage = () => {
@@ -32,6 +33,9 @@ const DevicePage = () => {
 
                 <DeviceInfo data={data} deviceInfo={deviceInfo} />
                 <DevicePay data={data} cart={cart} />
+            </div>
+            <div className={styles.CommentSection}>
+                <CommentSection/>
             </div>
         </div>
     )

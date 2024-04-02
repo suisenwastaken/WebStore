@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import Button from '../Button/Button'
 import styles from './GreetingsCard.module.css'
 import LoginModalContext from '../../storage/LoginModalContext'
 import { useContext } from 'react'

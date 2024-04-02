@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { RiFireFill } from 'react-icons/ri'
 import { BiHeart, BiCart } from 'react-icons/bi'
 import { PiShare } from 'react-icons/pi'
-import Button from '../Button/Button'
+import CustomButton from '../CustomButton'
 
 const validatePrice = (price) => {
     const str = [...String(price)].reverse().join('')
@@ -55,42 +55,37 @@ const Card = ({
                     type + ' ' + brandName + ' ' + deviceName
                 ) : (
                     <div className={styles.Buttons}>
-                        <Button
-                            text={<BiCart />}
+                        <CustomButton
+                            icon={<BiCart />}
                             className={styles.Button}
                             style={{
                                 backgroundColor: '#594ae3',
-                                fontSize: '30px',
                             }}
+                            pStyle={{ fontSize: '20px' }}
                         />
-                        <Button
-                            text={<BiHeart />}
+                        <CustomButton
+                            icon={<BiHeart />}
                             className={styles.Button}
                             style={{
                                 backgroundColor: 'transparent',
                                 color: '#594ae3',
+                                border: '2px solid transparent',
                             }}
+                            pStyle={{ fontSize: '20px' }}
                         />
-                        <Button
-                            text={<PiShare />}
+                        <CustomButton
+                            icon={<PiShare />}
                             className={styles.Button}
                             style={{
                                 backgroundColor: 'transparent',
                                 color: '#594ae3',
+                                border: '2px solid transparent',
                             }}
+                            pStyle={{ fontSize: '20px' }}
                         />
                     </div>
                 )}
             </div>
-
-            {/* <div className={styles.Buttons}>
-                <Button text={<BiCart/>} className={styles.Button}/>
-                <Button text={<BiHeart/>} className={styles.Button}/>
-            </div> */}
-            {/* <div className={styles.Rate}>
-                <BiSolidStar />
-                {deviceRate}
-            </div> */}
         </div>
     )
 }

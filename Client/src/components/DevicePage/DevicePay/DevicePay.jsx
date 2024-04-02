@@ -1,12 +1,12 @@
 import styles from './DevicePay.module.css'
 import { BiSolidDiscount } from 'react-icons/bi'
-import Button from '../../../components/Button/Button'
 import { useContext, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import AlertContext from '../../../storage/AlertContext'
 import AlertState from '../../Alert/AlertState'
 import DevicePageContext from '../../../storage/DevicePageContext'
 import CreditRowMonth from '../CreditRowMonth/CreditRowMonth'
+import CustomButton from '../../CustomButton'
 
 const DevicePay = ({ data, cart }) => {
     const {
@@ -118,27 +118,14 @@ const DevicePay = ({ data, cart }) => {
             </div>
 
             <div className={styles.Buttons}>
-                <Button
+                <CustomButton
                     className={styles.Button}
-                    style={{ backgroundColor: '#594ae3' }}
                     text={'Купить'}
                 />
-                <Button
+                <CustomButton
                     className={styles.Button}
                     onClick={() => HandleAddToCart()}
-                    style={
-                        cartButton
-                            ? {
-                                  backgroundColor: '#594ae318',
-                                  border: '#594ae318 solid 2px',
-                                  color: '#594ae3',
-                              }
-                            : {
-                                  backgroundColor: 'white',
-                                  border: '#594ae3 solid 2px',
-                                  color: '#594ae3',
-                              }
-                    }
+                    type={cartButton ? 'light' : 'white'}  
                     text={cartButton ? 'Добавлено!' : 'Добавить в корзину'}
                 />
             </div>

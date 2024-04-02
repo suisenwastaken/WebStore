@@ -1,0 +1,53 @@
+.inputArea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.input {
+    all: unset;
+    display: block;
+    box-sizing: border-box;
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Manrope';
+    font-weight: 500;
+    border-radius: 10px;
+    border: 2px solid #11111333;
+    resize: none;
+}
+
+.input:disabled {
+    color: #11111399;
+}
+
+.input::placeholder {
+    color: #11111399;
+    font-family: 'Manrope';
+}
+
+.input:focus-visible {
+    border: 2px solid #016ee5 !important;
+    outline: none;
+}
+
+.error {
+    display: none;
+    gap: 5px;
+    font-size: 14px;
+    color: #d3193e;
+}
+
+.errorInput {
+    border: 2px solid #d3193e;
+    background-color: #fff2f4;
+    color: #d3193e;
+}
+
+.errorInput::placeholder {
+    color: #d3193e;
+}
+
+.errorInput:focus {
+    outline: none;
+}

@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react'
-import Button from '../Button/Button'
 import styles from './LoginCard.module.css'
 import { BiSolidKey, BiUser, BiLogoGmail } from 'react-icons/bi'
 import { login } from '../../api/user/login'
@@ -8,11 +7,13 @@ import { validEmail, validPassword } from './LoginCardValidation'
 import AlertContext from '../../storage/AlertContext'
 import AlertState from '../Alert/AlertState'
 import LoginModalContext from '../../storage/LoginModalContext'
+import CustomInput from '../CustomInput/CustomInput'
+import CustomButton from '../CustomButton'
 
 const LoginCard = ({ onClick }) => {
     const [loginState, setLoginState] = useState('login')
     const [alert, setAlert] = useContext(AlertContext)
-    const [,setShowLoginModal] = useContext(LoginModalContext)
+    const [, setShowLoginModal] = useContext(LoginModalContext)
     const [candidate, setCandidate] = useState({
         name: '',
         email: '',
@@ -27,18 +28,24 @@ const LoginCard = ({ onClick }) => {
         }))
     }
 
-    const validateLogin = () =>{
-        if(validEmail.test(candidate.email) && validPassword.test(candidate.password)){
+    const validateLogin = () => {
+        if (
+            validEmail.test(candidate.email) &&
+            validPassword.test(candidate.password)
+        ) {
             handleLogin()
-        }else{
+        } else {
             setAlert(AlertState['notValidInput'])
         }
     }
 
-    const validateRegistration = () =>{
-        if(validEmail.test(candidate.email) && validPassword.test(candidate.password)){
+    const validateRegistration = () => {
+        if (
+            validEmail.test(candidate.email) &&
+            validPassword.test(candidate.password)
+        ) {
             handleRegistration()
-        }else{
+        } else {
             console.log(validEmail.test(candidate.email))
             console.log(validPassword.test(candidate.password))
             setAlert(AlertState['notValidInput'])
@@ -53,7 +60,7 @@ const LoginCard = ({ onClick }) => {
             }; path = /; expiers = ${Date.now() + 86400e3}`
             setShowLoginModal(false)
             setAlert(AlertState['loginSuccess'])
-        }else{
+        } else {
             setAlert(AlertState['notUserFound'])
         }
     }
@@ -70,7 +77,7 @@ const LoginCard = ({ onClick }) => {
             }; path = /; expiers = ${Date.now() + 86400e3}`
             setShowLoginModal(false)
             setAlert(AlertState['registrationSuccess'])
-        }else{
+        } else {
             setAlert(AlertState['userAlreadyRegistrated'])
         }
     }
@@ -110,7 +117,7 @@ const LoginCard = ({ onClick }) => {
                 </div>
                 <div className={styles.h1}>
                     {loginState === 'login'
-                        ? 'Войдите в Web store'
+                        ? 'Войдите в  Web store'
                         : 'Создайте аккаунт'}
                 </div>
                 <div className={styles.Inputs}>
@@ -122,39 +129,27 @@ const LoginCard = ({ onClick }) => {
                                 : { display: 'none' }
                         }
                     >
-                        <div className={styles.Icon}>
-                            <BiUser />
-                        </div>
-                        <input
+                        <CustomInput
                             type="text"
-                            placeholder="Имя"
-                            className={styles.Input}
+                            placeHolder="Имя"
                             onChange={handleChangeInputs}
                             value={candidate.name}
                             name="name"
                         />
                     </div>
                     <div className={styles.InputWraper}>
-                        <div className={styles.Icon}>
-                            <BiLogoGmail />
-                        </div>
-                        <input
+                        <CustomInput
                             type="text"
-                            placeholder="Почта"
-                            className={styles.Input}
+                            placeHolder="Почта"
                             onChange={handleChangeInputs}
                             value={candidate.email}
                             name="email"
                         />
                     </div>
                     <div className={styles.InputWraper}>
-                        <div className={styles.Icon}>
-                            <BiSolidKey />
-                        </div>
-                        <input
-                            type="password"
-                            placeholder="Пароль"
-                            className={styles.Input}
+                        <CustomInput
+                            type="text"
+                            placeHolder="Пароль"
                             onChange={handleChangeInputs}
                             value={candidate.password}
                             name="password"
@@ -162,20 +157,10 @@ const LoginCard = ({ onClick }) => {
                     </div>
                 </div>
 
-                <Button
+                <CustomButton
                     text={
                         loginState === 'login' ? 'Войти' : 'Зарегистрироваться'
                     }
-                    style={{
-                        width: '100%',
-                        height: '35px',
-                        backgroundColor: '#594ae3',
-                        borderRadius: '5px',
-                    }}
-                    pStyle={{
-                        fontSize: '15px',
-                    }}
-                    className={styles.Button}
                     onClick={
                         loginState === 'login'
                             ? validateLogin

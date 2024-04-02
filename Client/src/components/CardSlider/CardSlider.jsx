@@ -4,7 +4,6 @@ import { Context } from '../../storage/Context'
 import Card from '../Card/Card'
 import { Link, redirect, useNavigate } from 'react-router-dom'
 import { getDevices } from '../../api/devices/getDevices'
-import { getDeviceById } from '../../api/devices/getDeviceById'
 import Carousel from 'nuka-carousel'
 
 const CardSlider = ({ SliderName }) => {
