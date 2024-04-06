@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import styles from './CreditRowMonth.module.css'
-import DevicePageContext from '../../../storage/DevicePageContext'
+import DevicePageContext from '../../storage/DevicePageContext'
 
 const CreditRowMonth = ({number}) => {
 

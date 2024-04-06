@@ -1,0 +1,13 @@
+.RatingContainer{
+    display: flex;
+}
+
+.Star {
+  font-size: 20px;
+  color: #989898;
+}
+
+.YellowStar{
+    font-size: 20px;
+    color: rgb(255, 174, 0);
+}

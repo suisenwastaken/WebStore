@@ -1,33 +1,13 @@
 .Card {
     position: relative;
-    /* width: 18%;
-  min-width: 200px; */
-    /* width: max(18%, 300px); */
-    /* height: max(18%, 200px); */
-    /* background-color: #023179; */
-    /* height: 300px; */
+
     display: flex;
     flex-direction: column;
-    /* flex-grow: 1; */
-    /* flex-basis: 250px; */
-    /* height: 350px; */
+
     width: 250px;
     align-items: flex-start;
     justify-content: flex-start;
     gap: 10px;
-    /* -webkit-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
-    -moz-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
-    box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18); */
-    /* background-color: white; */
-    /* font-size: 1.1vw; */
-    font-size: max(18px, 1.1vw);
-
-    /* background: rgb(254, 244, 255);
-    background: linear-gradient(
-        90deg,
-        rgba(254, 244, 255, 1) 0%,
-        rgba(230, 228, 255, 1) 90%
-    ); */
     background-color: #fffdff;
     border-radius: 20px;
     padding: 10px;
@@ -68,21 +48,21 @@
 }
 
 .PreviousPrice {
-    color: #aaaaaa;
-    font-size: 15px;
+    color: #989898;
+    font-size: 16px;
     text-decoration: line-through;
 }
 
 .Discount {
     color: #ff0000;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .DeviceName {
     overflow: hidden;
     height: 50px;
     width: 100%;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 25px;
     text-overflow: ellipsis;
 }
@@ -90,7 +70,7 @@
 .PromoTag {
     pointer-events: none;
     position: absolute;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     z-index: 5;
     margin-top: 10px;
@@ -127,8 +107,6 @@
 }
 
 .Rate {
-    /* font-size: 18px; */
-    /* font-size: 1.2vw; */
 
     color: #023179;
     display: flex;

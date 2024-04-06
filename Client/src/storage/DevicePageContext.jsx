@@ -7,6 +7,7 @@ export const DevicePageProvider = ({ children }) => {
     const [paymentState, setPaymentState] = useState('')
     const [colorState, setColorState] = useState('')
     const [creditState, setCreditState] = useState(0)
+    const [deviceInfo, setDeviceInfo] = useState({})
 
     return (
         <DevicePageContext.Provider
@@ -19,6 +20,8 @@ export const DevicePageProvider = ({ children }) => {
                 setColorState,
                 creditState,
                 setCreditState,
+                deviceInfo,
+                setDeviceInfo,
             }}
         >
             {children}

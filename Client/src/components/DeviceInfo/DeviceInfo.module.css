@@ -11,16 +11,14 @@
 
 .Name {
     font-weight: bold;
-    /* font-size: 30px; */
-    font-size: max(30px, 2.4vw);
+    font-size: 30px;
 }
 
 .RateRow {
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* font-size: 15px; */
-    font-size: max(15px, 1vw);
+    font-size: 16px;
     gap: 5px;
 }
 
@@ -32,7 +30,7 @@
 }
 
 .SoldCount {
-    color: #717171;
+    color: #989898;
 }
 
 .Statuses {
@@ -45,23 +43,20 @@
 
 .Icon {
     color: #594ae3;
-    font-size: max(20px, 1.5vw);
     font-size: 20px;
 }
 
 .StatusGroup {
-    color: #717171;
+    color: #989898;
     height: 20px;
-    /* font-size: 15px; */
-    font-size: max(15px, 1vw);
+    font-size: 16px;
 
     display: flex;
     align-items: center;
 }
 
 .SelectColor {
-    /* font-size: 17px; */
-    font-size: max(17px, 1.1vw);
+    font-size: 16px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -90,8 +85,7 @@
 }
 
 .ShortInfo {
-    /* font-size: 15px; */
-    font-size: max(15px, 1vw);
+    font-size: 16px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -105,6 +99,6 @@
 }
 
 .InfoKey {
-    color: #717171;
+    color: #989898;
     width: 50%;
 }

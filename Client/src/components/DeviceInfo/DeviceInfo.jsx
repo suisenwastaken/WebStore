@@ -2,18 +2,18 @@ import { useContext, useState } from 'react'
 import styles from './DeviceInfo.module.css'
 
 import { BiShoppingBag, BiBadgeCheck, BiBox, BiSolidStar } from 'react-icons/bi'
-import DevicePageContext from '../../../storage/DevicePageContext'
+import DevicePageContext from '../../storage/DevicePageContext'
 
-const DeviceInfo = ({ data, deviceInfo, setData }) => {
-    const {colorState, setColorState} = useContext(DevicePageContext)
+const DeviceInfo = ({ }) => {
+    const {colorState, setColorState, deviceInfo, setDeviceInfo} = useContext(DevicePageContext)
 
     return (
         <div className={styles.InfoBlock}>
-            <div className={styles.Name}>{data.name}</div>
+            <div className={styles.Name}>{deviceInfo.name}</div>
             <div className={styles.RateRow}>
                 <div className={styles.Rate}>
                     <BiSolidStar />
-                    {data.rating}
+                    {deviceInfo.rating}
                 </div>
                 <div className={styles.SoldCount}> | продано 125</div>
             </div>
@@ -61,7 +61,7 @@ const DeviceInfo = ({ data, deviceInfo, setData }) => {
             </div>
 
             <div className={styles.ShortInfo}>
-                {deviceInfo.map((inf, i) => (
+                {deviceInfo?.device_chars?.map((inf, i) => (
                     <div className={styles.ShortInfoRow} key={i}>
                         <div className={styles.InfoKey}>• {inf.title}</div>
                         <div className={styles.InfoValue}>{inf.name}</div>

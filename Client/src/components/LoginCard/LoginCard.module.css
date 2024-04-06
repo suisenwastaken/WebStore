@@ -42,7 +42,7 @@
 
 .h1 {
     margin-top: 10px;
-    font-size: 32px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
 }
@@ -71,10 +71,10 @@
     left: 3%;
     /* top:50%; */
     position: absolute;
-    font-size: 23px;
+    font-size: 24px;
     text-align: center;
     line-height: 35px;
-    color:#717171;
+    color:#989898;
 
     pointer-events: none;
 }
@@ -83,14 +83,14 @@
 .Input {
     box-sizing: border-box;
     height: 40px;
-    border: solid 1px #717171;
+    border: solid 1px #989898;
     border-radius: 5px;
     line-height: 35px;
 
     width: 100%;
     padding: 5px 40px;
 
-    font-size: 15px;
+    font-size: 16px;
     font-family: 'Inter';
 }
 
@@ -109,7 +109,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .LastRowSecond {

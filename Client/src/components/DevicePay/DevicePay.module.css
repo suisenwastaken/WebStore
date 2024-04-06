@@ -29,9 +29,8 @@
 }
 
 .PriceNow {
-    /* font-size: 22px; */
-    font-size: max(22px, 1.6vw);
-    font-weight: bold;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 .Discount {
@@ -39,62 +38,61 @@
     justify-content: center;
     line-height: 20px;
     color: #ff3e0e;
-    /* font-size: 20px; */
-    font-size: max(20px, 1.5vw);
+    font-size: 20px;
 }
 
 .LastPrice {
-    color: #717171;
+    color: #989898;
     text-decoration: line-through;
 }
 
-.PayDataChoose {
+.Delivery {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-end;
     gap: 10px;
 }
 
-.PayDataCheckRow {
+.DeliveryRow {
     display: flex;
-    height: 30px;
-    gap: 10px;
-    align-items: center;
-    /* font-size: 17px; */
-    font-size: max(17px, 1.1vw);
-}
-
-.CustomCheckBox {
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 25px;
-    height: 25px;
-    background-color: white;
-    color: white;
-    border: #7171715b solid 2px;
-    border-radius: 15px;
-}
-
-.CreditRowChoose {
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    gap: 3px;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
 }
 
+.DeliveryVariant {
+    font-size: 16px;
+    width: fit-content;
+    font-weight: 400;
+}
+
+.DeliveryData {
+    width: fit-content;
+    font-size: 16px;
+    color: #989898;
+    font-weight: 300;
+}
+
+.Dots {
+    border-bottom: 1px dotted #989898;
+    flex-grow: 1;
+    height: 14px;
+}
 
 .Buttons {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 10px
+    gap: 10px;
 }
 
 .Button {
     width: 100% !important;
+}
+
+.Favorite {
+    color: #989898;
 }

@@ -12,9 +12,8 @@
     border: #7171715b solid 2px;
     border-radius: 5px;
     padding: 2px;
-    /* font-size: 14px; */
     font-size: max(1px, 0.8vw);
-    color: #717171;
+    color: #989898;
 }
 
 .CrediRowNumber {
