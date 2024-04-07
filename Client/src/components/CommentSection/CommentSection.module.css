@@ -1,12 +1,78 @@
 .CommentBlock {
     width: 100%;
+    display: flex;
+    gap: 10px;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
 
+.InfoCommentBlock {
+    padding: 5% 5%;
+    gap: 100px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+
     border-radius: 20px;
     -webkit-box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
     -moz-box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
     box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
+}
+
+.h1 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.InfoBlock {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    
+}
+
+.Description {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-right: 5%;
+    border-right: 1px solid #d3d3d3;
+}
+
+.AddCommentSection {
+    width: 20%;
+    padding-left: 5%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.RatingSection {
+    width: 100%;
+    display: flex;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Rate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    background-color: #594ae3;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    padding: 4px 8px;
+    width: fit-content;
 }

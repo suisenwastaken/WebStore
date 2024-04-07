@@ -2,7 +2,6 @@
     box-sizing: border-box;
     width: 100%;
     border-radius: 20px;
-    padding: 1% 5%;
     display: flex;
     height: auto;
 }
