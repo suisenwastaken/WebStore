@@ -7,6 +7,11 @@ import AlertState from '../Alert/AlertState'
 import DevicePageContext from '../../storage/DevicePageContext'
 import CreditRowMonth from '../CreditRowMonth/CreditRowMonth'
 import CustomButton from '../CustomButton'
+import {
+    addDeviceToCart,
+    deleteDeviceFromCart,
+} from '../../localStorage/deviceStorage'
+import { validatePrice } from '../../publicFunctions'
 
 const DevicePay = ({ cart }) => {
     const { cartButton, setCartButton, colorState, deviceInfo } =
@@ -21,12 +26,12 @@ const DevicePay = ({ cart }) => {
             }
 
             setAlert(AlertState['addedToCart'])
-            cart.addDeviceToCart(deviceInfo)
+            addDeviceToCart(deviceInfo)
             setCartButton(true)
         } else {
             setAlert(AlertState['deletedFromCart'])
             setCartButton(false)
-            cart.deleteDeviceFromCart(deviceInfo)
+            deleteDeviceFromCart(deviceInfo)
         }
     }
 
@@ -36,7 +41,7 @@ const DevicePay = ({ cart }) => {
                 <div className={styles.Prices}>
                     <div className={styles.PriceRow}>
                         <div className={styles.PriceNow}>
-                            $ {deviceInfo.price}
+                            ₽ {validatePrice(deviceInfo.price)}
                         </div>
                         {deviceInfo.salePercent ? (
                             <div className={styles.Discount}>
@@ -49,10 +54,12 @@ const DevicePay = ({ cart }) => {
                     </div>
                     {deviceInfo.salePercent ? (
                         <div className={styles.LastPrice}>
-                            ${' '}
-                            {Math.round(
-                                deviceInfo.price *
-                                    (1 + deviceInfo.salePercent * 0.01)
+                            ₽{' '}
+                            {validatePrice(
+                                Math.round(
+                                    deviceInfo.price *
+                                        (1 + deviceInfo.salePercent * 0.01)
+                                )
                             )}
                         </div>
                     ) : (
@@ -86,7 +93,10 @@ const DevicePay = ({ cart }) => {
                         text={cartButton ? 'Добавлено!' : 'Добавить в корзину'}
                     />
                 </div>
-                <div className={styles.DeliveryData}>Оформляя заказ вы соглашаетесь с условиями использования сервиса "WebStore"</div>   
+                <div className={styles.DeliveryData}>
+                    Оформляя заказ вы соглашаетесь с условиями использования
+                    сервиса "WebStore"
+                </div>
             </div>
         </>
     )

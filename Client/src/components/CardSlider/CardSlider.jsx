@@ -39,12 +39,7 @@ const CardSlider = ({ SliderName }) => {
                 {data.map((d, i) => (
                     <Card
                         key={i}
-                        img={d.img}
-                        type={d.type}
-                        brandName={d.brand}
-                        deviceName={d.name}
-                        devicePrice={d.price}
-                        deviceRate={d.rating}
+                        device={d}
                         onClick={() => navigate('/device/' + d.id)}
                     />
                 ))}

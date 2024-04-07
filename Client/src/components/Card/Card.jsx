@@ -5,26 +5,9 @@ import { RiFireFill } from 'react-icons/ri'
 import { BiHeart, BiCart } from 'react-icons/bi'
 import { PiShare } from 'react-icons/pi'
 import CustomButton from '../CustomButton'
+import { validatePrice } from '../../publicFunctions'
 
-const validatePrice = (price) => {
-    const str = [...String(price)].reverse().join('')
-    const finalStr = []
-    for (let i = 0; i < str.length; i++) {
-        if (i % 3 === 0 && i !== 0) finalStr.push(' ')
-        finalStr.push(str[i])
-    }
-    return finalStr.reverse().join('')
-}
-
-const Card = ({
-    img,
-    type,
-    brandName,
-    deviceName,
-    devicePrice,
-    deviceRate,
-    onClick,
-}) => {
+const Card = ({ device, onClick }) => {
     const [hoverState, setHoverState] = useState(false)
     return (
         <div
@@ -37,22 +20,36 @@ const Card = ({
             </div>
 
             <div className={styles.PictureContainer} onClick={onClick}>
-                <img src={'/' + img} alt="DevicePicture" />
+                <img src={'/' + device.img} alt="DevicePicture" />
             </div>
 
             <div className={styles.PriceInfo}>
                 <div className={styles.Price}>
-                    {validatePrice(devicePrice)}₽
+                    {validatePrice(device.price)}₽
                 </div>
-                <div className={styles.PreviousPrice}>
-                    {validatePrice(devicePrice * 1.3)}₽
-                </div>
-                <div className={styles.Discount}>-13%</div>
+                {device.salePercent ? (
+                    <>
+                        <div className={styles.PreviousPrice}>
+                            {validatePrice(
+                                Math.round(
+                                    device.price *
+                                        (1 + device.salePercent * 0.01)
+                                )
+                            )}
+                            ₽
+                        </div>
+                        <div className={styles.Discount}>
+                            -{device.salePercent}%
+                        </div>
+                    </>
+                ) : (
+                    ''
+                )}
             </div>
 
             <div className={styles.DeviceName}>
                 {!hoverState ? (
-                    type + ' ' + brandName + ' ' + deviceName
+                    device.type + ' ' + device.brand + ' ' + device.name
                 ) : (
                     <div className={styles.Buttons}>
                         <CustomButton
