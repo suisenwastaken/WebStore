@@ -71,14 +71,14 @@ const Header = ({}) => {
                         style={{ padding: '15px', border: 'none' }}
                         pStyle={{ fontSize: '20px' }}
                         type="light"
-                        onClick={''}
+                        onClick={() => navigate('/favorites')}
                     />
                     <CustomButton
                         icon={<BiCart />}
                         style={{ padding: '15px', border: 'none' }}
                         pStyle={{ fontSize: '20px' }}
                         type="light"
-                        onClick={''}
+                        onClick={() => navigate('/basket')}
                     />
                 </div>
             </div>

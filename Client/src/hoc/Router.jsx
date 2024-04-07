@@ -11,6 +11,7 @@ import { DevicePageProvider } from '../storage/DevicePageContext'
 import Profile from '../pages/Profile'
 import LoginModal from '../components/LoginModal/LoginModal'
 import Layout from '../components/Layout'
+import Favorites from '../pages/Favorites/Favorites'
 
 const Router = () => {
     const location = useLocation()
@@ -42,6 +43,9 @@ const Router = () => {
                     }
                     path="device/:id"
                 />
+
+                <Route element={<Basket />} path="basket" />
+                <Route element={<Favorites />} path="favorites" />
                 <Route element={<Store />} index />
             </Route>
         </Routes>

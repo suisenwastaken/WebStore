@@ -15,7 +15,7 @@ const DeviceInfo = ({ }) => {
                     <BiSolidStar />
                     {deviceInfo.rating}
                 </div>
-                <div className={styles.SoldCount}> | продано 125</div>
+                <div className={styles.SoldCount}> | продано {deviceInfo.soldCount}</div>
             </div>
 
             <div className={styles.Statuses}>
