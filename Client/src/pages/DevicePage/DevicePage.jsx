@@ -20,7 +20,6 @@ const DevicePage = () => {
             setDeviceInfo(result)
         }
         getData()
-        console.log(deviceInfo)
     }, [])
 
     return (

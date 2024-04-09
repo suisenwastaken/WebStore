@@ -22,22 +22,35 @@
     background-color: #594ae318;
 }
 
-.button:hover {
-    cursor: pointer;
-}
-
 .button:disabled {
     cursor: default;
 }
 
 .text {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 16px;
+    white-space: nowrap;
+}
+
+.text > *{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    width: 30%;
+}
+
+.Control {
+  cursor: pointer;
+}
+
+.ControlCount {
+    font-weight: 400;
     font-size: 16px;
-    line-height: 16px;
-    white-space: nowrap;
 }
 
 .button:disabled {

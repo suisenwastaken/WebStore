@@ -30,7 +30,7 @@ const DeviceInfo = ({ }) => {
                 </div>
             </div>
 
-            <div className={styles.SelectColor}>
+            {/* <div className={styles.SelectColor}>
                 Цвет
                 <div
                     className={styles.SelectColorRound}
@@ -58,7 +58,7 @@ const DeviceInfo = ({ }) => {
                 >
                     {colorState === 'black' ? '✔' : ''}
                 </div>
-            </div>
+            </div> */}
 
             <div className={styles.ShortInfo}>
                 {deviceInfo?.device_chars?.map((inf, i) => (

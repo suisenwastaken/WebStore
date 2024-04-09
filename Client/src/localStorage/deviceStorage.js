@@ -1,17 +1,44 @@
 export const addDeviceToCart = (item) => {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
-    cartItems.push(item)
+
+    const newItem = Object.assign({}, item)
+    delete newItem.comments
+    delete newItem.device_chars
+    delete newItem.description
+    newItem.count = 1
+
+    cartItems.push(newItem)
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
 }
 
 export const deleteDeviceFromCart = (productId) => {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
     console.log(cartItems)
-    const index = cartItems.filter(item => item.id === productId);
-    if (index !== -1) {
-        cartItems.splice(index, 1)
-        localStorage.setItem('cartItems', JSON.stringify(cartItems))
-    }
+    const updatedCartItems = cartItems.filter((item) => item.id !== productId)
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
+}
+
+export const editDeviceCountInCart = (productId, newCount) => {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+    const updatedCartItems = cartItems
+        .map((item) => {
+            if (item.id === productId) {
+                if (newCount === 0) {
+                    return null
+                }
+                return { ...item, count: newCount }
+            }
+            return item
+        })
+        .filter(Boolean)
+    localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
+}
+
+export const getDeviceCountInCart = (productId) => {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+    const item = cartItems.find((item) => item.id === productId)
+    console.log(item)
+    return item ? item.count : 0
 }
 
 export const getDevicesFromCart = () => {

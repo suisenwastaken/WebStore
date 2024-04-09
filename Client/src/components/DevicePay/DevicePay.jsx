@@ -1,6 +1,6 @@
 import styles from './DevicePay.module.css'
 import { BiSolidDiscount } from 'react-icons/bi'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite'
 import AlertContext from '../../storage/AlertContext'
 import AlertState from '../Alert/AlertState'
@@ -9,30 +9,31 @@ import CreditRowMonth from '../CreditRowMonth/CreditRowMonth'
 import CustomButton from '../CustomButton'
 import {
     addDeviceToCart,
-    deleteDeviceFromCart,
+    editDeviceCountInCart,
+    getDeviceCountInCart,
 } from '../../localStorage/deviceStorage'
 import { validatePrice } from '../../publicFunctions'
+import CustomButtonCounter from '../CustomButtonCounter'
 
-const DevicePay = ({ cart }) => {
-    const { cartButton, setCartButton, colorState, deviceInfo } =
-        useContext(DevicePageContext)
+const DevicePay = ({}) => {
+    const { deviceInfo } = useContext(DevicePageContext)
     const [, setAlert] = useContext(AlertContext)
 
-    const HandleAddToCart = () => {
-        if (!cartButton) {
-            if (!colorState) {
-                setAlert(AlertState['dontChooseColor'])
-                return
-            }
+    const [deviceCount, setDeviceCount] = useState(null)
 
-            setAlert(AlertState['addedToCart'])
-            addDeviceToCart(deviceInfo)
-            setCartButton(true)
-        } else {
-            setAlert(AlertState['deletedFromCart'])
-            setCartButton(false)
-            deleteDeviceFromCart(deviceInfo)
-        }
+    useEffect(() => {
+        const count = getDeviceCountInCart(deviceInfo.id)
+        setDeviceCount(count)
+    }, [deviceInfo.id])
+
+    const HandleAddToCart = () => {
+        addDeviceToCart(deviceInfo)
+        setDeviceCount((prevCount) => (prevCount === null ? 1 : prevCount + 1))
+    }
+
+    const handleChangeCount = (newCount) => {
+        setDeviceCount(newCount)
+        editDeviceCountInCart(deviceInfo.id, newCount)
     }
 
     return (
@@ -68,6 +69,7 @@ const DevicePay = ({ cart }) => {
                 </div>
 
                 <div className={styles.Delivery}>
+                    Доставка:
                     <div className={styles.DeliveryRow}>
                         <div className={styles.DeliveryVariant}>
                             В пункт выдачи
@@ -85,14 +87,23 @@ const DevicePay = ({ cart }) => {
                 </div>
 
                 <div className={styles.Buttons}>
-                    <CustomButton className={styles.Button} text={'Купить'} />
-                    <CustomButton
-                        className={styles.Button}
-                        onClick={() => HandleAddToCart()}
-                        type={cartButton ? 'light' : 'white'}
-                        text={cartButton ? 'Добавлено!' : 'Добавить в корзину'}
-                    />
+                    {deviceCount !== 0 ? (
+                        <CustomButtonCounter
+                            type={'light'}
+                            deviceId={deviceInfo.id}
+                            count={deviceCount}
+                            setCount={handleChangeCount}
+                        />
+                    ) : (
+                        <CustomButton
+                            className={styles.Button}
+                            onClick={() => HandleAddToCart()}
+                            type={'purple'}
+                            text={'Купить'}
+                        />
+                    )}
                 </div>
+
                 <div className={styles.DeliveryData}>
                     Оформляя заказ вы соглашаетесь с условиями использования
                     сервиса "WebStore"
