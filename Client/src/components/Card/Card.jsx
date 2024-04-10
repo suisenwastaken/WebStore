@@ -1,14 +1,52 @@
 import styles from './Card.module.css'
 import { BiSolidStar } from 'react-icons/bi'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RiFireFill } from 'react-icons/ri'
 import { BiHeart, BiCart } from 'react-icons/bi'
 import { PiShare } from 'react-icons/pi'
 import CustomButton from '../CustomButton'
 import { validatePrice } from '../../publicFunctions'
+import {
+    addDeviceToCart,
+    deleteDeviceFromCart,
+    isDeviceInCart,
+} from '../../localStorage/cartDeviceStorage'
+import {
+    addDeviceToFavorite,
+    deleteDeviceFromFavorite,
+    isDeviceInFavorite,
+} from '../../localStorage/favoriteDeviceStorage'
 
 const Card = ({ device, onClick }) => {
     const [hoverState, setHoverState] = useState(false)
+    const [cartState, setCartState] = useState(false)
+    const [favoriteState, setFavoriteState] = useState(false)
+
+    useEffect(() => {
+        setCartState(isDeviceInCart(device.id))
+        setFavoriteState(isDeviceInFavorite(device.id))
+    }, [])
+
+    const handleChangeInCart = () => {
+        if (cartState) {
+            setCartState(false)
+            deleteDeviceFromCart(device.id)
+        } else {
+            setCartState(true)
+            addDeviceToCart(device)
+        }
+    }
+
+    const handleChangeInFavorite = () => {
+        if (favoriteState) {
+            setFavoriteState(false)
+            deleteDeviceFromFavorite(device.id)
+        } else {
+            setFavoriteState(true)
+            addDeviceToFavorite(device)
+        }
+    }
+
     return (
         <div
             className={styles.Card}
@@ -55,29 +93,21 @@ const Card = ({ device, onClick }) => {
                         <CustomButton
                             icon={<BiCart />}
                             className={styles.Button}
-                            style={{
-                                backgroundColor: '#594ae3',
-                            }}
+                            type={cartState ? 'default' : 'lightNoBorder'}
                             pStyle={{ fontSize: '20px' }}
+                            onClick={handleChangeInCart}
                         />
                         <CustomButton
                             icon={<BiHeart />}
                             className={styles.Button}
-                            style={{
-                                backgroundColor: 'transparent',
-                                color: '#594ae3',
-                                border: '2px solid transparent',
-                            }}
+                            type={favoriteState ? 'default' : 'lightNoBorder'}
                             pStyle={{ fontSize: '20px' }}
+                            onClick={handleChangeInFavorite}
                         />
                         <CustomButton
                             icon={<PiShare />}
                             className={styles.Button}
-                            style={{
-                                backgroundColor: 'transparent',
-                                color: '#594ae3',
-                                border: '2px solid transparent',
-                            }}
+                            type={'lightNoBorder'}
                             pStyle={{ fontSize: '20px' }}
                         />
                     </div>

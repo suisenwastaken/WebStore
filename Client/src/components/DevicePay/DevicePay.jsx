@@ -1,17 +1,14 @@
 import styles from './DevicePay.module.css'
 import { BiSolidDiscount } from 'react-icons/bi'
 import { useContext, useEffect, useState } from 'react'
-import { observer } from 'mobx-react-lite'
 import AlertContext from '../../storage/AlertContext'
-import AlertState from '../Alert/AlertState'
 import DevicePageContext from '../../storage/DevicePageContext'
-import CreditRowMonth from '../CreditRowMonth/CreditRowMonth'
 import CustomButton from '../CustomButton'
 import {
     addDeviceToCart,
     editDeviceCountInCart,
     getDeviceCountInCart,
-} from '../../localStorage/deviceStorage'
+} from '../../localStorage/cartDeviceStorage'
 import { validatePrice } from '../../publicFunctions'
 import CustomButtonCounter from '../CustomButtonCounter'
 

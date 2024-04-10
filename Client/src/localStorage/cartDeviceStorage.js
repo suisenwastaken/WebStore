@@ -37,8 +37,13 @@ export const editDeviceCountInCart = (productId, newCount) => {
 export const getDeviceCountInCart = (productId) => {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
     const item = cartItems.find((item) => item.id === productId)
-    console.log(item)
     return item ? item.count : 0
+}
+
+export const isDeviceInCart = (productId) =>{
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || []
+    const item = cartItems.find((item) => item.id === productId)
+    return item ? true : false
 }
 
 export const getDevicesFromCart = () => {

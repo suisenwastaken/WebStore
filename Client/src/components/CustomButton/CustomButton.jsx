@@ -12,8 +12,8 @@ const CustomButton = ({
 }) => {
     let subClass = ''
     switch (type) {
-        case 'white':
-            subClass = styles.asd
+        case 'lightNoBorder':
+            subClass = styles.lightNoBorderButton
             break
         case 'light':
             subClass = styles.lightButton

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { editDeviceCountInCart } from '../../localStorage/deviceStorage'
 import styles from './CustomButtonCounter.module.css'
 
 const CustomButtonCounter = ({

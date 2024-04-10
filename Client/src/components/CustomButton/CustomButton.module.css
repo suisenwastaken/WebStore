@@ -12,14 +12,15 @@
     border: 2px solid #594ae3;
 }
 
-.asd {
-    background-color: white;
-    color: #594ae3;
-}
-
 .lightButton {
     color: #594ae3;
-    background-color: #594ae318;
+    background-color: #594ae310;
+}
+
+.lightNoBorderButton {
+    color: #594ae3;
+    background-color: #594ae310;
+    border: none;
 }
 
 .button:hover {
