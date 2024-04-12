@@ -17,7 +17,7 @@ import {
     isDeviceInFavorite,
 } from '../../localStorage/favoriteDeviceStorage'
 
-const Card = ({ device, onClick }) => {
+const Card = ({ device, onClick, place }) => {
     const [hoverState, setHoverState] = useState(false)
     const [cartState, setCartState] = useState(false)
     const [favoriteState, setFavoriteState] = useState(false)
@@ -52,10 +52,15 @@ const Card = ({ device, onClick }) => {
             className={styles.Card}
             onMouseOver={() => setHoverState(true)}
             onMouseOut={() => setHoverState(false)}
+            style={place !== 'slider' && !favoriteState ? {display: 'none'} : {display: 'flex' }}
         >
-            <div className={styles.PromoTag}>
-                <RiFireFill /> РАСПРОДАЖА
-            </div>
+            {place === 'slider' ? (
+                <div className={styles.PromoTag}>
+                    <RiFireFill /> РАСПРОДАЖА
+                </div>
+            ) : (
+                ''
+            )}
 
             <div className={styles.PictureContainer} onClick={onClick}>
                 <img src={'/' + device.img} alt="DevicePicture" />

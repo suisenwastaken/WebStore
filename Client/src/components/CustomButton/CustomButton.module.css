@@ -23,6 +23,24 @@
     border: none;
 }
 
+.defaultNoBorderButton {
+    background-color: #594ae3;
+    color: white;
+    border: none;
+}
+
+.transparentGray {
+    color: #989898;
+    background-color: transparent;
+    border: none;
+}
+
+.transparentPurple {
+    color: #594ae3;
+    background-color: transparent;
+    border: none;
+}
+
 .button:hover {
     cursor: pointer;
 }

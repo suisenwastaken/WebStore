@@ -18,6 +18,15 @@ const CustomButton = ({
         case 'light':
             subClass = styles.lightButton
             break
+        case 'defaultNoBorder':
+            subClass = styles.defaultNoBorderButton
+            break
+        case 'transparentGray':
+            subClass = styles.transparentGray
+            break
+        case 'transparentPurple':
+            subClass = styles.transparentPurple
+            break
         default:
             subClass = ''
             break

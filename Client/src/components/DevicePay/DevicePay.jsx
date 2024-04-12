@@ -12,16 +12,20 @@ import {
 import { validatePrice } from '../../publicFunctions'
 import CustomButtonCounter from '../CustomButtonCounter'
 
-const DevicePay = ({}) => {
-    const { deviceInfo } = useContext(DevicePageContext)
+const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
     const [, setAlert] = useContext(AlertContext)
 
     const [deviceCount, setDeviceCount] = useState(null)
 
     useEffect(() => {
-        const count = getDeviceCountInCart(deviceInfo.id)
+        const count = getDeviceCountInCart(deviceInfo?.id)
         setDeviceCount(count)
-    }, [deviceInfo.id])
+    }, [deviceInfo?.id])
+
+
+    const CreateOrder = () => {
+
+    }
 
     const HandleAddToCart = () => {
         addDeviceToCart(deviceInfo)
@@ -35,13 +39,23 @@ const DevicePay = ({}) => {
 
     return (
         <>
-            <div className={styles.PriceBlock}>
+            <div className={styles.PriceBlock} style={style}>
                 <div className={styles.Prices}>
                     <div className={styles.PriceRow}>
-                        <div className={styles.PriceNow}>
-                            ₽ {validatePrice(deviceInfo.price)}
+                        <div
+                            className={styles.PriceText}
+                            style={
+                                type === 'cart'
+                                    ? { display: 'flex' }
+                                    : { display: 'none' }
+                            }
+                        >
+                            Итого:
                         </div>
-                        {deviceInfo.salePercent ? (
+                        <div className={styles.PriceNow}>
+                            ₽ {validatePrice(deviceInfo?.price)}
+                        </div>
+                        {deviceInfo?.salePercent ? (
                             <div className={styles.Discount}>
                                 <BiSolidDiscount />
                                 -12%
@@ -50,13 +64,13 @@ const DevicePay = ({}) => {
                             ''
                         )}
                     </div>
-                    {deviceInfo.salePercent ? (
+                    {deviceInfo?.salePercent ? (
                         <div className={styles.LastPrice}>
                             ₽{' '}
                             {validatePrice(
                                 Math.round(
                                     deviceInfo.price *
-                                        (1 + deviceInfo.salePercent * 0.01)
+                                        (1 + deviceInfo?.salePercent * 0.01)
                                 )
                             )}
                         </div>
@@ -72,14 +86,18 @@ const DevicePay = ({}) => {
                             В пункт выдачи
                         </div>
                         <div className={styles.Dots}></div>
-                        <div className={styles.DeliveryData}>10 июня</div>
+                        <div className={styles.DeliveryData}>
+                            {deviceInfo?.deliveryPoint}
+                        </div>
                     </div>
                     <div className={styles.DeliveryRow}>
                         <div className={styles.DeliveryVariant}>
                             Курьером на дом
                         </div>
                         <div className={styles.Dots}></div>
-                        <div className={styles.DeliveryData}>8 июня</div>
+                        <div className={styles.DeliveryData}>
+                            {deviceInfo?.deliveryHome}
+                        </div>
                     </div>
                 </div>
 
@@ -87,16 +105,20 @@ const DevicePay = ({}) => {
                     {deviceCount !== 0 ? (
                         <CustomButtonCounter
                             type={'light'}
-                            deviceId={deviceInfo.id}
+                            deviceId={deviceInfo?.id}
                             count={deviceCount}
                             setCount={handleChangeCount}
                         />
                     ) : (
                         <CustomButton
                             className={styles.Button}
-                            onClick={() => HandleAddToCart()}
+                            onClick={
+                                type === 'cart'
+                                    ? () => HandleCreateOrder()
+                                    : () => HandleAddToCart()
+                            }
                             type={'purple'}
-                            text={'Купить'}
+                            text={buttonText ?? 'Купить'}
                         />
                     )}
                 </div>

@@ -12,10 +12,13 @@ const CustomButtonCounter = ({
     type,
     count,
     setCount,
-    deviceId
+    deviceId,
 }) => {
     let subClass = ''
     switch (type) {
+        case 'lightNoBorder':
+            subClass = styles.lightNoBorderButton
+            break
         case 'white':
             subClass = styles.asd
             break
@@ -27,17 +30,27 @@ const CustomButtonCounter = ({
             break
     }
 
-
     return (
         <div
             className={[styles.button, className, subClass].join(' ')}
             style={style}
             disabled={disabled}
+            onClick={onClick}
         >
             <div className={styles.text} style={pStyle}>
-                <div className={styles.Control} onClick={() => setCount(count - 1)}>-</div>
+                <div
+                    className={styles.Control}
+                    onClick={() => setCount(count - 1)}
+                >
+                    -
+                </div>
                 <div className={styles.ControlCount}>{count}</div>
-                <div className={styles.Control} onClick={() => setCount(count + 1)} >+</div>    
+                <div
+                    className={styles.Control}
+                    onClick={() => setCount(count + 1)}
+                >
+                    +
+                </div>
             </div>
         </div>
     )

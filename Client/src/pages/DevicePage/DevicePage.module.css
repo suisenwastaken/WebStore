@@ -1,6 +1,7 @@
 .Page {
     margin: 5% 10%;
-
+    min-height: calc(100vh - 140px);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 2vh;

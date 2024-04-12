@@ -32,6 +32,7 @@ export const editDeviceCountInCart = (productId, newCount) => {
         })
         .filter(Boolean)
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems))
+    localStorage.setItem('cartItemsUpdated', Date.now());
 }
 
 export const getDeviceCountInCart = (productId) => {

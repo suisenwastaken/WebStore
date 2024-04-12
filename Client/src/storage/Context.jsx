@@ -10,8 +10,7 @@ const ContextProvider = ({ children }) => {
         <Context.Provider
             value={{
                 user: new UserStore(),
-                device: new DeviceStore(),
-                cart: new Cart(),
+                device: new DeviceStore()
             }}
         >
             {children}

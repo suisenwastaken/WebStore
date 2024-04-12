@@ -12,6 +12,7 @@ import Profile from '../pages/Profile'
 import LoginModal from '../components/LoginModal/LoginModal'
 import Layout from '../components/Layout'
 import Favorites from '../pages/Favorites/Favorites'
+import { CartProvider } from '../storage/CartContext'
 
 const Router = () => {
     const location = useLocation()
@@ -44,7 +45,14 @@ const Router = () => {
                     path="device/:id"
                 />
 
-                <Route element={<Basket />} path="basket" />
+                <Route
+                    element={
+                        <CartProvider>
+                            <Basket />
+                        </CartProvider>
+                    }
+                    path="basket"
+                />
                 <Route element={<Favorites />} path="favorites" />
                 <Route element={<Store />} index />
             </Route>

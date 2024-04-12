@@ -1,8 +1,10 @@
 .Page > * {
-  width: 100%;
+    width: 100%;
 }
 
 .Page {
-  padding: 5% 10%;
-  background-color: #594ae305;
+    padding: 5% 10%;
+    background-color: #594ae305;
+    box-sizing: border-box;
+    min-height: calc(100vh - 140px);
 }

@@ -41,6 +41,7 @@ const CardSlider = ({ SliderName }) => {
                         key={i}
                         device={d}
                         onClick={() => navigate('/device/' + d.id)}
+                        place={'slider'}
                     />
                 ))}
             </Carousel>

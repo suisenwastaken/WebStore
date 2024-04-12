@@ -10,7 +10,6 @@ import CommentSection from '../../components/CommentSection/CommentSection'
 import DevicePageContext from '../../storage/DevicePageContext'
 
 const DevicePage = () => {
-    const { cart } = useContext(Context)
     const { id } = useParams()
     const { deviceInfo, setDeviceInfo } = useContext(DevicePageContext)
 
@@ -30,7 +29,7 @@ const DevicePage = () => {
                 </div>
 
                 <DeviceInfo />
-                <DevicePay cart={cart} />
+                <DevicePay deviceInfo={deviceInfo}/>
             </div>
             <CommentSection />
         </div>
