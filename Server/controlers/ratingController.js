@@ -5,16 +5,16 @@ export async function postRate(req,res){
     const {id: deviceId} = req.params;
     const {rate, title, description} = req.body;
     const userId = req.user.id;
-    let candidate = await model.Rating.findOne({where: {deviceId, userId}});
+    let candidate = await model.Comment.findOne({where: {deviceId, userId}});
 
-    const countOfRatings = await model.Rating.count({where: {deviceId}});
+    const countOfRatings = await model.Comment.count({where: {deviceId}});
     const device = await model.Device.findOne({where: {id: deviceId}});
     let newRating;
     if(!candidate){
-        candidate = await model.Rating.create({deviceId, rate, userId, title, description});
+        candidate = await model.Comment.create({deviceId, rate, userId, title, description});
         newRating = (device.rating * countOfRatings + rate) / (countOfRatings + 1);
     }else{
-        await model.Rating.update({rate: rate, title: title, description: description}, {where: {deviceId, userId}})
+        await model.Comment.update({rate: rate, title: title, description: description}, {where: {deviceId, userId}})
         newRating = (device.rating * countOfRatings - candidate.rate + rate) / countOfRatings;
     }
     await model.Device.update({rating: newRating}, {where: {id: deviceId}});

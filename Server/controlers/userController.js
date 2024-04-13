@@ -24,10 +24,10 @@ export async function registration(req,res, next){
         return next(ApiError.badRequest('Такая почта уже зарегестрированна!'))
     }
 
-    const hashPassowrd = await bcrypt.hash(password, 5);
+    const hashPassword = await bcrypt.hash(password, 5);
     
-    const user =  await model.User.create({email, password: hashPassowrd, role })
-    const basket = await model.Basket.create({userId: user.id})
+    const user =  await model.User.create({email, password: hashPassword, role })
+    const favorites = await model.Favorite.create({userId: user.id})
 
     const token = generateJwt(user.id, user.email, user.role);
 
