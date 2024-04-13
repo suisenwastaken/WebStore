@@ -17,7 +17,7 @@ import {
     isDeviceInFavorite,
 } from '../../localStorage/favoriteDeviceStorage'
 
-const CardSmall = ({ device }) => {
+const CardSmall = ({ device, onCountChange }) => {
     const [deviceCount, setDeviceCount] = useState(null)
     const [favoriteState, setFavoriteState] = useState(false)
     const [deleteState, setDeleteState] = useState(false)
@@ -31,6 +31,7 @@ const CardSmall = ({ device }) => {
     const handleChangeCount = (newCount) => {
         setDeviceCount(newCount)
         editDeviceCountInCart(device.id, newCount)
+        if (onCountChange) onCountChange()
     }
 
     const handleDeleteItemFromCart = () => {

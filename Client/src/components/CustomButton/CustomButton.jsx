@@ -9,6 +9,7 @@ const CustomButton = ({
     pStyle,
     disabled,
     type,
+    pClassName
 }) => {
     let subClass = ''
     switch (type) {
@@ -38,7 +39,7 @@ const CustomButton = ({
             style={style}
             disabled={disabled}
         >
-            <div className={styles.text} style={pStyle}>
+            <div className={[styles.text, pClassName].join(' ')} style={pStyle}>
                 {icon}
                 {text}
             </div>

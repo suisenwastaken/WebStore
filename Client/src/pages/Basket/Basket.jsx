@@ -7,10 +7,19 @@ import DevicePay from '../../components/DevicePay/DevicePay'
 const Basket = () => {
     const [devices, setDevices] = useState([])
     const [payObject, setPayObject] = useState()
+    const [totalPrice, setTotalPrice] = useState()
 
     useEffect(() => {
         setDevices(getDevicesFromCart())
     }, [])
+
+    useEffect(() => {
+        setTotalPrice(
+            devices?.reduce((price, item) => {
+                return price + item.price * item.count
+            }, 0)
+        )
+    }, [devices])
 
     useEffect(() => {
         setPayObject({
@@ -19,11 +28,7 @@ const Basket = () => {
             deliveryHome: latestDates?.deliveryHome,
             deliveryPoint: latestDates?.deliveryPoint,
         })
-    }, [devices])
-
-    const totalPrice = devices?.reduce((price, item) => {
-        return price + item.price * item.count
-    }, 0)
+    }, [totalPrice])
 
     const latestDates = devices?.reduce(
         (latest, currentItem) => {
@@ -54,7 +59,7 @@ const Basket = () => {
                     <div className={styles.deviceRows}>
                         {devices &&
                             devices.map((e) => (
-                                <CardSmall device={e} key={e.id} />
+                                <CardSmall device={e} key={e.id} onCountChange={() => setDevices(getDevicesFromCart())} />
                             ))}
                     </div>
                 </div>

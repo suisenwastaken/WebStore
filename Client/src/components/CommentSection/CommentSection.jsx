@@ -1,13 +1,16 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Comment from '../Comment/Comment'
 import styles from './CommentSection.module.css'
 import DevicePageContext from '../../storage/DevicePageContext'
 import CustomButton from '../CustomButton/CustomButton'
 import { BiSolidStar } from 'react-icons/bi'
+import CommentModal from '../CommentModal/CommentModal'
 
 const CommentSection = () => {
     const { deviceInfo } = useContext(DevicePageContext)
+    const [isCommentModalShown, setIsCommentModalShown] = useState(false)
     return (
+        <>
         <div className={styles.InfoCommentBlock}>
             <div className={styles.InfoBlock}>
                 <div className={styles.Description}>
@@ -20,6 +23,7 @@ const CommentSection = () => {
                     <CustomButton
                         text={'Оставить отзыв'}
                         style={{ width: '100%', borderRadius: '25px'}}
+                        onClick={() => setIsCommentModalShown(true)}
                     />
                     <div className={styles.RatingSection}>
                         Оценка
@@ -37,6 +41,11 @@ const CommentSection = () => {
                 ))}
             </div>
         </div>
+        <CommentModal
+            isModalShown={isCommentModalShown}
+            setIsModalShown={setIsCommentModalShown}
+        />
+        </>
     )
 }
 
