@@ -5,11 +5,8 @@ export async function post(req, res) {
   try {
     const userId = req.user.id;
     const { deviceIds } = req.body;
-    // Создаем заказ для пользователя
-    // Проверяем, есть ли идентификаторы устройств в теле запроса
     if (deviceIds && deviceIds.length > 0) {
       const order = await model.Order.create({ userId });
-      // Для каждого идентификатора устройства создаем связь с заказом
       await Promise.all(
         deviceIds.map(async (deviceId) => {
           await model.OrderDevice.create({ orderId: order.id, deviceId });
