@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import path from "path";
+import { Op } from "sequelize";
 import model from "../models/models.js";
 import ApiError from "../error/apiError.js";
 import { where } from "sequelize";
@@ -53,14 +54,12 @@ export async function get(req, res) {
   let { brandId, typeId, page, limit } = req.query;
 
   page = page ?? 1;
-  limit = limit ?? 10;
+  limit = limit ?? 20;
   let offset = page * limit - limit;
   let devices;
 
   if (!brandId && !typeId) {
-    devices = await model.Device.findAndCountAll({
-      include: { model: model.Brand, as: "brand" },
-    });
+    devices = await model.Device.findAndCountAll({});
   }
 
   if (!brandId && typeId) {
@@ -84,13 +83,29 @@ export async function get(req, res) {
   return res.json(devices);
 }
 
+export async function getPromo(req, res, next) {
+  try {
+    const devices = await model.Device.findAll({
+      where: {
+        salePercent: {
+          [Op.gte]: 30,
+        },
+      },
+    });
+
+    return res.json(devices);
+  } catch (error) {
+    next(ApiError.badRequest(error.message));
+  }
+}
+
 export async function getById(req, res) {
   const { id } = req.params;
   const device = await model.Device.findOne({
     where: { id },
-    include: [{ model: model.DeviceInfo}],
+    include: [{ model: model.DeviceInfo }],
     where: { id },
-    include: [{ model: model.Comment}],
+    include: [{ model: model.Comment }],
   });
 
   return res.json(device);

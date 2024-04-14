@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react'
 import { Navigate, redirect, useNavigate } from 'react-router-dom'
-import { Context } from '../storage/Context'
 import LoginModalContext from '../storage/LoginModalContext'
 import AlertContext from '../storage/AlertContext'
 import AlertState from '../components/Alert/AlertState'

@@ -4,15 +4,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { BiSearch, BiUser, BiCart, BiMenu, BiHeart } from 'react-icons/bi'
 import { useState, useContext } from 'react'
 import HeaderHover from '../HeaderHover/HeaderHover'
-import { Context } from '../../storage/Context'
 import LoginModalContext from '../../storage/LoginModalContext'
 import CustomInput2 from '../CustomInput2/CustomInput2'
 import CustomButton from '../CustomButton/CustomButton'
+import UserContext from '../../storage/UserContext'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
     const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
     const navigate = useNavigate()
-    const { user } = useContext(Context)
+    const { user } = useContext(UserContext)
     // console.log(showModal)
 
     const handleProfile = () => {

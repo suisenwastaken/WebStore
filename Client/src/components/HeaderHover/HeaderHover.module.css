@@ -1,7 +1,8 @@
 .Container {
     box-sizing: border-box;
     /* min-height: 400px; */
-    height: 400px;
+    min-height: 400px;
+    /* height: fit-content; */
     width: 84%;
     top: 80px;
     margin: 0 8%;
@@ -14,10 +15,16 @@
 
     position: fixed;
     z-index: 1;
-    background-color: #fffdff;
     -webkit-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
     -moz-box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
     box-shadow: -8px 8px 25px 1px rgba(34, 60, 80, 0.18);
+
+    background: rgb(254, 244, 255);
+    background: linear-gradient(
+        90deg,
+        rgba(254, 244, 255, 1) 0%,
+        rgba(230, 228, 255, 1) 90%
+    );
 
     border-radius: 0 0 10px 10px;
 }
@@ -32,12 +39,6 @@
     flex-direction: column;
     /* gap: 20px; */
 
-    background: rgb(254, 244, 255);
-    background: linear-gradient(
-        90deg,
-        rgba(254, 244, 255, 1) 0%,
-        rgba(230, 228, 255, 1) 90%
-    );
     border-radius: 0 0 0 10px;
 }
 
@@ -52,6 +53,7 @@
 
 .CategoryStates {
     height: 100%;
+    min-height: 400px;
     padding: 50px;
     box-sizing: border-box;
     width: 80%;
@@ -62,6 +64,7 @@
     align-content: flex-start;
     justify-content: flex-start;
     gap: 25px;
+    background-color: #fffdff;
 
     -webkit-box-shadow: -4px 4px 6px 1px rgba(34, 60, 80, 0.12);
     -moz-box-shadow: -4px 4px 6px 1px rgba(34, 60, 80, 0.12);
@@ -82,7 +85,7 @@
 }
 
 .CategoryName {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .BrandBlock {
@@ -103,7 +106,7 @@
     height: 30px;
 }
 
-.Image > img{
+.Image > img {
     height: 100%;
     width: fit-content;
 }

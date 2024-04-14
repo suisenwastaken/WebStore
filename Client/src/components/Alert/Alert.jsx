@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styles from './Alert.module.css'
-import { Context } from '../../storage/Context'
 import AlertContext from '../../storage/AlertContext'
 import { useIsMount } from '../../hooks/useIsMount'
 
