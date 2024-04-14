@@ -6,14 +6,12 @@ import { registration } from '../../api/user/registration'
 import { validEmail, validPassword } from './LoginCardValidation'
 import AlertContext from '../../storage/AlertContext'
 import AlertState from '../Alert/AlertState'
-import LoginModalContext from '../../storage/LoginModalContext'
 import CustomInput from '../CustomInput/CustomInput'
 import CustomButton from '../CustomButton'
 
-const LoginCard = ({ onClick }) => {
+const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
     const [loginState, setLoginState] = useState('login')
     const [alert, setAlert] = useContext(AlertContext)
-    const [, setShowLoginModal] = useContext(LoginModalContext)
     const [candidate, setCandidate] = useState({
         name: '',
         email: '',

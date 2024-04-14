@@ -63,7 +63,7 @@ const Card = ({ device, onClick, place }) => {
             )}
 
             <div className={styles.PictureContainer} onClick={onClick}>
-                <img src={'/' + device.img} alt="DevicePicture" />
+                <img src={'/' + device.img} alt="DevicePicture" draggable="false"/>
             </div>
 
             <div className={styles.PriceInfo}>

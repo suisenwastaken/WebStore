@@ -3,7 +3,6 @@ import { useContext, useEffect } from 'react'
 import Card from '../../components/Card/Card'
 import GreetingsCard from '../../components/GreetingsCard'
 import CardSlider from '../../components/CardSlider/CardSlider'
-import LoginModalContext from '../../storage/LoginModalContext'
 
 
 const Store = () => {

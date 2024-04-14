@@ -1,6 +1,5 @@
 import { useContext, useEffect } from 'react'
 import { Navigate, redirect, useNavigate } from 'react-router-dom'
-import LoginModalContext from '../storage/LoginModalContext'
 import AlertContext from '../storage/AlertContext'
 import AlertState from '../components/Alert/AlertState'
 import { useIsMount } from '../hooks/useIsMount'
@@ -10,8 +9,6 @@ import UserContext from '../storage/UserContext'
 const AuthorizedPage = ({ children }) => {
     const [globalUser,] = useContext(UserContext)
     const navigate = useNavigate()
-    const [showLoginModal, setShowLoginModal] = useContext(LoginModalContext)
-    const isMount = useIsMount()
 
     useEffect(() => {
         if (globalUser) {

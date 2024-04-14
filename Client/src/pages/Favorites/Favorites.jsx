@@ -11,9 +11,10 @@ const Favorites = () => {
         <div className={styles.Page}>
             <div className={styles.h1}>Избранные</div>
             <div className={styles.CenterBlock}>
-                {devices.map((item) => (
+                {devices.map((item, i) => (
                     <Card
                         device={item}
+                        key={i}
                         onClick={() => navigate('/device/' + item.id)}
                     />
                 ))}

@@ -59,7 +59,7 @@ const CardSmall = ({ device, onCountChange }) => {
                     className={styles.img}
                     onClick={() => navigate('/device/' + device.id)}
                 >
-                    <img src={device.img} alt="device image" />
+                    <img src={device.img} alt="device image" draggable="false"/>
                 </div>
                 <div className={styles.Info}>
                     <div
