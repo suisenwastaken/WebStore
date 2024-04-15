@@ -3,29 +3,16 @@ import { makeAutoObservable } from 'mobx'
 
 class User {
     constructor() {
-        this._isAuth = false
-        this._user = {
-            id: null,
-            email: null,
-            role: null,
-        }
+        this._user = null
         makeAutoObservable(this)
     }
 
-    setIsAuth(bool) {
-        this._isAuth = bool
-    }
-
-    setUser(user) {
+    setUser = (user) => {
         this._user = user
     }
 
-    get isAuth() {
-        return this._isAuth
-    }
-
     get user() {
-        return this._user
+        return JSON.parse(JSON.stringify(this._user))
     }
 }
 

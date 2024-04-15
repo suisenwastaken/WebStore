@@ -54,3 +54,25 @@ export async function check(req, res, next) {
   const token = generateJwt(req.user.id, req.user.email, req.user.role);
   return res.json({ token });
 }
+
+export async function getUserInfo(req, res) {
+  try {
+    const userId = req.user.id;
+
+    const user = await model.User.findByPk(userId, {
+      attributes: ["id", "name", "email"], 
+      include: [{ model: model.Order }],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Пользователь не найден!" });
+    }
+
+    const newToken = generateJwt(user.id, user.email, user.role);
+
+    return res.json({ user, token: newToken });
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}

@@ -35,13 +35,22 @@ const Router = () => {
 
                 <Route
                     element={
-                        <CartProvider>
-                            <Basket />
-                        </CartProvider>
+                        <AuthorizedPage>
+                            <CartProvider>
+                                <Basket />
+                            </CartProvider>
+                        </AuthorizedPage>
                     }
                     path="basket"
                 />
-                <Route element={<Favorites />} path="favorites" />
+                <Route
+                    element={
+                        <AuthorizedPage>
+                            <Favorites />
+                        </AuthorizedPage>
+                    }
+                    path="favorites"
+                />
                 <Route element={<Store />} index />
             </Route>
         </Routes>

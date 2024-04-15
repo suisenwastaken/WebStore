@@ -1,22 +1,61 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from './LoginCard.module.css'
 import { BiSolidKey, BiUser, BiLogoGmail } from 'react-icons/bi'
 import { login } from '../../api/user/login'
 import { registration } from '../../api/user/registration'
-import { validEmail, validPassword } from './LoginCardValidation'
 import AlertContext from '../../storage/AlertContext'
 import AlertState from '../Alert/AlertState'
 import CustomInput from '../CustomInput/CustomInput'
 import CustomButton from '../CustomButton'
+import { LOGIN_URL } from '../../api/Urls'
+import { POST, Request, SetAccessTokenCookie } from '../../api/APIFile'
 
 const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    const passwordRegex = /^[a-zA-Z0-9]{8,}$/
+    const nameRegex = /^[А-ЯЁ][А-ЯЁа-яё]{3,}$/
+
     const [loginState, setLoginState] = useState('login')
-    const [alert, setAlert] = useContext(AlertContext)
+    const [isButtonDisable, setIsButtonDisable] = useState(false)
     const [candidate, setCandidate] = useState({
         name: '',
         email: '',
         password: '',
     })
+    const [errors, setErrors] = useState({
+        name: '',
+        email: '',
+        password: '',
+    })
+
+    useEffect(() => {
+        const handleInputChange = () => {
+            if (loginState !== 'login') {
+                if (nameRegex.test(candidate.name) && errors.name) {
+                    setErrors((prevErrors) => ({
+                        ...prevErrors,
+                        name: '',
+                    }))
+                    setIsButtonDisable(false)
+                }
+            }
+            if (emailRegex.test(candidate.email) && errors.email) {
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: '',
+                }))
+                setIsButtonDisable(false)
+            }
+            if (passwordRegex.test(candidate.password) && errors.password) {
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    password: '',
+                }))
+                setIsButtonDisable(false)
+            }
+        }
+        handleInputChange()
+    }, [errors.name, errors.email, errors.password, candidate])
 
     const handleChangeInputs = (e) => {
         const { name, value } = e.target
@@ -26,44 +65,52 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
         }))
     }
 
-    const validateLogin = () => {
-        if (
-            validEmail.test(candidate.email) &&
-            validPassword.test(candidate.password)
-        ) {
-            handleLogin()
-        } else {
-            setAlert(AlertState['notValidInput'])
-        }
-    }
-
-    const validateRegistration = () => {
-        if (
-            validEmail.test(candidate.email) &&
-            validPassword.test(candidate.password)
-        ) {
-            handleRegistration()
-        } else {
-            console.log(validEmail.test(candidate.email))
-            console.log(validPassword.test(candidate.password))
-            setAlert(AlertState['notValidInput'])
-        }
-    }
-
     const handleLogin = async () => {
-        const response = await login(candidate.email, candidate.password)
-        if (response.status === 200) {
-            document.cookie = `token = ${
-                response.data.token
-            }; path = /; expiers = ${Date.now() + 86400e3}`
+        if (!emailRegex.test(candidate.email)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: 'Введите корректную почту',
+            }))
+            setIsButtonDisable(true)
+        } else if (!passwordRegex.test(candidate.password)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password: 'Пароль состоит из 8 символов',
+            }))
+            setIsButtonDisable(true)
+        }
+        const loginResponse = await Request.send({
+            method: POST,
+            url: LOGIN_URL,
+            data: { email: candidate.email, password: candidate.password },
+            useToken: false,
+        })
+        if (loginResponse) {
+            SetAccessTokenCookie(loginResponse.data.token)
             setShowLoginModal(false)
-            setAlert(AlertState['loginSuccess'])
-        } else {
-            setAlert(AlertState['notUserFound'])
         }
     }
 
     const handleRegistration = async () => {
+        if (!nameRegex.test(candidate.name)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                name: 'Введите корректное имя',
+            }))
+            setIsButtonDisable(true)
+        } else if (!emailRegex.test(candidate.email)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email: 'Введите корректную почту',
+            }))
+            setIsButtonDisable(true)
+        } else if (!passwordRegex.test(candidate.password)) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password: 'Пароль состоит из 8 символов',
+            }))
+            setIsButtonDisable(true)
+        }
         const response = await registration(
             candidate.name,
             candidate.email,
@@ -133,6 +180,7 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
                             onChange={handleChangeInputs}
                             value={candidate.name}
                             name="name"
+                            error={errors.name}
                         />
                     </div>
                     <div className={styles.InputWraper}>
@@ -142,6 +190,7 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
                             onChange={handleChangeInputs}
                             value={candidate.email}
                             name="email"
+                            error={errors.email}
                         />
                     </div>
                     <div className={styles.InputWraper}>
@@ -151,6 +200,7 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
                             onChange={handleChangeInputs}
                             value={candidate.password}
                             name="password"
+                            error={errors.password}
                         />
                     </div>
                 </div>
@@ -161,9 +211,10 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
                     }
                     onClick={
                         loginState === 'login'
-                            ? validateLogin
-                            : validateRegistration
+                            ? handleLogin
+                            : handleRegistration
                     }
+                    disabled={isButtonDisable}
                 />
 
                 <div

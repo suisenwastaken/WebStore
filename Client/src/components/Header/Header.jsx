@@ -16,7 +16,7 @@ const Header = ({}) => {
     // console.log(showModal)
 
     const handleProfile = () => {
-        user.isAuth ? navigate('/profile') : setShowLoginModal(true)
+        user ? navigate('/profile') : setShowLoginModal(true)
     }
 
     return (

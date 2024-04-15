@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookies from "js-cookie"
 import { AuthorizationTokenType } from '../publicFunctions'
 
 export const POST = 'POST'
@@ -25,7 +26,7 @@ const _Request = {
 
             return response
         } catch (error) {
-            console.error('Произошла неизвестная ошибка:', error)
+            throw new Error('Не удалось получить пользователя')
         }
     },
 
@@ -43,3 +44,4 @@ export const Request = _Request
 
 export const GetAccessTokenCookie = () => Cookies.get('access-token')
 export const SetAccessTokenCookie = (token) => Cookies.set('access-token', token)
+export const RemoveAccessTokenCookie = () => Cookies.remove('access-token')

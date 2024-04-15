@@ -47,6 +47,8 @@
 
 .button:disabled {
     cursor: default;
+    background-color: #594ae380;
+    border-color: #594ae380;
 }
 
 .text {

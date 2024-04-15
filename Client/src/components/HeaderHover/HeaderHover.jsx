@@ -41,7 +41,7 @@ const HeaderHover = ({ style, showState, setShowState }) => {
                                   <div className={styles.CategoryHead}>
                                       {type.name}
                                   </div>
-                                  {type.values.map((subType, i) => (
+                                  {type?.values?.map((subType, i) => (
                                       <div
                                       key={i}
                                           className={styles.CategoryName}
