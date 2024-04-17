@@ -26,7 +26,7 @@ export async function registration(req, res, next) {
 
   const token = generateJwt(user.id, user.email, user.role);
 
-  return res.json({ token });
+  return res.json({ user, token });
 }
 
 export async function login(req, res, next) {
@@ -46,8 +46,40 @@ export async function login(req, res, next) {
     return next(ApiError.badRequest("Неправильный пароль!"));
   }
 
+  const basketDevicesResult = await model.BasketDevices.findAll({
+    where: { userId: user.id },
+    include: [{ model: model.Device }],
+  });
+
+  const basketDevices = [];
+  for (const basketDevice of basketDevicesResult) {
+    basketDevices.push(basketDevice.device);
+  }
+
+  const favoriteDevicesResult = await model.FavoriteDevices.findAll({
+    where: { userId: user.id },
+    include: [{ model: model.Device }],
+  });
+
+  const favoriteDevices = [];
+  for (const favoriteDevice of favoriteDevicesResult) {
+    favoriteDevices.push(favoriteDevice.device);
+  }
+
+  const userFields = {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+  };
+
+  const userInfo = {
+    user: userFields,
+    basketDevices,
+    favoriteDevices,
+  };
+
   const token = generateJwt(user.id, user.email, user.role);
-  return res.json({ token });
+  return res.json({ userInfo, token });
 }
 
 export async function check(req, res, next) {
@@ -60,17 +92,42 @@ export async function getUserInfo(req, res) {
     const userId = req.user.id;
 
     const user = await model.User.findByPk(userId, {
-      attributes: ["id", "name", "email"], 
-      include: [{ model: model.Order }],
+      attributes: ["id", "name", "email"],
     });
 
     if (!user) {
       return res.status(404).json({ message: "Пользователь не найден!" });
     }
 
+    const basketDevicesResult = await model.BasketDevices.findAll({
+      where: { userId },
+      include: [{ model: model.Device }],
+    });
+
+    const basketDevices = [];
+    for (const basketDevice of basketDevicesResult) {
+      basketDevices.push(basketDevice.device);
+    }
+
+    const favoriteDevicesResult = await model.FavoriteDevices.findAll({
+      where: { userId },
+      include: [{ model: model.Device }],
+    });
+
+    const favoriteDevices = [];
+    for (const favoriteDevice of favoriteDevicesResult) {
+      favoriteDevices.push(favoriteDevice.device);
+    }
+
+    const userInfo = {
+      user,
+      basketDevices,
+      favoriteDevices,
+    };
+
     const newToken = generateJwt(user.id, user.email, user.role);
 
-    return res.json({ user, token: newToken });
+    return res.json({ userInfo, token: newToken });
   } catch (error) {
     console.error("Error fetching user info:", error);
     return res.status(500).json({ error: "Internal server error" });

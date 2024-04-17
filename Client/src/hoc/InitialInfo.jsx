@@ -7,7 +7,7 @@ import {
     Request,
     SetAccessTokenCookie,
 } from '../api/APIFile'
-import { GET_USER_URL, LOGIN_REFRESH } from '../api/Urls'
+import { GET_USER_URL } from '../api/Urls'
 import LoadingComponent from '../components/LoadingComponent/LoadingComponent'
 import CartContext from '../storage/CartContext'
 import FavoriteContext from '../storage/FavoriteContext'
@@ -15,33 +15,32 @@ import FavoriteContext from '../storage/FavoriteContext'
 const AuthorizedPage = ({ children }) => {
     const navigate = useNavigate()
     const { setUser } = useContext(UserContext)
-    const [loading, setLoading] = useState(false)
+    const {setDevicesInCart} = useContext(CartContext)
+    const {setDevicesInFavorite} = useContext(FavoriteContext)
 
     useEffect(() => {
         const getUser = async () => {
             try {
-                setLoading(true)
                 const userResponse = await Request.send({
                     method: GET,
-                    url: LOGIN_REFRESH,
+                    url: GET_USER_URL,
                     useToken: true,
                 })
                 if (userResponse) {
+                    setUser(userResponse.data.userInfo.user)
+                    setDevicesInCart(userResponse.data.userInfo.basketDevices)
+                    setDevicesInFavorite(userResponse.data.userInfo.basketDevices)
                     SetAccessTokenCookie(userResponse.data.token)
-                    setLoading(false)
                 }
             } catch (error) {
-                console.log('Ошибка получения пользователя: ', error)
                 RemoveAccessTokenCookie()
-                navigate('/')
-                setLoading(false)
             }
         }
 
         getUser()
     }, [navigate, setUser])
 
-    return loading ? <LoadingComponent /> : children
+    return children
 }
 
 export default AuthorizedPage

@@ -1,33 +1,38 @@
 import styles from './Card.module.css'
 import { BiSolidStar } from 'react-icons/bi'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { RiFireFill } from 'react-icons/ri'
 import { BiHeart, BiCart } from 'react-icons/bi'
 import { PiShare } from 'react-icons/pi'
 import CustomButton from '../CustomButton'
-import { validatePrice } from '../../publicFunctions'
-import {
-    addDeviceToCart,
-    deleteDeviceFromCart,
-    isDeviceInCart,
-} from '../../localStorage/cartDeviceStorage'
-import {
-    addDeviceToFavorite,
-    deleteDeviceFromFavorite,
-    isDeviceInFavorite,
-} from '../../localStorage/favoriteDeviceStorage'
+import { BrandEnum, TypeEnum, getBrandName, getTypeName, validatePrice } from '../../publicFunctions'
+import CartContext from '../../storage/CartContext'
+import FavoriteContext from '../../storage/FavoriteContext'
+import { POST, Request } from '../../api/APIFile'
+import { BASKET_URL, FAVORITES_URL } from '../../api/Urls'
 
 const Card = ({ device, onClick, place }) => {
     const [hoverState, setHoverState] = useState(false)
     const [cartState, setCartState] = useState(false)
     const [favoriteState, setFavoriteState] = useState(false)
+    const { deleteDeviceFromCart, addDeviceToCart, isDeviceInCart } =
+        useContext(CartContext)
+    const {
+        addDeviceToFavorite,
+        deleteDeviceFromFavorite,
+        isDeviceInFavorite,
+    } = useContext(FavoriteContext)
+    const [deviceType, setDeviceType] = useState()
+    const [deviceBrand, setDeviceBrand] = useState()
 
     useEffect(() => {
         setCartState(isDeviceInCart(device.id))
         setFavoriteState(isDeviceInFavorite(device.id))
+        setDeviceType(getTypeName(device.typeId))
+        setDeviceBrand(getBrandName(device.brandId))
     }, [])
 
-    const handleChangeInCart = () => {
+    const handleChangeInCart = async () => {
         if (cartState) {
             setCartState(false)
             deleteDeviceFromCart(device.id)
@@ -37,7 +42,7 @@ const Card = ({ device, onClick, place }) => {
         }
     }
 
-    const handleChangeInFavorite = () => {
+    const handleChangeInFavorite = async () => {
         if (favoriteState) {
             setFavoriteState(false)
             deleteDeviceFromFavorite(device.id)
@@ -52,7 +57,11 @@ const Card = ({ device, onClick, place }) => {
             className={styles.Card}
             onMouseOver={() => setHoverState(true)}
             onMouseOut={() => setHoverState(false)}
-            style={place !== 'slider' && !favoriteState ? {display: 'none'} : {display: 'flex' }}
+            style={
+                place !== 'slider' && !favoriteState
+                    ? { display: 'none' }
+                    : { display: 'flex' }
+            }
         >
             {place === 'slider' ? (
                 <div className={styles.PromoTag}>
@@ -63,7 +72,7 @@ const Card = ({ device, onClick, place }) => {
             )}
 
             <div className={styles.PictureContainer} onClick={onClick}>
-                <img src={'/' + device.img} alt="DevicePicture" draggable="false"/>
+                <img src={device.img} alt="DevicePicture" draggable="false" />
             </div>
 
             <div className={styles.PriceInfo}>
@@ -92,7 +101,7 @@ const Card = ({ device, onClick, place }) => {
 
             <div className={styles.DeviceName}>
                 {!hoverState ? (
-                    device.type + ' ' + device.brand + ' ' + device.name
+                    deviceType + ' ' + deviceBrand + ' ' + device.name
                 ) : (
                     <div className={styles.Buttons}>
                         <CustomButton

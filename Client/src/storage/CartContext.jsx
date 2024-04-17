@@ -1,27 +1,46 @@
 import { createContext, useState } from 'react'
 
 import { makeAutoObservable } from 'mobx'
+import { POST, Request } from '../api/APIFile'
+import { BASKET_URL } from '../api/Urls'
 
 class Cart {
     constructor() {
-        this._cartDevices = []
+        this._cartDevices = null
         makeAutoObservable(this)
     }
 
-    addDeviceToCart(device) {
-        this._cartDevices.push(device)
+    setDevicesInCart = (devices) => {
+        this._cartDevices = devices
     }
 
-    deleteDeviceFromCart(data) {
-        this._cartDevices.splice(data, 1)
+    addDeviceToCart = async (device) => {
+        this._cartDevices.push(device)
+        const response = await Request.send({
+            method: POST,
+            url: BASKET_URL,
+            data: { deviceId: device.id },
+            useToken: true,
+        })
+    }
+
+    deleteDeviceFromCart = async (deviceId) => {
+        this._cartDevices.splice(deviceId, 1)
+        const response = await Request.send({
+            method: POST,
+            url: BASKET_URL,
+            data: { deviceId },
+            useToken: true,
+        })
+    }
+
+    isDeviceInCart = (deviceId) => {
+        const item = this._cartDevices?.find((item) => item.id === deviceId)
+        return item ? true : false
     }
 
     get cartDevices() {
         return this._cartDevices
-    }
-
-    get cartCount() {
-        return this._cartDevices.length
     }
 }
 

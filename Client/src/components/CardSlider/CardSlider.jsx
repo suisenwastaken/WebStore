@@ -4,6 +4,8 @@ import Card from '../Card/Card'
 import { Link, redirect, useNavigate } from 'react-router-dom'
 import { getDevices } from '../../api/devices/getDevices'
 import Carousel from 'nuka-carousel'
+import { GET, Request } from '../../api/APIFile'
+import { DEVICE_PROMO_URL } from '../../api/Urls'
 
 const CardSlider = ({ SliderName }) => {
     const navigate = useNavigate()
@@ -11,8 +13,12 @@ const CardSlider = ({ SliderName }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const result = await getDevices()
-            setData(result)
+            const response = await Request.send({
+                method: GET,
+                url: DEVICE_PROMO_URL,
+                useToken: false,
+            })
+            setData(response.data)
         }
         getData()
     }, [])

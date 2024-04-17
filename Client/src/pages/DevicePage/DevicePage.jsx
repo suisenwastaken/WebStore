@@ -7,6 +7,8 @@ import { getDeviceById } from '../../api/devices/getDeviceById'
 import { observer } from 'mobx-react-lite'
 import CommentSection from '../../components/CommentSection/CommentSection'
 import DevicePageContext from '../../storage/DevicePageContext'
+import { GET, Request } from '../../api/APIFile'
+import { DEVICE_BY_ID_URL } from '../../api/Urls'
 
 const DevicePage = () => {
     const { id } = useParams()
@@ -14,8 +16,12 @@ const DevicePage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const result = await getDeviceById(id)
-            setDeviceInfo(result)
+            const deviceResponse = await Request.send({
+                method: GET,
+                url: DEVICE_BY_ID_URL(id),
+                useToken: false,
+            })
+            setDeviceInfo(deviceResponse.data)
         }
         getData()
     }, [])
@@ -24,11 +30,11 @@ const DevicePage = () => {
         <div className={styles.Page}>
             <div className={styles.TopBlock}>
                 <div className={styles.ImageBlock}>
-                    <img src={'/' + deviceInfo.img} />
+                    <img src={deviceInfo.img} />
                 </div>
 
                 <DeviceInfo />
-                <DevicePay deviceInfo={deviceInfo}/>
+                <DevicePay deviceInfo={deviceInfo} />
             </div>
             <CommentSection />
         </div>
