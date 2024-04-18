@@ -19,6 +19,7 @@ const FavoriteDevices = sequelize.define("favorite", {
 
 const BasketDevices = sequelize.define("basket", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
 });
 
 const OrderDevice = sequelize.define("order_device", {
@@ -29,7 +30,6 @@ const Device = sequelize.define("device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
-  count: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
   salePercent: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
   deliveryHome: { type: DataTypes.STRING, unique: false, allowNull: false },
   deliveryPoint: { type: DataTypes.STRING, unique: false, allowNull: false },

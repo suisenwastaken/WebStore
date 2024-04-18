@@ -13,13 +13,14 @@ import CartContext from '../storage/CartContext'
 import FavoriteContext from '../storage/FavoriteContext'
 
 const AuthorizedPage = ({ children }) => {
-    const navigate = useNavigate()
     const { setUser } = useContext(UserContext)
-    const {setDevicesInCart} = useContext(CartContext)
-    const {setDevicesInFavorite} = useContext(FavoriteContext)
+    const { setDevicesInCart, cartDevices } = useContext(CartContext)
+    const { setDevicesInFavorite } = useContext(FavoriteContext)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const getUser = async () => {
+            setLoading(true)
             try {
                 const userResponse = await Request.send({
                     method: GET,
@@ -27,20 +28,24 @@ const AuthorizedPage = ({ children }) => {
                     useToken: true,
                 })
                 if (userResponse) {
+                    setLoading(false)
                     setUser(userResponse.data.userInfo.user)
                     setDevicesInCart(userResponse.data.userInfo.basketDevices)
-                    setDevicesInFavorite(userResponse.data.userInfo.basketDevices)
+                    setDevicesInFavorite(
+                        userResponse.data.userInfo.favoriteDevices
+                    )
                     SetAccessTokenCookie(userResponse.data.token)
                 }
             } catch (error) {
+                setLoading(false)
                 RemoveAccessTokenCookie()
             }
         }
 
         getUser()
-    }, [navigate, setUser])
+    }, [setUser])
 
-    return children
+    return loading ? <LoadingComponent /> : children
 }
 
 export default AuthorizedPage

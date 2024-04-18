@@ -2,18 +2,18 @@ import styles from './DevicePay.module.css'
 import { BiSolidDiscount } from 'react-icons/bi'
 import { useContext, useEffect, useState } from 'react'
 import AlertContext from '../../storage/AlertContext'
-import DevicePageContext from '../../storage/DevicePageContext'
 import CustomButton from '../CustomButton'
-import {
-    addDeviceToCart,
-    editDeviceCountInCart,
-    getDeviceCountInCart,
-} from '../../localStorage/cartDeviceStorage'
 import { validatePrice } from '../../publicFunctions'
 import CustomButtonCounter from '../CustomButtonCounter'
+import CartContext from '../../storage/CartContext'
 
 const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
     const [, setAlert] = useContext(AlertContext)
+    const {
+        addDeviceToCart,
+        getDeviceCountInCart,
+        editDeviceCountInCart
+    } = useContext(CartContext)
 
     const [deviceCount, setDeviceCount] = useState(null)
 
@@ -22,10 +22,7 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
         setDeviceCount(count)
     }, [deviceInfo?.id])
 
-
-    const CreateOrder = () => {
-
-    }
+    const CreateOrder = () => {}
 
     const HandleAddToCart = () => {
         addDeviceToCart(deviceInfo)

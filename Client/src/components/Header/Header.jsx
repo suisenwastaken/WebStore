@@ -8,6 +8,7 @@ import CustomInput2 from '../CustomInput2/CustomInput2'
 import CustomButton from '../CustomButton/CustomButton'
 import UserContext from '../../storage/UserContext'
 import LoginModal from '../LoginModal/LoginModal'
+import { basketURL, favoriteURL, profileURL, storeURL } from '../../hoc/routerLinks'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
@@ -15,8 +16,8 @@ const Header = ({}) => {
     const { user } = useContext(UserContext)
     // console.log(showModal)
 
-    const handleProfile = () => {
-        user ? navigate('/profile') : setShowLoginModal(true)
+    const handleClick = (route) => {
+        user ? navigate(route) : setShowLoginModal(true)
     }
 
     return (
@@ -36,7 +37,7 @@ const Header = ({}) => {
                 }}
                 onClick={() => (showModal ? setShowModal(false) : '')}
             >
-                <div className={styles.Logo} onClick={() => navigate('/')}>
+                <div className={styles.Logo} onClick={() => navigate(storeURL)}>
                     <img
                         className={styles.LogoPicture}
                         src="/HeaderLogo.png"
@@ -64,21 +65,21 @@ const Header = ({}) => {
                         style={{ padding: '15px', border: 'none' }}
                         pStyle={{ fontSize: '20px' }}
                         type="light"
-                        onClick={handleProfile}
+                        onClick={() => handleClick(profileURL)}
                     />
                     <CustomButton
                         icon={<BiHeart />}
                         style={{ padding: '15px', border: 'none' }}
                         pStyle={{ fontSize: '20px' }}
                         type="light"
-                        onClick={() => navigate('/favorites')}
+                        onClick={() => handleClick(favoriteURL)}
                     />
                     <CustomButton
                         icon={<BiCart />}
                         style={{ padding: '15px', border: 'none' }}
                         pStyle={{ fontSize: '20px' }}
                         type="light"
-                        onClick={() => navigate('/basket')}
+                        onClick={() => handleClick(basketURL)}
                     />
                 </div>
             </div>

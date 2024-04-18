@@ -5,7 +5,13 @@ import { RiFireFill } from 'react-icons/ri'
 import { BiHeart, BiCart } from 'react-icons/bi'
 import { PiShare } from 'react-icons/pi'
 import CustomButton from '../CustomButton'
-import { BrandEnum, TypeEnum, getBrandName, getTypeName, validatePrice } from '../../publicFunctions'
+import {
+    BrandEnum,
+    TypeEnum,
+    getBrandName,
+    getTypeName,
+    validatePrice,
+} from '../../publicFunctions'
 import CartContext from '../../storage/CartContext'
 import FavoriteContext from '../../storage/FavoriteContext'
 import { POST, Request } from '../../api/APIFile'
@@ -15,8 +21,12 @@ const Card = ({ device, onClick, place }) => {
     const [hoverState, setHoverState] = useState(false)
     const [cartState, setCartState] = useState(false)
     const [favoriteState, setFavoriteState] = useState(false)
-    const { deleteDeviceFromCart, addDeviceToCart, isDeviceInCart } =
-        useContext(CartContext)
+    const {
+        deleteDeviceFromCart,
+        addDeviceToCart,
+        isDeviceInCart,
+        cartDevices,
+    } = useContext(CartContext)
     const {
         addDeviceToFavorite,
         deleteDeviceFromFavorite,
@@ -26,11 +36,14 @@ const Card = ({ device, onClick, place }) => {
     const [deviceBrand, setDeviceBrand] = useState()
 
     useEffect(() => {
-        setCartState(isDeviceInCart(device.id))
-        setFavoriteState(isDeviceInFavorite(device.id))
         setDeviceType(getTypeName(device.typeId))
         setDeviceBrand(getBrandName(device.brandId))
     }, [])
+
+    useEffect(() => {
+        setCartState(isDeviceInCart(device.id))
+        setFavoriteState(isDeviceInFavorite(device.id))
+    }, [cartDevices])
 
     const handleChangeInCart = async () => {
         if (cartState) {
@@ -102,7 +115,7 @@ const Card = ({ device, onClick, place }) => {
             <div className={styles.DeviceName}>
                 {!hoverState ? (
                     deviceType + ' ' + deviceBrand + ' ' + device.name
-                ) : (
+                ) : cartDevices ? (
                     <div className={styles.Buttons}>
                         <CustomButton
                             icon={<BiCart />}
@@ -125,6 +138,8 @@ const Card = ({ device, onClick, place }) => {
                             pStyle={{ fontSize: '20px' }}
                         />
                     </div>
+                ) : (
+                    ''
                 )}
             </div>
         </div>

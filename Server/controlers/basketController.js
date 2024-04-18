@@ -2,7 +2,7 @@ import model from "../models/models.js";
 import ApiError from "../error/apiError.js";
 
 export async function post(req, res) {
-  const { deviceId } = req.body
+  const { deviceId } = req.body;
   const userId = req.user.id;
 
   let candidate = await model.BasketDevices.findOne({
@@ -18,6 +18,27 @@ export async function post(req, res) {
   }
 }
 
+export async function updateDeviceCount(req, res) {
+  const { deviceId, count } = req.body;
+  const userId = req.user.id;
+
+  try {
+    let device = await model.BasketDevices.findOne({
+      where: { deviceId, userId },
+    });
+
+    if (device) {
+      await device.update({ count });
+      return res.json({ message: "Device count updated successfully" });
+    } else {
+      return res.status(404).json({ error: "Device not found in basket" });
+    }
+  } catch (error) {
+    console.error("Error updating device count:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+}
+
 export async function get(req, res) {
   try {
     const userId = req.user.id;
@@ -26,7 +47,10 @@ export async function get(req, res) {
       include: [{ model: model.Device, as: "device" }],
     });
 
-    const devices = basketDevices.map((basketDevice) => basketDevice.device);
+    const devices = basketDevices.map((basketDevice) => {
+      const { device, count } = basketDevice;
+      return { ...device.toJSON(), count };
+    });
 
     return res.json(devices);
   } catch (error) {

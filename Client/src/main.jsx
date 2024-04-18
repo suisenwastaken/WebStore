@@ -5,16 +5,18 @@ import { AlertProvider } from './storage/AlertContext.jsx'
 import { UserContextProvider } from './storage/UserContext.jsx'
 import { CartProvider } from './storage/CartContext.jsx'
 import { FavoriteProvider } from './storage/FavoriteContext.jsx'
-
+import InitialInfo from './hoc/InitialInfo.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <UserContextProvider>
         <CartProvider>
             <FavoriteProvider>
                 <AlertProvider>
-                    <React.StrictMode>
-                        <App />
-                    </React.StrictMode>
+                    <InitialInfo>
+                        <React.StrictMode>
+                            <App />
+                        </React.StrictMode>
+                    </InitialInfo>
                 </AlertProvider>
             </FavoriteProvider>
         </CartProvider>

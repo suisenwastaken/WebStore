@@ -59,7 +59,7 @@ export const TypeEnum = [
 
 export const getTypeName = (typeId) => {
     for (const category of TypeEnum) {
-      const foundType = category.values.find((value) => value.id === typeId);
+      const foundType = category?.values?.find((value) => value.id === typeId);
       if (foundType) {
         return foundType.name;
       }
@@ -68,5 +68,5 @@ export const getTypeName = (typeId) => {
   };
 
 export const getBrandName = (brandId) => {
-    return  BrandEnum.find((brand) => brand.id === brandId)?.name || ''
+    return  BrandEnum?.find((brand) => brand.id === brandId)?.name || ''
 }

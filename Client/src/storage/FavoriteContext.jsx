@@ -25,13 +25,18 @@ class Favorite {
     }
 
     deleteDeviceFromFavorite = async (deviceId) => {
-        this._favoriteDevices.splice(deviceId, 1)
-        const response = await Request.send({
-            method: POST,
-            url: FAVORITES_URL,
-            data: { deviceId },
-            useToken: true,
-        })
+        const index = this._favoriteDevices.findIndex(
+            (device) => device.id === deviceId
+        )
+        if (index !== -1) {
+            this._favoriteDevices.splice(index, 1)
+            const response = await Request.send({
+                method: POST,
+                url: FAVORITES_URL,
+                data: { deviceId },
+                useToken: true,
+            })
+        }
     }
 
     isDeviceInFavorite = (deviceId) => {
@@ -40,7 +45,8 @@ class Favorite {
     }
 
     get favoriteDevices() {
-        return this._favoriteDevices
+        console.log(this._favoriteDevices)
+        return JSON.parse(JSON.stringify(this._favoriteDevices))
     }
 }
 

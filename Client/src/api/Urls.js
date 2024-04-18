@@ -13,5 +13,6 @@ export const BRAND_URL = import.meta.env.VITE_API + '/brand'
 export const FAVORITES_URL = import.meta.env.VITE_API + '/favorites'
 
 export const BASKET_URL = import.meta.env.VITE_API + '/basket'
+export const BASKET_UPDATE_COUNT_URL = import.meta.env.VITE_API + '/basket/update_count'
 
 export const ORDER_URL = import.meta.env.VITE_API + '/order'

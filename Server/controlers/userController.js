@@ -33,7 +33,7 @@ export async function login(req, res, next) {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(ApiError.badRequest("Некоректная почта или пароль"));
+    return next(ApiError.badRequest("Некорректная почта или пароль"));
   }
 
   const user = await model.User.findOne({ where: { email } });
@@ -51,20 +51,19 @@ export async function login(req, res, next) {
     include: [{ model: model.Device }],
   });
 
-  const basketDevices = [];
-  for (const basketDevice of basketDevicesResult) {
-    basketDevices.push(basketDevice.device);
-  }
+  const basketDevices = basketDevicesResult.map((basketDevice) => {
+    const { device, count } = basketDevice;
+    return { ...device.toJSON(), count };
+  });
 
   const favoriteDevicesResult = await model.FavoriteDevices.findAll({
     where: { userId: user.id },
     include: [{ model: model.Device }],
   });
 
-  const favoriteDevices = [];
-  for (const favoriteDevice of favoriteDevicesResult) {
-    favoriteDevices.push(favoriteDevice.device);
-  }
+  const favoriteDevices = favoriteDevicesResult.map(
+    (favoriteDevice) => favoriteDevice.device
+  );
 
   const userFields = {
     id: user.id,
@@ -104,10 +103,11 @@ export async function getUserInfo(req, res) {
       include: [{ model: model.Device }],
     });
 
-    const basketDevices = [];
-    for (const basketDevice of basketDevicesResult) {
-      basketDevices.push(basketDevice.device);
-    }
+    const basketDevices = basketDevicesResult.map((basketDevice) => {
+      const { device, count } = basketDevice;
+      console.log(device, count);
+      return { ...device.toJSON(), count };
+    });
 
     const favoriteDevicesResult = await model.FavoriteDevices.findAll({
       where: { userId },

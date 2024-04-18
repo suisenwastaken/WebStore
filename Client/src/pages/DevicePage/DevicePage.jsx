@@ -33,7 +33,7 @@ const DevicePage = () => {
                     <img src={deviceInfo.img} />
                 </div>
 
-                <DeviceInfo />
+                <DeviceInfo deviceInfo={deviceInfo} />
                 <DevicePay deviceInfo={deviceInfo} />
             </div>
             <CommentSection />

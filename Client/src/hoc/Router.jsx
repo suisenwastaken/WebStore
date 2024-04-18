@@ -9,15 +9,16 @@ import Profile from '../pages/Profile'
 import Layout from '../components/Layout'
 import Favorites from '../pages/Favorites/Favorites'
 import { CartProvider } from '../storage/CartContext'
+import { basketURL, devicePageURL, favoriteURL, profileURL, storeURL } from './routerLinks'
 
 const Router = () => {
     const location = useLocation()
 
     return (
         <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Layout />}>
+            <Route path={storeURL} element={<Layout />}>
                 <Route
-                    path="profile"
+                    path={profileURL}
                     element={
                         <AuthorizedPage>
                             <Profile />
@@ -30,18 +31,16 @@ const Router = () => {
                             <DevicePage />
                         </DevicePageProvider>
                     }
-                    path="device/:id"
+                    path={devicePageURL + ':id'}
                 />
 
                 <Route
                     element={
                         <AuthorizedPage>
-                            <CartProvider>
-                                <Basket />
-                            </CartProvider>
+                            <Basket />
                         </AuthorizedPage>
                     }
-                    path="basket"
+                    path={basketURL}
                 />
                 <Route
                     element={
@@ -49,7 +48,7 @@ const Router = () => {
                             <Favorites />
                         </AuthorizedPage>
                     }
-                    path="favorites"
+                    path={favoriteURL}
                 />
                 <Route element={<Store />} index />
             </Route>

@@ -6,6 +6,7 @@ import { getDevices } from '../../api/devices/getDevices'
 import Carousel from 'nuka-carousel'
 import { GET, Request } from '../../api/APIFile'
 import { DEVICE_PROMO_URL } from '../../api/Urls'
+import { devicePageURL } from '../../hoc/routerLinks'
 
 const CardSlider = ({ SliderName }) => {
     const navigate = useNavigate()
@@ -45,7 +46,7 @@ const CardSlider = ({ SliderName }) => {
                     <Card
                         key={i}
                         device={d}
-                        onClick={() => navigate('/device/' + d.id)}
+                        onClick={() => navigate(devicePageURL + d.id)}
                         place={'slider'}
                     />
                 ))}

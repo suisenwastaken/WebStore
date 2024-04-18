@@ -1,21 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import styles from './Basket.module.css'
-import { getDevicesFromCart } from '../../localStorage/cartDeviceStorage'
 import CardSmall from '../../components/CardSmall/CardSmall'
 import DevicePay from '../../components/DevicePay/DevicePay'
+import CartContext from '../../storage/CartContext'
 
 const Basket = () => {
-    const [devices, setDevices] = useState([])
+    const { cartDevices } = useContext(CartContext)
+    const [devices, setDevices] = useState()
     const [payObject, setPayObject] = useState()
     const [totalPrice, setTotalPrice] = useState()
 
     useEffect(() => {
-        setDevices(getDevicesFromCart())
-    }, [])
-
-    useEffect(() => {
         setTotalPrice(
-            devices?.reduce((price, item) => {
+            cartDevices?.reduce((price, item) => {
                 return price + item.price * item.count
             }, 0)
         )
@@ -30,7 +27,7 @@ const Basket = () => {
         })
     }, [totalPrice])
 
-    const latestDates = devices?.reduce(
+    const latestDates = cartDevices?.reduce(
         (latest, currentItem) => {
             const homeDate = currentItem.deliveryHome
             const pointDate = currentItem.deliveryPoint
@@ -57,10 +54,15 @@ const Basket = () => {
                         Доставка курьером или в пункт выдачи
                     </div>
                     <div className={styles.deviceRows}>
-                        {devices &&
-                            devices.map((e) => (
-                                <CardSmall device={e} key={e.id} onCountChange={() => setDevices(getDevicesFromCart())} />
-                            ))}
+                        {cartDevices?.map((e) => {
+                            return (
+                                <CardSmall
+                                    device={e}
+                                    key={e.id}
+                                    onCountChange={() => setDevices(cartDevices)}
+                                />
+                            )
+                        })}
                     </div>
                 </div>
                 {payObject && (

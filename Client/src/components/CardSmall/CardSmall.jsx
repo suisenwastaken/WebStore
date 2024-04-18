@@ -1,31 +1,39 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import CustomButtonCounter from '../CustomButtonCounter'
 import styles from './CardSmall.module.css'
-import {
-    deleteDeviceFromCart,
-    editDeviceCountInCart,
-    getDeviceCountInCart,
-} from '../../localStorage/cartDeviceStorage'
 import { Link, redirect, useNavigate } from 'react-router-dom'
 import { BiSolidDiscount } from 'react-icons/bi'
-import { validatePrice } from '../../publicFunctions'
+import { getBrandName, getTypeName, validatePrice } from '../../publicFunctions'
 import { BiSolidTrash, BiHeart, BiSolidHeart } from 'react-icons/bi'
 import CustomButton from '../CustomButton'
-import {
-    addDeviceToFavorite,
-    deleteDeviceFromFavorite,
-    isDeviceInFavorite,
-} from '../../localStorage/favoriteDeviceStorage'
+import { devicePageURL } from '../../hoc/routerLinks'
+import CartContext from '../../storage/CartContext'
+import FavoriteContext from '../../storage/FavoriteContext'
 
 const CardSmall = ({ device, onCountChange }) => {
     const [deviceCount, setDeviceCount] = useState(null)
     const [favoriteState, setFavoriteState] = useState(false)
     const [deleteState, setDeleteState] = useState(false)
+    const [deviceType, setDeviceType] = useState()
+    const [deviceBrand, setDeviceBrand] = useState()
     const navigate = useNavigate()
+
+    const {
+        deleteDeviceFromCart,
+        getDeviceCountInCart,
+        editDeviceCountInCart,
+    } = useContext(CartContext)
+    const {
+        addDeviceToFavorite,
+        deleteDeviceFromFavorite,
+        isDeviceInFavorite,
+    } = useContext(FavoriteContext)
 
     useEffect(() => {
         setDeviceCount(getDeviceCountInCart(device.id))
         setFavoriteState(isDeviceInFavorite(device.id))
+        setDeviceType(getTypeName(device.typeId))
+        setDeviceBrand(getBrandName(device.brandId))
     }, [])
 
     const handleChangeCount = (newCount) => {
@@ -57,16 +65,20 @@ const CardSmall = ({ device, onCountChange }) => {
             >
                 <div
                     className={styles.img}
-                    onClick={() => navigate('/device/' + device.id)}
+                    onClick={() => navigate(devicePageURL + device.id)}
                 >
-                    <img src={device.img} alt="device image" draggable="false"/>
+                    <img
+                        src={device.img}
+                        alt="device image"
+                        draggable="false"
+                    />
                 </div>
                 <div className={styles.Info}>
                     <div
                         className={styles.DeviceName}
-                        onClick={() => navigate('/device/' + device.id)}
+                        onClick={() => navigate(devicePageURL + device.id)}
                     >
-                        {device.type + ' ' + device.brand + ' ' + device.name}
+                        {deviceType + ' ' + deviceBrand + ' ' + device.name}
                     </div>
                     <div className={styles.Delivery}>
                         <div className={styles.DeliveryRow}>
