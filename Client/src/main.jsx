@@ -6,17 +6,20 @@ import { UserContextProvider } from './storage/UserContext.jsx'
 import { CartProvider } from './storage/CartContext.jsx'
 import { FavoriteProvider } from './storage/FavoriteContext.jsx'
 import InitialInfo from './hoc/InitialInfo.jsx'
+import { LoginModalProvider } from './storage/LoginModalContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <UserContextProvider>
         <CartProvider>
             <FavoriteProvider>
                 <AlertProvider>
-                    <InitialInfo>
-                        <React.StrictMode>
-                            <App />
-                        </React.StrictMode>
-                    </InitialInfo>
+                    <LoginModalProvider>
+                        <InitialInfo>
+                            <React.StrictMode>
+                                <App />
+                            </React.StrictMode>
+                        </InitialInfo>
+                    </LoginModalProvider>
                 </AlertProvider>
             </FavoriteProvider>
         </CartProvider>

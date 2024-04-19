@@ -1,61 +1,55 @@
 export default {
-    dontChoosePayMethod: {
+    notAuthorized: {
         headText: 'Ошибка',
-        mainText: 'Вы не выбрали вид оплаты!',
-        color: 'red',
+        mainText: 'Для этого вам нужно авторизоваться',
+        color: 'purple',
     },
 
-    dontChooseCreditDate: {
+    alreadyRegistered: {
         headText: 'Ошибка',
-        mainText: 'Вы не выбрали время рассрочки!',
-        color: 'red',
+        mainText: 'Пользователь с такой почтой уже зарегистрирован',
+        color: 'purple'
     },
-    
-    dontChooseColor: {
+
+    incorrectEmailOrPassword: {
         headText: 'Ошибка',
-        mainText: 'Вы не выбрали цвет устройства!',
-        color: 'red',
-    },
-
-    addedToCart : {
-        headText: 'Успех!',
-        mainText: 'Товар добавлен в корзину!',
-        color: 'green',
-    },
-
-    deletedFromCart : {
-        headText: 'Успех!',
-        mainText: 'Товар удален из корзины!',
-        color: 'green',
-    },
-
-    notValidInput: {
-        headText: 'Неправильный формат!',
-        mainText: 'Вы неправильно ввели данные!',
-        color: 'red'
-    },
-    
-    notUserFound: {
-        headText: 'Пользователь не найден',
-        mainText: 'Вы неправильно ввели данные!',
-        color: 'red'
-    },
-
-    userAlreadyRegistrated: {
-        headText: 'Мы уже знакомы',
-        mainText: 'Такой пользователь уже зарегистрирован!',
-        color: 'red'
+        mainText: 'Неправильно введен логин или пароль',
+        color: 'purple'
     },
 
     registrationSuccess: {
-        headText: 'Успех!',
-        mainText: 'Вы успешно зарегистрировались!',
-        color: 'green'
+        headText: 'Успех',
+        mainText: 'Вы успешно зарегистрировались',
+        color: 'purple'
     },
 
     loginSuccess: {
-        headText: 'Успех!',
-        mainText: 'Вы успешно зашли в систему!',
-        color: 'green'
+        headText: 'Успех',
+        mainText: 'Вы успешно зашли в систему',
+        color: 'purple'
+    },
+
+    addedToCart : {
+        headText: 'Успех',
+        mainText: 'Товар добавлен в корзину',
+        color: 'purple',
+    },
+
+    deletedFromCart : {
+        headText: 'Успех',
+        mainText: 'Товар удален из корзины',
+        color: 'purple',
+    },
+
+    addedToFavorite : {
+        headText: 'Успех',
+        mainText: 'Товар добавлен в избранные',
+        color: 'purple',
+    },
+
+    deletedFromFavorite : {
+        headText: 'Успех',
+        mainText: 'Товар удален из избранных',
+        color: 'purple',
     },
 }

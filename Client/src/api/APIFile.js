@@ -26,7 +26,7 @@ const _Request = {
 
             return response
         } catch (error) {
-            throw new Error('Не удалось получить пользователя')
+            throw error
         }
     },
 

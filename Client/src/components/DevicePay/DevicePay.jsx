@@ -6,14 +6,14 @@ import CustomButton from '../CustomButton'
 import { validatePrice } from '../../publicFunctions'
 import CustomButtonCounter from '../CustomButtonCounter'
 import CartContext from '../../storage/CartContext'
+import UserContext from '../../storage/UserContext'
+import AlertState from '../Alert/AlertState'
 
 const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
-    const [, setAlert] = useContext(AlertContext)
-    const {
-        addDeviceToCart,
-        getDeviceCountInCart,
-        editDeviceCountInCart
-    } = useContext(CartContext)
+    const { setAlert } = useContext(AlertContext)
+    const { addDeviceToCart, getDeviceCountInCart, editDeviceCountInCart } =
+        useContext(CartContext)
+        const { user } = useContext(UserContext)
 
     const [deviceCount, setDeviceCount] = useState(null)
 
@@ -25,11 +25,19 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
     const CreateOrder = () => {}
 
     const HandleAddToCart = () => {
+        if (!user) {
+            setAlert(AlertState.notAuthorized)
+            return
+        }
         addDeviceToCart(deviceInfo)
         setDeviceCount((prevCount) => (prevCount === null ? 1 : prevCount + 1))
     }
 
     const handleChangeCount = (newCount) => {
+        if (!user) {
+            setAlert(AlertState.notAuthorized)
+            return
+        }
         setDeviceCount(newCount)
         editDeviceCountInCart(deviceInfo.id, newCount)
     }
@@ -54,8 +62,7 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
                         </div>
                         {deviceInfo?.salePercent ? (
                             <div className={styles.Discount}>
-                                <BiSolidDiscount />
-                                -12%
+                                <BiSolidDiscount />-{deviceInfo?.salePercent}%
                             </div>
                         ) : (
                             ''

@@ -7,24 +7,24 @@ const Alert = () => {
     const backgroundColor = {
         green: 'rgb(161, 255, 185)',
         red: 'rgb(255, 161, 161)',
+        purple: '#d7d3ff'
     }
 
     const textColor = {
         green: 'rgb(0, 139, 35)',
         red: 'rgb(139, 0, 0)',
+        purple: '#594ae3'
     }
 
     // headText = 'Приветики у вас ошибка'
     // mainText = 'У вас проблема пипец!'
 
-    const [alert, setAlert] = useContext(AlertContext)
+    const { alert, setAlert } = useContext(AlertContext)
     const isMount = useIsMount()
 
     useEffect(() => {
         if (!isMount) {
             const timer = setTimeout(() => {
-                // console.log('This will run after 5 second!')
-                // console.log(alert)
                 setAlert(null)
             }, 5000)
             return () => clearTimeout(timer)

@@ -19,8 +19,9 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
     const nameRegex = /^[А-ЯЁ][А-ЯЁа-яё]{3,}$/
 
     const { setUser } = useContext(UserContext)
-    const {setDevicesInCart} = useContext(CartContext)
-    const {setDevicesInFavorite} = useContext(FavoriteContext)
+    const { setDevicesInCart } = useContext(CartContext)
+    const { setDevicesInFavorite } = useContext(FavoriteContext)
+    const { setAlert } = useContext(AlertContext)
 
     const [loginState, setLoginState] = useState('login')
     const [isButtonDisable, setIsButtonDisable] = useState(false)
@@ -88,19 +89,25 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
             setIsButtonDisable(true)
             return
         }
-        const loginResponse = await Request.send({
-            method: POST,
-            url: LOGIN_URL,
-            data: { email: candidate.email, password: candidate.password },
-            useToken: false,
-        })
-        if (loginResponse) {
-            console.log(loginResponse.data)
-            SetAccessTokenCookie(loginResponse.data.token)
-            setUser(loginResponse.data.userInfo.user)
-            setDevicesInCart(loginResponse.data.userInfo.basketDevices)
-            setDevicesInFavorite(loginResponse.data.userInfo.favoriteDevices)
-            setShowLoginModal(false)
+        try {
+            const loginResponse = await Request.send({
+                method: POST,
+                url: LOGIN_URL,
+                data: { email: candidate.email, password: candidate.password },
+                useToken: false,
+            })
+            if (loginResponse) {
+                setAlert(AlertState.loginSuccess)
+                SetAccessTokenCookie(loginResponse.data.token)
+                setUser(loginResponse.data.userInfo.user)
+                setDevicesInCart(loginResponse.data.userInfo.basketDevices)
+                setDevicesInFavorite(
+                    loginResponse.data.userInfo.favoriteDevices
+                )
+                setShowLoginModal(false)
+            }
+        } catch {
+            setAlert(AlertState.incorrectEmailOrPassword)
         }
     }
 
@@ -127,16 +134,25 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
             setIsButtonDisable(true)
             return
         }
-        const registrationResponse = await Request.send({
-            method: POST,
-            url: REGISTRATION_URL,
-            data: { name: candidate.name, email: candidate.email, password: candidate.password },
-            useToken: false,
-        })
-        if (registrationResponse) {
-            SetAccessTokenCookie(loginResponse.data.token)
-            setUser(loginResponse.data.user)
-            setShowLoginModal(false)
+        try {
+            const registrationResponse = await Request.send({
+                method: POST,
+                url: REGISTRATION_URL,
+                data: {
+                    name: candidate.name,
+                    email: candidate.email,
+                    password: candidate.password,
+                },
+                useToken: false,
+            })
+            if (registrationResponse) {
+                setAlert(AlertState.registrationSuccess)
+                SetAccessTokenCookie(loginResponse.data.token)
+                setUser(loginResponse.data.user)
+                setShowLoginModal(false)
+            }
+        } catch {
+            setAlert(AlertState.alreadyRegistered)
         }
     }
 

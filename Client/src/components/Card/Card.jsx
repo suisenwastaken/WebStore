@@ -16,11 +16,16 @@ import CartContext from '../../storage/CartContext'
 import FavoriteContext from '../../storage/FavoriteContext'
 import { POST, Request } from '../../api/APIFile'
 import { BASKET_URL, FAVORITES_URL } from '../../api/Urls'
+import AlertContext from '../../storage/AlertContext'
+import UserContext from '../../storage/UserContext'
+import AlertState from '../Alert/AlertState'
 
 const Card = ({ device, onClick, place }) => {
     const [hoverState, setHoverState] = useState(false)
     const [cartState, setCartState] = useState(false)
     const [favoriteState, setFavoriteState] = useState(false)
+    const [deviceType, setDeviceType] = useState()
+    const [deviceBrand, setDeviceBrand] = useState()
     const {
         deleteDeviceFromCart,
         addDeviceToCart,
@@ -32,8 +37,8 @@ const Card = ({ device, onClick, place }) => {
         deleteDeviceFromFavorite,
         isDeviceInFavorite,
     } = useContext(FavoriteContext)
-    const [deviceType, setDeviceType] = useState()
-    const [deviceBrand, setDeviceBrand] = useState()
+    const { setAlert } = useContext(AlertContext)
+    const { user } = useContext(UserContext)
 
     useEffect(() => {
         setDeviceType(getTypeName(device.typeId))
@@ -46,9 +51,14 @@ const Card = ({ device, onClick, place }) => {
     }, [cartDevices])
 
     const handleChangeInCart = async () => {
+        if (!user) {
+            setAlert(AlertState.notAuthorized)
+            return
+        }
         if (cartState) {
             setCartState(false)
             deleteDeviceFromCart(device.id)
+            setAlert
         } else {
             setCartState(true)
             addDeviceToCart(device)
@@ -56,6 +66,10 @@ const Card = ({ device, onClick, place }) => {
     }
 
     const handleChangeInFavorite = async () => {
+        if (!user) {
+            setAlert(AlertState.notAuthorized)
+            return
+        }
         if (favoriteState) {
             setFavoriteState(false)
             deleteDeviceFromFavorite(device.id)
@@ -115,7 +129,7 @@ const Card = ({ device, onClick, place }) => {
             <div className={styles.DeviceName}>
                 {!hoverState ? (
                     deviceType + ' ' + deviceBrand + ' ' + device.name
-                ) : cartDevices ? (
+                ) : (
                     <div className={styles.Buttons}>
                         <CustomButton
                             icon={<BiCart />}
@@ -138,8 +152,6 @@ const Card = ({ device, onClick, place }) => {
                             pStyle={{ fontSize: '20px' }}
                         />
                     </div>
-                ) : (
-                    ''
                 )}
             </div>
         </div>

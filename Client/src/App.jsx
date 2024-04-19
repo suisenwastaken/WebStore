@@ -7,6 +7,7 @@ import LoginModal from './components/LoginModal/LoginModal'
 const App = () => {
     return (
         <BrowserRouter>
+            <LoginModal/>
             <Alert />
             <LoginModal />
             <Router />

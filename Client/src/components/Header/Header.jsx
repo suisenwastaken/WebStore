@@ -9,9 +9,10 @@ import CustomButton from '../CustomButton/CustomButton'
 import UserContext from '../../storage/UserContext'
 import LoginModal from '../LoginModal/LoginModal'
 import { basketURL, favoriteURL, profileURL, storeURL } from '../../hoc/routerLinks'
+import LoginModalContext from '../../storage/LoginModalContext'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
-    const [showLoginModal, setShowLoginModal] = useState(false)
+    const {showLoginModal, setShowLoginModal} = useContext(LoginModalContext)
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
     // console.log(showModal)
