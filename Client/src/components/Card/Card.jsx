@@ -20,7 +20,7 @@ import AlertContext from '../../storage/AlertContext'
 import UserContext from '../../storage/UserContext'
 import AlertState from '../Alert/AlertState'
 
-const Card = ({ device, onClick, place }) => {
+const Card = ({ device, onClick, place, onChangeItems }) => {
     const [hoverState, setHoverState] = useState(false)
     const [cartState, setCartState] = useState(false)
     const [favoriteState, setFavoriteState] = useState(false)
@@ -58,8 +58,9 @@ const Card = ({ device, onClick, place }) => {
         if (cartState) {
             setCartState(false)
             deleteDeviceFromCart(device.id)
-            setAlert
+            setAlert(AlertState.deletedFromCart)
         } else {
+            setAlert(AlertState.addedToCart)
             setCartState(true)
             addDeviceToCart(device)
         }
@@ -71,9 +72,12 @@ const Card = ({ device, onClick, place }) => {
             return
         }
         if (favoriteState) {
+            setAlert(AlertState.deletedFromFavorite)
             setFavoriteState(false)
             deleteDeviceFromFavorite(device.id)
+            if (onChangeItems) onChangeItems()
         } else {
+            setAlert(AlertState.addedToFavorite)
             setFavoriteState(true)
             addDeviceToFavorite(device)
         }

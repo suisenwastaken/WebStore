@@ -30,7 +30,7 @@ export async function post(req, res) {
       })
     );
 
-    return res.json({ message: "Order created successfully", order });
+    return res.json({ message: "Заказ размещен", order });
   } catch (error) {
     console.error("Error creating order:", error);
     return res.status(500).json({ error: "Internal server error" });

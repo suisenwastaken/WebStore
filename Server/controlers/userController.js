@@ -26,7 +26,7 @@ export async function registration(req, res, next) {
 
   const token = generateJwt(user.id, user.email, user.role);
 
-  return res.json({ user, token });
+  return res.json({ user, token, message: 'Вы зарегистрировались' });
 }
 
 export async function login(req, res, next) {
@@ -78,7 +78,7 @@ export async function login(req, res, next) {
   };
 
   const token = generateJwt(user.id, user.email, user.role);
-  return res.json({ userInfo, token });
+  return res.json({ userInfo, token, message: 'Вы вошли в систему' });
 }
 
 export async function check(req, res, next) {

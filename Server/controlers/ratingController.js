@@ -19,7 +19,7 @@ export async function postRate(req,res){
     }
     await model.Device.update({rating: newRating}, {where: {id: deviceId}});
     
-    return res.json(candidate);
+    return res.json({message: 'Вы оставили отзыв'});
 }
 
 export async function get(req,res){

@@ -31,12 +31,16 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
         }
         addDeviceToCart(deviceInfo)
         setDeviceCount((prevCount) => (prevCount === null ? 1 : prevCount + 1))
+        setAlert(AlertState.addedToCart)
     }
 
     const handleChangeCount = (newCount) => {
         if (!user) {
             setAlert(AlertState.notAuthorized)
             return
+        }
+        if(newCount === 0){
+            setAlert(AlertState.deletedFromCart)
         }
         setDeviceCount(newCount)
         editDeviceCountInCart(deviceInfo.id, newCount)

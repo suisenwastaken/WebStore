@@ -7,26 +7,28 @@ const Alert = () => {
     const backgroundColor = {
         green: 'rgb(161, 255, 185)',
         red: 'rgb(255, 161, 161)',
-        purple: '#d7d3ff'
+        purple: '#d7d3ff',
     }
 
     const textColor = {
         green: 'rgb(0, 139, 35)',
         red: 'rgb(139, 0, 0)',
-        purple: '#594ae3'
+        purple: '#594ae3',
     }
 
     // headText = 'Приветики у вас ошибка'
     // mainText = 'У вас проблема пипец!'
 
     const { alert, setAlert } = useContext(AlertContext)
+    const [count, setCount] = useState(0)
     const isMount = useIsMount()
 
     useEffect(() => {
         if (!isMount) {
+            setCount((prev) => prev + 1)
             const timer = setTimeout(() => {
                 setAlert(null)
-            }, 5000)
+            }, 4999)
             return () => clearTimeout(timer)
         }
     }, [alert])
@@ -52,6 +54,7 @@ const Alert = () => {
                 <div className={styles.Text}>{alert.mainText}</div>
                 <div
                     className={styles.Timer}
+                    key={count}
                     style={{
                         backgroundColor: textColor[alert.color],
                     }}

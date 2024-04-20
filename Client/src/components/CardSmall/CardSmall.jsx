@@ -9,6 +9,8 @@ import CustomButton from '../CustomButton'
 import { devicePageURL } from '../../hoc/routerLinks'
 import CartContext from '../../storage/CartContext'
 import FavoriteContext from '../../storage/FavoriteContext'
+import AlertContext from '../../storage/AlertContext'
+import AlertState from '../Alert/AlertState'
 
 const CardSmall = ({ device, onCountChange }) => {
     const [deviceCount, setDeviceCount] = useState(null)
@@ -28,7 +30,7 @@ const CardSmall = ({ device, onCountChange }) => {
         deleteDeviceFromFavorite,
         isDeviceInFavorite,
     } = useContext(FavoriteContext)
-
+    const { setAlert } = useContext(AlertContext)
     useEffect(() => {
         setDeviceCount(getDeviceCountInCart(device.id))
         setFavoriteState(isDeviceInFavorite(device.id))
@@ -39,19 +41,26 @@ const CardSmall = ({ device, onCountChange }) => {
     const handleChangeCount = (newCount) => {
         setDeviceCount(newCount)
         editDeviceCountInCart(device.id, newCount)
+        if (newCount === 0) {
+            setAlert(AlertState.deletedFromCart)
+        }
         if (onCountChange) onCountChange()
     }
 
     const handleDeleteItemFromCart = () => {
+        setAlert(AlertState.deletedFromCart)
         setDeleteState(true)
         deleteDeviceFromCart(device.id)
+        if (onCountChange) onCountChange()
     }
 
     const handleChangeInFavorite = () => {
         if (favoriteState) {
+            setAlert(AlertState.deletedFromFavorite)
             setFavoriteState(false)
             deleteDeviceFromFavorite(device.id)
         } else {
+            setAlert(AlertState.addedToFavorite)
             setFavoriteState(true)
             addDeviceToFavorite(device)
         }

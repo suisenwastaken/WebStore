@@ -11,10 +11,10 @@ export async function post(req, res) {
 
   if (candidate) {
     await model.BasketDevices.destroy({ where: { deviceId, userId } });
-    return res.json({ message: "Device removed from basket" });
+    return res.json({ message: "Устройство удалено из корзины" });
   } else {
     await model.BasketDevices.create({ deviceId, userId });
-    return res.json({ message: "Device added to basket" });
+    return res.json({ message: "Устройство добавлено в корзину" });
   }
 }
 
@@ -29,7 +29,7 @@ export async function updateDeviceCount(req, res) {
 
     if (device) {
       await device.update({ count });
-      return res.json({ message: "Device count updated successfully" });
+      return res.json({ message: "Количество устройств обновлено" });
     } else {
       return res.status(404).json({ error: "Device not found in basket" });
     }

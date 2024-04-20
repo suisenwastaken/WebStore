@@ -11,10 +11,10 @@ export async function post(req, res) {
 
   if (candidate) {
     await model.FavoriteDevices.destroy({ where: { deviceId, userId } });
-    return res.json({ message: "Device removed from favorites" });
+    return res.json({ message: "Устройство удалено из избранных" });
   } else {
     await model.FavoriteDevices.create({ deviceId, userId });
-    return res.json({ message: "Device added to favorites" });
+    return res.json({ message: "Устройство добавлено в избранные" });
   }
 }
 
@@ -32,7 +32,7 @@ export async function get(req, res) {
 
     return res.json(devices);
   } catch (error) {
-    console.error("Error fetching favorite devices:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    console.error("Ошибка получения устройства", error);
+    return res.status(500).json({ error: "Ошибка ответа сервера" });
   }
 }
