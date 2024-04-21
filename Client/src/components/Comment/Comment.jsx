@@ -8,7 +8,10 @@ const Comment = ({ commentData }) => {
                 <div className={styles.UserInfoSection}>
                     <div className={styles.ProfilePic}>
                         <img
-                            src={commentData.user.ProfilePicURL}
+                            src={
+                                'https://api.dicebear.com/8.x/initials/svg?seed=' +
+                                commentData.user.name
+                            }
                             alt="ProfilePicture"
                         />
                     </div>

@@ -1,9 +1,14 @@
 .Comment {
+    padding: 20px;
+    padding-left: 0;
     box-sizing: border-box;
     width: 100%;
     border-radius: 20px;
     display: flex;
     height: auto;
+    border-bottom: 1px solid #d3d3d3;
+    display: flex;
+    gap: 20px;
 }
 
 .UserInfoSection {
@@ -14,12 +19,10 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    
-    border-bottom: 1px solid #d3d3d3;
 }
 
 .UserName {
-  font-size: 24px;
+    font-size: 24px;
 }
 
 .ProfilePic {
@@ -32,18 +35,16 @@
 
 .CommentTextSection {
     width: 80%;
-    padding: 2% 5%;
-    
+    /* padding: 2% 5%; */
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 20px;
-
-    border-bottom: 1px solid #d3d3d3;
 }
 
-.h1{
+.h1 {
     font-size: 24px;
     font-weight: 400;
 }

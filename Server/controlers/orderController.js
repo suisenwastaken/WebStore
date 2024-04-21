@@ -22,7 +22,12 @@ export async function post(req, res) {
         .json({ error: "One or more selected devices do not exist" });
     }
 
-    const order = await model.Order.create({ userId });
+    const totalPrice = existingDevices.reduce(
+      (total, device) => total + device.price,
+      0
+    );
+
+    const order = await model.Order.create({ userId, totalPrice });
 
     await Promise.all(
       deviceIds.map(async (deviceId) => {

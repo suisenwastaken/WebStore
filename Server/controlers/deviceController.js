@@ -103,10 +103,14 @@ export async function getById(req, res) {
   const { id } = req.params;
   const device = await model.Device.findOne({
     where: { id },
-    include: [{ model: model.DeviceInfo }],
-    where: { id },
-    include: [{ model: model.Comment }],
+    include: [
+      { model: model.DeviceInfo, as: "info" },
+      {
+        model: model.Comment,
+        include: [{ model: model.User, attributes: ["name"] }],
+      },
+    ],
   });
 
-  return res.json(device);
+  res.json(device);
 }

@@ -11,6 +11,7 @@ const User = sequelize.define("user", {
 
 const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  totalPrice: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
 });
 
 const FavoriteDevices = sequelize.define("favorite", {
@@ -74,11 +75,11 @@ FavoriteDevices.belongsTo(Device);
 User.hasMany(Order);
 Order.belongsTo(User);
 
-User.hasMany(BasketDevices)
-BasketDevices.belongsTo(User)
+User.hasMany(BasketDevices);
+BasketDevices.belongsTo(User);
 
-Device.hasMany(BasketDevices)
-BasketDevices.belongsTo(Device)
+Device.hasMany(BasketDevices);
+BasketDevices.belongsTo(Device);
 
 Device.hasMany(Comment);
 Comment.belongsTo(Device);
@@ -111,5 +112,5 @@ export default {
   TypeBrand,
   Comment,
   DeviceInfo,
-  OrderDevice
+  OrderDevice,
 };

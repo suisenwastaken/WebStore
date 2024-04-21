@@ -10,23 +10,28 @@ function generateJwt(id, email, role) {
 }
 
 export async function registration(req, res, next) {
-  const { email, password, role } = req.body;
+  const { email, password, name, role } = req.body;
   if (!email || !password) {
-    return next(ApiError.badRequest("Некоректная почта или пароль"));
+    return next(ApiError.badRequest("Некорректная почта или пароль"));
   }
 
   const check = await model.User.findOne({ where: { email } });
   if (check) {
-    return next(ApiError.badRequest("Такая почта уже зарегестрированна!"));
+    return next(ApiError.badRequest("Такая почта уже зарегистрирована!"));
   }
 
   const hashPassword = await bcrypt.hash(password, 5);
 
-  const user = await model.User.create({ email, password: hashPassword, role });
+  const user = await model.User.create({
+    email,
+    password: hashPassword,
+    name,
+    role,
+  });
 
   const token = generateJwt(user.id, user.email, user.role);
 
-  return res.json({ user, token, message: 'Вы зарегистрировались' });
+  return res.json({ user, token, message: "Вы зарегистрировались" });
 }
 
 export async function login(req, res, next) {
@@ -78,7 +83,7 @@ export async function login(req, res, next) {
   };
 
   const token = generateJwt(user.id, user.email, user.role);
-  return res.json({ userInfo, token, message: 'Вы вошли в систему' });
+  return res.json({ userInfo, token, message: "Вы вошли в систему" });
 }
 
 export async function check(req, res, next) {
