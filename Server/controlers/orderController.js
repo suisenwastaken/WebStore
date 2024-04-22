@@ -4,36 +4,36 @@ import ApiError from "../error/apiError.js";
 export async function post(req, res) {
   try {
     const userId = req.user.id;
-    const { deviceIds } = req.body;
 
-    if (!deviceIds || deviceIds.length === 0) {
-      return res
-        .status(400)
-        .json({ error: "No devices selected for the order" });
-    }
-
-    const existingDevices = await model.Device.findAll({
-      where: { id: deviceIds },
+    const basketDevices = await model.BasketDevices.findAll({
+      where: { userId },
+      include: [{ model: model.Device }],
     });
 
-    if (existingDevices.length !== deviceIds.length) {
+    if (!basketDevices || basketDevices.length === 0) {
       return res
         .status(400)
-        .json({ error: "One or more selected devices do not exist" });
+        .json({ error: "No devices in the basket for the order" });
     }
 
-    const totalPrice = existingDevices.reduce(
-      (total, device) => total + device.price,
+    const totalPrice = basketDevices.reduce(
+      (total, basketDevice) => total + basketDevice.device.price * basketDevice.count,
       0
     );
 
     const order = await model.Order.create({ userId, totalPrice });
 
     await Promise.all(
-      deviceIds.map(async (deviceId) => {
-        await model.OrderDevice.create({ orderId: order.id, deviceId });
+      basketDevices.map(async (basketDevice) => {
+        await model.OrderDevice.create({ 
+          orderId: order.id, 
+          deviceId: basketDevice.device.id,
+          count: basketDevice.count
+        });
       })
     );
+
+    await model.BasketDevices.destroy({ where: { userId } });
 
     return res.json({ message: "Заказ размещен", order });
   } catch (error) {
@@ -41,6 +41,7 @@ export async function post(req, res) {
     return res.status(500).json({ error: "Internal server error" });
   }
 }
+
 
 export async function get(req, res) {
   try {

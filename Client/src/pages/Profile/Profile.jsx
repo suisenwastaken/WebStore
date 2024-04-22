@@ -4,6 +4,7 @@ import UserContext from '../../storage/UserContext'
 import { GET, Request } from '../../api/APIFile.js'
 import { ORDER_URL } from '../../api/Urls.js'
 import LoadingComponent from '../../components/LoadingComponent/LoadingComponent.jsx'
+import Order from '../../components/Order/Order.jsx'
 
 const Profile = () => {
     const { user } = useContext(UserContext)
@@ -53,7 +54,18 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-                <div className={styles.Orders}></div>
+                {orders?.length !== 0 ? (
+                    <div className={styles.Orders}>
+                        <div className={styles.h1}>Ваши заказы:</div>
+                        <div className={styles.OrderList}>
+                            {orders?.map((order, i) => {
+                                return <Order orderInfo={order} key={i} />
+                            })}
+                        </div>
+                    </div>
+                ) : (
+                    ''
+                )}
             </div>
         )
     }

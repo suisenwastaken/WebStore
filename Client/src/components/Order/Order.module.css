@@ -1,0 +1,53 @@
+.Card {
+    box-sizing: border-box;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 20px;
+    border-bottom: 1px solid #d3d3d3;
+    /* height: 130px; */
+}
+
+.TopRow {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.BottomRow {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.OrderDate {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.OrderPrice {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.Devices {
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.Devices > img {
+    max-width: 10%;
+    min-width: 60px;
+    cursor: pointer;
+}

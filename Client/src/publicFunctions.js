@@ -59,14 +59,38 @@ export const TypeEnum = [
 
 export const getTypeName = (typeId) => {
     for (const category of TypeEnum) {
-      const foundType = category?.values?.find((value) => value.id === typeId);
-      if (foundType) {
-        return foundType.name;
-      }
+        const foundType = category?.values?.find((value) => value.id === typeId)
+        if (foundType) {
+            return foundType.name
+        }
     }
-    return '';
-  };
+    return ''
+}
 
 export const getBrandName = (brandId) => {
-    return  BrandEnum?.find((brand) => brand.id === brandId)?.name || ''
+    return BrandEnum?.find((brand) => brand.id === brandId)?.name || ''
+}
+
+export const validateDate = (dateString) => {
+    const months = [
+        'января',
+        'февраля',
+        'марта',
+        'апреля',
+        'мая',
+        'июня',
+        'июля',
+        'августа',
+        'сентября',
+        'октября',
+        'ноября',
+        'декабря',
+    ]
+
+    const date = new Date(dateString)
+    const day = date.getDate()
+    const monthIndex = date.getMonth()
+    const month = months[monthIndex]
+
+    return `${day} ${month}`
 }
