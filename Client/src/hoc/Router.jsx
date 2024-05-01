@@ -9,7 +9,17 @@ import Profile from '../pages/Profile'
 import Layout from '../components/Layout'
 import Favorites from '../pages/Favorites/Favorites'
 import { CartProvider } from '../storage/CartContext'
-import { basketURL, devicePageURL, favoriteURL, profileURL, storeURL } from './routerLinks'
+import {
+    basketURL,
+    brandPageURL,
+    devicePageURL,
+    favoriteURL,
+    profileURL,
+    searchPageURL,
+    storeURL,
+    typePageURL,
+} from './routerLinks'
+import Search from '../pages/Search/Search'
 
 const Router = () => {
     const location = useLocation()
@@ -50,6 +60,9 @@ const Router = () => {
                     }
                     path={favoriteURL}
                 />
+
+                <Route element={<Search />} path={searchPageURL} />
+
                 <Route element={<Store />} index />
             </Route>
         </Routes>

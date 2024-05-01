@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import CustomButton from '../CustomButton'
 import styles from './CustomInput2.module.css'
 
@@ -14,7 +15,7 @@ const CustomInput2 = ({
     checked,
     onClick,
     buttonText,
-    buttonStyle
+    buttonStyle,
 }) => {
     return (
         <>

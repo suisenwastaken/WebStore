@@ -8,14 +8,20 @@ import CustomInput2 from '../CustomInput2/CustomInput2'
 import CustomButton from '../CustomButton/CustomButton'
 import UserContext from '../../storage/UserContext'
 import LoginModal from '../LoginModal/LoginModal'
-import { basketURL, favoriteURL, profileURL, storeURL } from '../../hoc/routerLinks'
+import {
+    basketURL,
+    favoriteURL,
+    profileURL,
+    searchPageURL,
+    storeURL,
+} from '../../hoc/routerLinks'
 import LoginModalContext from '../../storage/LoginModalContext'
 const Header = ({}) => {
     const [showModal, setShowModal] = useState(false)
-    const {showLoginModal, setShowLoginModal} = useContext(LoginModalContext)
+    const [searchValue, setSearchValue] = useState('')
+    const { showLoginModal, setShowLoginModal } = useContext(LoginModalContext)
     const navigate = useNavigate()
     const { user } = useContext(UserContext)
-    // console.log(showModal)
 
     const handleClick = (route) => {
         user ? navigate(route) : setShowLoginModal(true)
@@ -56,6 +62,17 @@ const Header = ({}) => {
                         <CustomInput2
                             buttonText={<BiSearch />}
                             buttonStyle={{ fontSize: '20px' }}
+                            onClick={() => {
+                                const searchParams = new URLSearchParams()
+                                searchParams.append('search', searchValue)
+                                navigate(
+                                    searchPageURL +
+                                        '?' +
+                                        searchParams.toString()
+                                )
+                            }}
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
                         />
                     </div>
                 </div>

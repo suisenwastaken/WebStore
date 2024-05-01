@@ -88,11 +88,11 @@ const Card = ({ device, onClick, place, onChangeItems }) => {
             className={styles.Card}
             onMouseOver={() => setHoverState(true)}
             onMouseOut={() => setHoverState(false)}
-            style={
-                place !== 'slider' && !favoriteState
-                    ? { display: 'none' }
-                    : { display: 'flex' }
-            }
+            // style={
+            //     place !== 'slider' && !favoriteState
+            //         ? { display: 'none' }
+            //         : { display: 'flex' }
+            // }
         >
             {place === 'slider' ? (
                 <div className={styles.PromoTag}>

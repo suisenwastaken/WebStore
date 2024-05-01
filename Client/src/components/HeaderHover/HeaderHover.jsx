@@ -2,14 +2,13 @@ import styles from './HeaderHover.module.css'
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BrandEnum, TypeEnum } from '../../publicFunctions'
-
+import { brandPageURL, searchPageURL, typePageURL } from '../../hoc/routerLinks'
 
 const HeaderHover = ({ style, showState, setShowState }) => {
     const chooseStile = {
         backgroundColor: '#fffdff',
         boxShadow: '-8px 8px 8px 0px rgba(34, 60, 80, 0.06)',
     }
-
 
     const navigate = useNavigate()
     const [categoryState, setCategoryState] = useState('categories')
@@ -41,15 +40,26 @@ const HeaderHover = ({ style, showState, setShowState }) => {
                                   <div className={styles.CategoryHead}>
                                       {type.name}
                                   </div>
-                                  {type?.values?.map((subType, i) => (
+                                  {type?.values?.map((type, i) => (
                                       <div
-                                      key={i}
+                                          key={i}
                                           className={styles.CategoryName}
                                           onClick={() => {
+                                              const searchParams =
+                                                  new URLSearchParams()
+                                              searchParams.append(
+                                                  'typeId',
+                                                  type.id
+                                              )
+                                              navigate(
+                                                  searchPageURL +
+                                                      '?' +
+                                                      searchParams.toString()
+                                              )
                                               setShowState(false)
                                           }}
                                       >
-                                          {subType.name}
+                                          {type.name}
                                       </div>
                                   ))}
                               </div>
@@ -59,6 +69,13 @@ const HeaderHover = ({ style, showState, setShowState }) => {
                                   className={styles.BrandBlock}
                                   key={i}
                                   onClick={() => {
+                                      const searchParams = new URLSearchParams()
+                                      searchParams.append('brandId', brand.id)
+                                      navigate(
+                                          searchPageURL +
+                                              '?' +
+                                              searchParams.toString()
+                                      )
                                       setShowState(false)
                                   }}
                               >

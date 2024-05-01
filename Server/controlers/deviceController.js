@@ -51,34 +51,34 @@ export async function post(req, res, next) {
 }
 
 export async function get(req, res) {
-  let { brandId, typeId, page, limit } = req.query;
+  let { brandId, typeId, page, limit, search } = req.query;
 
   page = page ?? 1;
   limit = limit ?? 20;
   let offset = page * limit - limit;
-  let devices;
+  let whereClause = {};
 
-  if (!brandId && !typeId) {
-    devices = await model.Device.findAndCountAll({});
+  if (Array.isArray(brandId) && brandId.length > 0) {
+    whereClause.brandId = { [Op.or]: brandId };
+  } else if (brandId) {
+    whereClause.brandId = brandId;
   }
 
-  if (!brandId && typeId) {
-    devices = await model.Device.findAndCountAll({
-      where: { typeId, limit, offset },
-    });
+  if (Array.isArray(typeId) && typeId.length > 0) {
+    whereClause.typeId = { [Op.or]: typeId };
+  } else if (typeId) {
+    whereClause.typeId = typeId;
   }
 
-  if (brandId && !typeId) {
-    devices = await model.Device.findAndCountAll({
-      where: { brandId, limit, offset },
-    });
+  if (search) {
+    whereClause[Op.or] = { name: { [Op.iLike]: `%${search}%` } };
   }
 
-  if (brandId && typeId) {
-    devices = await model.Device.findAndCountAll({
-      where: { brandId, typeId, limit, offset },
-    });
-  }
+  const devices = await model.Device.findAndCountAll({
+    where: whereClause,
+    limit,
+    offset,
+  });
 
   return res.json(devices);
 }
