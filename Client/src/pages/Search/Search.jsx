@@ -1,4 +1,9 @@
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import {
+    useLocation,
+    useNavigate,
+    useParams,
+    useSearchParams,
+} from 'react-router-dom'
 import styles from './Search.module.css'
 import { useEffect, useState } from 'react'
 import { DEVICE_URL } from '../../api/Urls'
@@ -6,6 +11,7 @@ import { GET, Request } from '../../api/APIFile'
 import LoadingComponent from '../../components/LoadingComponent/LoadingComponent'
 import Card from '../../components/Card/Card'
 import { devicePageURL } from '../../hoc/routerLinks'
+import SideBarSearch from '../../components/SideBarSearch/SideBarSearch'
 
 const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -19,13 +25,13 @@ const Search = () => {
             try {
                 const params = {
                     brandId: searchParams.has('brandId')
-                        ? searchParams.get('brandId')
+                        ? searchParams.getAll('brandId')
                         : undefined,
                     typeId: searchParams.has('typeId')
-                        ? searchParams.get('typeId')
+                        ? searchParams.getAll('typeId')
                         : undefined,
                     search: searchParams.has('search')
-                        ? searchParams.get('search')
+                        ? searchParams.getAll('search')
                         : undefined,
                 }
 
@@ -52,14 +58,23 @@ const Search = () => {
 
     return (
         <div className={styles.Page}>
-            <div className={styles.LeftNav}></div>
+            <SideBarSearch />
             {loading ? (
                 <LoadingComponent />
             ) : (
-                <div className={styles.CardSection}>
-                    {devices?.map((device, key) => (
-                        <Card device={device} key={key} onClick={() => navigate(devicePageURL + device.id)} />
-                    ))}
+                <div className={styles.MainBlock}>
+                    <div className={styles.h2}>Товары по вашему запросу:</div>
+                    <div className={styles.CardSection}>
+                        {devices?.map((device, key) => (
+                            <Card
+                                device={device}
+                                key={key}
+                                onClick={() =>
+                                    navigate(devicePageURL + device.id)
+                                }
+                            />
+                        ))}
+                    </div>
                 </div>
             )}
         </div>

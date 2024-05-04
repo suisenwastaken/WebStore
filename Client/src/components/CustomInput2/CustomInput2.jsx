@@ -17,6 +17,13 @@ const CustomInput2 = ({
     buttonText,
     buttonStyle,
 }) => {
+
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            onClick()
+        }
+    }
+
     return (
         <>
             <div className={styles.inputArea}>
@@ -31,6 +38,7 @@ const CustomInput2 = ({
                         type={type}
                         placeholder={placeHolder}
                         onChange={onChange}
+                        onKeyDown={handleKeyDown}
                         value={value}
                         disabled={disabled}
                         checked={checked}

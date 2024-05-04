@@ -10,7 +10,7 @@ const CustomInput = ({ name, style, type, placeHolder, onChange, value, disabled
                     className={[styles.input, error && styles.errorInput].join(" ")}
                     type={type}
                     placeholder={placeHolder}
-                    onChange={onChange}
+                    onChange={(e) => onChange(name, e.target.value)}
                     value={value}
                     disabled={disabled}
                     checked={checked}

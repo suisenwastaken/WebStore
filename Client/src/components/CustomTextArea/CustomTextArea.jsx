@@ -9,7 +9,7 @@ const CustomTextArea = ({style, placeHolder, onChange, value, disabled, error, s
                     style={style}
                     className={[styles.input, error && styles.errorInput].join(" ")}
                     placeholder={placeHolder}
-                    onChange={onChange}
+                    onChange={(e) => onChange(name, e.target.value)}
                     value={value}
                     disabled={disabled}
                     rows={3}

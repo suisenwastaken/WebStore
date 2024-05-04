@@ -1,6 +1,6 @@
 .Page {
     box-sizing: border-box;
-    padding: 5% 10%;
+    padding: 5%;
     width: 100%;
     min-height: calc(100vh - 140px);
     background-color: #594ae305;
@@ -11,15 +11,25 @@
     gap: 60px;
 }
 
-.LeftNav {
-  width: 30%;
+.MainBlock {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
 }
 
-.CardSection{
-    width: 70%;
+.CardSection {
+    width: 100%;
 
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-wrap: wrap;
+}
+
+.h2 {
+    font-size: 24px;
+    font-weight: 500;
 }

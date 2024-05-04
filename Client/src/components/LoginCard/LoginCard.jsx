@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import styles from './LoginCard.module.css'
 import { BiSolidKey, BiUser, BiLogoGmail } from 'react-icons/bi'
-import { login } from '../../api/user/login'
-import { registration } from '../../api/user/registration'
 import AlertContext from '../../storage/AlertContext'
 import AlertState from '../Alert/AlertState'
 import CustomInput from '../CustomInput/CustomInput'
@@ -65,8 +63,7 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
         handleInputChange()
     }, [errors.name, errors.email, errors.password, candidate])
 
-    const handleChangeInputs = (e) => {
-        const { name, value } = e.target
+    const handleChangeInputs = (name, value) => {
         setCandidate((prevCandidate) => ({
             ...prevCandidate,
             [name]: value,

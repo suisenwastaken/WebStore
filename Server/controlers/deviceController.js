@@ -58,14 +58,16 @@ export async function get(req, res) {
   let offset = page * limit - limit;
   let whereClause = {};
 
-  if (Array.isArray(brandId) && brandId.length > 0) {
-    whereClause.brandId = { [Op.or]: brandId };
+  const brandIdArray = brandId?.split(",").map(Number);
+  if (Array.isArray(brandIdArray) && brandIdArray.length > 0) {
+    whereClause.brandId = { [Op.or]: brandIdArray };
   } else if (brandId) {
     whereClause.brandId = brandId;
   }
 
-  if (Array.isArray(typeId) && typeId.length > 0) {
-    whereClause.typeId = { [Op.or]: typeId };
+  const typeIdArray = typeId?.split(",").map(Number);
+  if (Array.isArray(typeIdArray) && typeIdArray.length > 0) {
+    whereClause.typeId = { [Op.or]: typeIdArray };
   } else if (typeId) {
     whereClause.typeId = typeId;
   }

@@ -52,4 +52,16 @@ export default {
         mainText: 'Товар удален из избранных',
         color: 'purple',
     },
+
+    commentAdded : {
+        headText: 'Успех',
+        mainText: 'Вы добавили комментарий о товаре',
+        color: 'purple',
+    },
+
+    unhandledError : {
+        headText: 'Ошибка',
+        mainText: 'Произошла непредвиденная ошибка',
+        color: 'purple',
+    },
 }

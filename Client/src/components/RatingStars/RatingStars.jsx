@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import styles from './RatingStars.module.css'
 import { BiSolidStar } from 'react-icons/bi'
-const RatingStars = ({ rating, style, type }) => {
-    const [ratingComment, setRatingComment] = useState()
+const RatingStars = ({ rating, style, type, setRating }) => {
     const [hoverComment, setHoverComment] = useState()
     if (type === 'active') {
         return (
@@ -11,13 +10,13 @@ const RatingStars = ({ rating, style, type }) => {
                     <BiSolidStar
                         key={index}
                         className={
-                            (index <= ratingComment || index <= hoverComment)
+                            (index <= rating || index <= hoverComment)
                                 ? styles.YellowStar
                                 : styles.Star
                         }
                         onMouseEnter={() => setHoverComment(index)}
                         onMouseLeave={() => setHoverComment(0)}
-                        onClick={() => setRatingComment(index)}
+                        onClick={() => setRating('rating' ,index)}
                         style={style}
                     />
                 ))}

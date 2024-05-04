@@ -37,7 +37,20 @@ const HeaderHover = ({ style, showState, setShowState }) => {
                     {categoryState === 'categories'
                         ? TypeEnum.map((type, i) => (
                               <div className={styles.CategoreBlock} key={i}>
-                                  <div className={styles.CategoryHead}>
+                                  <div
+                                      className={styles.CategoryHead}
+                                      onClick={() => {
+                                          const searchParams =
+                                              new URLSearchParams()
+                                          type.id.forEach((el) => searchParams.append('typeId', el.toString()))
+                                          navigate(
+                                              searchPageURL +
+                                                  '?' +
+                                                  searchParams.toString()
+                                          )
+                                          setShowState(false)
+                                      }}
+                                  >
                                       {type.name}
                                   </div>
                                   {type?.values?.map((type, i) => (

@@ -24,6 +24,7 @@ export const BrandEnum = [
 export const TypeEnum = [
     {
         name: 'Наушники',
+        id: [1,2,3,4],
         values: [
             { id: 1, name: 'Беспроводные наушники' },
             { id: 2, name: 'Наушники TWS' },
@@ -33,6 +34,7 @@ export const TypeEnum = [
     },
     {
         name: 'Бытовая техника',
+        id: [5,6,7,8],
         values: [
             { id: 5, name: 'Холодильники' },
             { id: 6, name: 'Стиральные машины' },
@@ -42,18 +44,27 @@ export const TypeEnum = [
     },
     {
         name: 'Компьютеры',
+        id: [9,10],
         values: [
             { id: 9, name: 'Системные блоки' },
             { id: 10, name: 'Моноблоки' },
         ],
     },
     {
-        id: 11,
-        name: 'Смартфоны',
+        name: 'Телефоны',
+        id: [11,12],
+        values: [
+            {id: 11, name: 'Смартфоны'},
+            {id: 12, name: 'Кнопочные телефоны'}
+        ]
     },
     {
-        id: 12,
+        id: [13,14],
         name: 'Ноутбуки',
+        values: [
+            {id: 13, name: 'Сенсорные ноутбуки'},
+            {id: 14, name: 'Ноутбуки'}
+        ]
     },
 ]
 
