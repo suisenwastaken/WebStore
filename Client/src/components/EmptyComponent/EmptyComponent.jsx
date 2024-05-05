@@ -1,9 +1,10 @@
 import styles from './EmptyComponent.module.css'
 import { BiCartAdd } from 'react-icons/bi'
 import { BiDonateHeart } from 'react-icons/bi'
+import { BiPackage } from "react-icons/bi";
 const EmptyComponent = ({ type }) => {
-    if (type === 'basket') {
-        return (
+    const renderComponent = {
+        basket: (
             <div className={styles.EmptyComponent}>
                 <BiCartAdd className={styles.Icon} />
 
@@ -13,9 +14,8 @@ const EmptyComponent = ({ type }) => {
                     <br /> Как насчет пройтись по топ категориям?
                 </div>
             </div>
-        )
-    } else {
-        return (
+        ),
+        favorite: (
             <div className={styles.EmptyComponent}>
                 <BiDonateHeart className={styles.Icon} />
 
@@ -25,8 +25,21 @@ const EmptyComponent = ({ type }) => {
                     <br /> Как насчет пройтись по топ категориям?
                 </div>
             </div>
-        )
+        ),
+        orders: (
+            <div className={styles.EmptyComponent}>
+                <BiPackage className={styles.Icon} />
+
+                <div className={styles.h2}>Ваш список заказов пуст</div>
+                <div className={styles.Text}>
+                    Похоже что вы еще ничего не заказали.
+                    <br /> Как насчет пройтись по топ категориям?
+                </div>
+            </div>
+        ),
     }
+
+    return renderComponent[type]
 }
 
 export default EmptyComponent

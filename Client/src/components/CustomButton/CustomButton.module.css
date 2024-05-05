@@ -35,6 +35,12 @@
     border: none;
 }
 
+.lightRed {
+    border: 2px solid #d3193e;
+    background-color: #fff2f4;
+    color: #d3193e;
+}
+
 .transparentPurple {
     color: #594ae3;
     background-color: transparent;
@@ -55,7 +61,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
     font-size: 16px;
     line-height: 16px;
 }

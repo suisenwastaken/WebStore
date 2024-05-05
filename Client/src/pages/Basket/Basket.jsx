@@ -46,7 +46,7 @@ const Basket = () => {
         { deliveryHome: null, deliveryPoint: null }
     )
 
-    if (cartDevices?.length === 0) {
+    if (cartDevices?.length === 0 || cartDevices === undefined || cartDevices === null) {
         return (
             <div className={styles.Page} style={{justifyContent: 'center'}}>
                 <EmptyComponent type={'basket'} />

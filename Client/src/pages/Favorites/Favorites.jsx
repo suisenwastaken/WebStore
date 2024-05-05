@@ -9,13 +9,15 @@ const Favorites = () => {
     const { favoriteDevices } = useContext(FavoriteContext)
     const [devices, setDevices] = useState()
 
-    if (favoriteDevices?.length === 0) {
+    if (favoriteDevices?.length === 0 || favoriteDevices === undefined || favoriteDevices === null){
+        console.log(favoriteDevices)
         return (
             <div className={styles.Page} style={{ justifyContent: 'center' }}>
                 <EmptyComponent type={'favorite'} />
             </div>
         )
     } else {
+        console.log(favoriteDevices)
         return (
             <div className={styles.Page}>
                 <div className={styles.h1}>Избранные</div>

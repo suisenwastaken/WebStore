@@ -103,7 +103,7 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
                 )
                 setShowLoginModal(false)
             }
-        } catch {
+        } catch (error) {
             setAlert(AlertState.incorrectEmailOrPassword)
         }
     }
@@ -144,11 +144,12 @@ const LoginCard = ({ onClick, showLoginModal, setShowLoginModal }) => {
             })
             if (registrationResponse) {
                 setAlert(AlertState.registrationSuccess)
-                SetAccessTokenCookie(loginResponse.data.token)
-                setUser(loginResponse.data.user)
+                SetAccessTokenCookie(registrationResponse.data.token)
+                setUser(registrationResponse.data.user)
                 setShowLoginModal(false)
             }
-        } catch {
+        } catch (error) {
+            console.log(error)
             setAlert(AlertState.alreadyRegistered)
         }
     }

@@ -11,6 +11,7 @@ import { GET_USER_URL, LOGIN_REFRESH } from '../api/Urls'
 import LoadingComponent from '../components/LoadingComponent/LoadingComponent'
 import CartContext from '../storage/CartContext'
 import FavoriteContext from '../storage/FavoriteContext'
+import { storeURL } from './routerLinks'
 
 const AuthorizedPage = ({ children }) => {
     const navigate = useNavigate()
@@ -33,7 +34,7 @@ const AuthorizedPage = ({ children }) => {
             } catch (error) {
                 console.log('Ошибка получения пользователя: ', error)
                 RemoveAccessTokenCookie()
-                navigate('/')
+                navigate(storeURL)
                 setLoading(false)
             }
         }

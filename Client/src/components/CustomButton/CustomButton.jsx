@@ -9,7 +9,7 @@ const CustomButton = ({
     pStyle,
     disabled,
     type,
-    pClassName
+    pClassName,
 }) => {
     let subClass = ''
     switch (type) {
@@ -27,6 +27,9 @@ const CustomButton = ({
             break
         case 'transparentPurple':
             subClass = styles.transparentPurple
+            break
+        case 'lightRed':
+            subClass = styles.lightRed
             break
         default:
             subClass = ''

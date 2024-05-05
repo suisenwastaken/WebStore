@@ -29,6 +29,12 @@ export default {
         color: 'purple'
     },
 
+    logoutSuccess: {
+        headText: 'Успех',
+        mainText: 'Вы успешно вышли из системы',
+        color: 'purple'
+    },
+
     addedToCart : {
         headText: 'Успех',
         mainText: 'Товар добавлен в корзину',

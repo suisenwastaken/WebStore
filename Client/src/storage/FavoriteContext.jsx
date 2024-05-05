@@ -6,7 +6,7 @@ import { FAVORITES_URL } from '../api/Urls'
 
 class Favorite {
     constructor() {
-        this._favoriteDevices = null
+        this._favoriteDevices = []
         makeAutoObservable(this)
     }
 

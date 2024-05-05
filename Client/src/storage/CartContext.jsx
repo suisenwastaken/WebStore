@@ -6,7 +6,7 @@ import { BASKET_UPDATE_COUNT_URL, BASKET_URL } from '../api/Urls'
 
 class Cart {
     constructor() {
-        this._cartDevices = null
+        this._cartDevices = []
         makeAutoObservable(this)
     }
 
