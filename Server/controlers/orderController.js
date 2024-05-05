@@ -4,6 +4,7 @@ import ApiError from "../error/apiError.js";
 export async function post(req, res) {
   try {
     const userId = req.user.id;
+    const { deliveryPointId, homeDeliveryAddress, deliveryDate } = req.body;
 
     const basketDevices = await model.BasketDevices.findAll({
       where: { userId },
@@ -17,18 +18,30 @@ export async function post(req, res) {
     }
 
     const totalPrice = basketDevices.reduce(
-      (total, basketDevice) => total + basketDevice.device.price * basketDevice.count,
+      (total, basketDevice) =>
+        total + basketDevice.device.price * basketDevice.count,
       0
     );
 
-    const order = await model.Order.create({ userId, totalPrice });
+    const orderDetails = {
+      userId: userId,
+      totalPrice: totalPrice,
+      deliveryPointId: deliveryPointId,
+      deliveryDate: deliveryDate,
+    };
+
+    if (deliveryPointId === 1) {
+      orderDetails.homeDeliveryAddress = homeDeliveryAddress;
+    }
+
+    const order = await model.Order.create(orderDetails);
 
     await Promise.all(
       basketDevices.map(async (basketDevice) => {
-        await model.OrderDevice.create({ 
-          orderId: order.id, 
+        await model.OrderDevice.create({
+          orderId: order.id,
           deviceId: basketDevice.device.id,
-          count: basketDevice.count
+          count: basketDevice.count,
         });
       })
     );
@@ -41,7 +54,6 @@ export async function post(req, res) {
     return res.status(500).json({ error: "Internal server error" });
   }
 }
-
 
 export async function get(req, res) {
   try {

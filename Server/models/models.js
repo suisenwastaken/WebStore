@@ -6,12 +6,20 @@ const User = sequelize.define("user", {
   email: { type: DataTypes.STRING, unique: true },
   name: { type: DataTypes.STRING },
   password: { type: DataTypes.STRING },
-  role: { type: DataTypes.STRING, defaultValue: "USER" },
+  role: { type: DataTypes.STRING, defaultValue: "ADMIN" },
 });
 
 const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   totalPrice: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
+  homeDeliveryAddress: { type: DataTypes.STRING },
+  deliveryDate: { type: DataTypes.DATE, allowNull: false},
+});
+
+const DeliveryPoint = sequelize.define("delivery_point", {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  name: { type: DataTypes.STRING, allowNull: false },
+  address: { type: DataTypes.STRING, allowNull: false },
 });
 
 const FavoriteDevices = sequelize.define("favorite", {
@@ -33,8 +41,8 @@ const Device = sequelize.define("device", {
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
   salePercent: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
-  deliveryHome: { type: DataTypes.STRING, unique: false, allowNull: false },
-  deliveryPoint: { type: DataTypes.STRING, unique: false, allowNull: false },
+  deliveryHome: { type: DataTypes.DATE, unique: false, allowNull: false },
+  deliveryPoint: { type: DataTypes.DATE, unique: false, allowNull: false },
   soldCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
   rating: { type: DataTypes.DOUBLE, allowNull: false, defaultValue: 0 },
   img: { type: DataTypes.STRING, allowNull: false },
@@ -76,6 +84,9 @@ FavoriteDevices.belongsTo(Device);
 User.hasMany(Order);
 Order.belongsTo(User);
 
+DeliveryPoint.hasMany(Order);
+Order.belongsTo(DeliveryPoint)
+
 User.hasMany(BasketDevices);
 BasketDevices.belongsTo(User);
 
@@ -114,4 +125,5 @@ export default {
   Comment,
   DeviceInfo,
   OrderDevice,
+  DeliveryPoint,
 };
