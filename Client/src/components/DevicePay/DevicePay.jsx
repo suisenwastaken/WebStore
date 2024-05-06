@@ -3,13 +3,13 @@ import { BiSolidDiscount } from 'react-icons/bi'
 import { useContext, useEffect, useState } from 'react'
 import AlertContext from '../../storage/AlertContext'
 import CustomButton from '../CustomButton'
-import { validatePrice } from '../../publicFunctions'
+import { validateDate, validatePrice } from '../../publicFunctions'
 import CustomButtonCounter from '../CustomButtonCounter'
 import CartContext from '../../storage/CartContext'
 import UserContext from '../../storage/UserContext'
 import AlertState from '../Alert/AlertState'
 
-const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
+const DevicePay = ({ deviceInfo, style, buttonText, type, setDeliveryModal }) => {
     const { setAlert } = useContext(AlertContext)
     const { addDeviceToCart, getDeviceCountInCart, editDeviceCountInCart } =
         useContext(CartContext)
@@ -22,9 +22,11 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
         setDeviceCount(count)
     }, [deviceInfo?.id])
 
-    const CreateOrder = () => {}
+    const handleCreateOrder = () => {
+        setDeliveryModal(true)
+    }
 
-    const HandleAddToCart = () => {
+    const handleAddToCart = () => {
         if (!user) {
             setAlert(AlertState.notAuthorized)
             return
@@ -95,7 +97,7 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
                         </div>
                         <div className={styles.Dots}></div>
                         <div className={styles.DeliveryData}>
-                            {deviceInfo?.deliveryPoint}
+                            {validateDate(deviceInfo?.deliveryPoint)}
                         </div>
                     </div>
                     <div className={styles.DeliveryRow}>
@@ -104,7 +106,7 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
                         </div>
                         <div className={styles.Dots}></div>
                         <div className={styles.DeliveryData}>
-                            {deviceInfo?.deliveryHome}
+                            {validateDate(deviceInfo?.deliveryHome)}
                         </div>
                     </div>
                 </div>
@@ -122,8 +124,8 @@ const DevicePay = ({ deviceInfo, style, buttonText, type }) => {
                             className={styles.Button}
                             onClick={
                                 type === 'cart'
-                                    ? () => HandleCreateOrder()
-                                    : () => HandleAddToCart()
+                                    ? () => handleCreateOrder()
+                                    : () => handleAddToCart()
                             }
                             type={'purple'}
                             text={buttonText ?? 'Купить'}

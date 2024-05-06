@@ -65,6 +65,12 @@ export default {
         color: 'purple',
     },
 
+    orderSuccess : {
+        headText: 'Заказ оформлен',
+        mainText: 'Информацию о заказе можете увидеть в личном кабинете',
+        color: 'purple',
+    },
+
     unhandledError : {
         headText: 'Ошибка',
         mainText: 'Произошла непредвиденная ошибка',

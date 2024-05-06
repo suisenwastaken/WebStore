@@ -4,12 +4,14 @@ import CardSmall from '../../components/CardSmall/CardSmall'
 import DevicePay from '../../components/DevicePay/DevicePay'
 import CartContext from '../../storage/CartContext'
 import EmptyComponent from '../../components/EmptyComponent'
+import DeliveryModal from '../../components/DeliveryModal/DeliveryModal'
 
 const Basket = () => {
     const { cartDevices } = useContext(CartContext)
     const [devices, setDevices] = useState()
     const [payObject, setPayObject] = useState()
     const [totalPrice, setTotalPrice] = useState()
+    const [isDeliveryModalShown, setIsDeliveryModalShown] = useState(false)
 
     useEffect(() => {
         setTotalPrice(
@@ -46,9 +48,13 @@ const Basket = () => {
         { deliveryHome: null, deliveryPoint: null }
     )
 
-    if (cartDevices?.length === 0 || cartDevices === undefined || cartDevices === null) {
+    if (
+        cartDevices?.length === 0 ||
+        cartDevices === undefined ||
+        cartDevices === null
+    ) {
         return (
-            <div className={styles.Page} style={{justifyContent: 'center'}}>
+            <div className={styles.Page} style={{ justifyContent: 'center' }}>
                 <EmptyComponent type={'basket'} />
             </div>
         )
@@ -79,11 +85,21 @@ const Basket = () => {
                         <DevicePay
                             type={'cart'}
                             deviceInfo={payObject}
-                            buttonText={'Оформить заказ'}
+                            buttonText={'Выбрать доставку'}
                             style={{ boxShadow: 'none' }}
+                            setDeliveryModal={setIsDeliveryModalShown}
                         />
                     )}
                 </div>
+                {isDeliveryModalShown ? (
+                    <DeliveryModal
+                        isModalShown={isDeliveryModalShown}
+                        setIsModalShown={setIsDeliveryModalShown}
+                        deliveryDates={latestDates}
+                    />
+                ) : (
+                    ''
+                )}
             </div>
         )
     }

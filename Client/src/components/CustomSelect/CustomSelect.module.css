@@ -1,0 +1,43 @@
+.inputArea {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.input {
+    /* all:initial; */
+    box-sizing: border-box;
+    padding: 15px !important;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'IBM Plex Sans';
+    border-radius: 10px;
+    border: 2px solid #11111333;
+    color: hsl(0, 0%, 50%) !important;
+}
+
+.input::placeholder {
+    color: #11111399;
+    font-family: 'IBM Plex Sans';
+}
+
+.error {
+    display: none;
+    gap: 5px;
+    font-size: 14px;
+    color: #d3193e !important;
+}
+
+.errorInput {
+    border: 2px solid #d3193e !important;
+    background-color: #fff2f4;
+    color: #d3193e !important;
+}
+
+.errorInput::placeholder {
+    color: #d3193e !important;
+}
+
+.errorInput:focus {
+    outline: none;
+}

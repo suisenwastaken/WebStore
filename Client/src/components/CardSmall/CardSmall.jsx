@@ -3,7 +3,12 @@ import CustomButtonCounter from '../CustomButtonCounter'
 import styles from './CardSmall.module.css'
 import { Link, redirect, useNavigate } from 'react-router-dom'
 import { BiSolidDiscount } from 'react-icons/bi'
-import { getBrandName, getTypeName, validatePrice } from '../../publicFunctions'
+import {
+    getBrandName,
+    getTypeName,
+    validateDate,
+    validatePrice,
+} from '../../publicFunctions'
 import { BiSolidTrash, BiHeart, BiSolidHeart } from 'react-icons/bi'
 import CustomButton from '../CustomButton'
 import { devicePageURL } from '../../hoc/routerLinks'
@@ -91,10 +96,11 @@ const CardSmall = ({ device, onCountChange }) => {
                     </div>
                     <div className={styles.Delivery}>
                         <div className={styles.DeliveryRow}>
-                            Пункты выдачи: {device.deliveryPoint}
+                            Пункты выдачи: {validateDate(device.deliveryPoint)}
                         </div>
                         <div className={styles.DeliveryRow}>
-                            Доставка курьером: {device.deliveryHome}
+                            Доставка курьером:{' '}
+                            {validateDate(device.deliveryHome)}
                         </div>
                     </div>
                 </div>

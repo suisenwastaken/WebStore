@@ -49,6 +49,10 @@ class Cart {
         return item ? item.count : 0
     }
 
+    clearCartDevices = () => {
+        this._cartDevices = []
+    }
+
     editDeviceCountInCart = async (deviceId, newCount) => {
         console.log(deviceId, newCount)
         const index = this._cartDevices?.findIndex(
