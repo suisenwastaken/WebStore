@@ -48,12 +48,19 @@ export async function post(req, res) {
 
     await model.BasketDevices.destroy({ where: { userId } });
 
-    return res.json({ message: "Заказ размещен", order });
+    // Получаем созданный заказ с устройствами
+    const createdOrder = await model.Order.findOne({
+      where: { id: order.id },
+      include: [{ model: model.Device }],
+    });
+
+    return res.json(createdOrder);
   } catch (error) {
     console.error("Error creating order:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
 }
+
 
 export async function get(req, res) {
   try {
@@ -64,7 +71,7 @@ export async function get(req, res) {
       include: [{ model: model.Device }],
     });
 
-    return res.json(allOrders);
+    return res.json(allOrders.reverse());
   } catch (error) {
     console.error("Error fetching orders:", error);
     return res.status(500).json({ error: "Internal server error" });

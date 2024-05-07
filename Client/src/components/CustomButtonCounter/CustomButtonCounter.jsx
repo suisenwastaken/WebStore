@@ -13,6 +13,7 @@ const CustomButtonCounter = ({
     count,
     setCount,
     deviceId,
+    actionType = 'active',
 }) => {
     let subClass = ''
     switch (type) {
@@ -38,19 +39,28 @@ const CustomButtonCounter = ({
             onClick={onClick}
         >
             <div className={styles.text} style={pStyle}>
-                <div
-                    className={styles.Control}
-                    onClick={() => setCount(count - 1)}
-                >
-                    -
-                </div>
+                {actionType === 'active' ? (
+                    <div
+                        className={styles.Control}
+                        onClick={() => setCount(count - 1)}
+                    >
+                        -
+                    </div>
+                ) : (
+                    ''
+                )}
+
                 <div className={styles.ControlCount}>{count}</div>
-                <div
-                    className={styles.Control}
-                    onClick={() => setCount(count + 1)}
-                >
-                    +
-                </div>
+                {actionType === 'active' ? (
+                    <div
+                        className={styles.Control}
+                        onClick={() => setCount(count + 1)}
+                    >
+                        +
+                    </div>
+                ) : (
+                    ''
+                )}
             </div>
         </div>
     )

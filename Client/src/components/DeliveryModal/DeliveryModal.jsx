@@ -11,9 +11,16 @@ import AlertState from '../Alert/AlertState'
 import { useNavigate } from 'react-router-dom'
 import { storeURL } from '../../hoc/routerLinks'
 import CartContext from '../../storage/CartContext'
+import DeliveryPointsContext from '../../storage/deliveryPointsContext'
 
-const DeliveryModal = ({ isModalShown, setIsModalShown, deliveryDates }) => {
-    const [deliveryPoints, setDeliveryPoints] = useState()
+const DeliveryModal = ({
+    isModalShown,
+    setIsModalShown,
+    deliveryDates,
+    setIsNextModalShown,
+    setOrder,
+}) => {
+    const { deliveryPoints } = useContext(DeliveryPointsContext)
     const [modalData, setModalData] = useState({
         deliveryPoint: '',
         homeDeliveryAddress: '',
@@ -31,35 +38,18 @@ const DeliveryModal = ({ isModalShown, setIsModalShown, deliveryDates }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const getDeliveryPoints = async () => {
-            try {
-                const deliveryPointsResponse = await Request.send({
-                    method: GET,
-                    url: DELIVERY_POINT_URL,
-                    useToken: false,
-                })
-
-                if (deliveryPointsResponse) {
-                    const formattedDeliveryPoints =
-                        deliveryPointsResponse.data.map((point) => ({
-                            value: point.id,
-                            label: `${point.name} - ${point.address}`,
-                        }))
-                    setDeliveryPoints(formattedDeliveryPoints)
-                }
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
-        getDeliveryPoints()
-    }, [])
-
-    useEffect(() => {
         if (modalData.deliveryPoint && errors.deliveryPoint) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
                 deliveryPoint: '',
+            }))
+            setIsButtonDisabled(false)
+        }
+
+        if (modalData.deliveryPoint !== 1) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                homeDeliveryAddress: '',
             }))
             setIsButtonDisabled(false)
         }
@@ -116,7 +106,7 @@ const DeliveryModal = ({ isModalShown, setIsModalShown, deliveryDates }) => {
         }
 
         try {
-            const postOrderResponse = Request.send({
+            const postOrderResponse = await Request.send({
                 method: POST,
                 url: ORDER_URL,
                 data: {
@@ -128,8 +118,9 @@ const DeliveryModal = ({ isModalShown, setIsModalShown, deliveryDates }) => {
             })
 
             if (postOrderResponse) {
-                setAlert(AlertState.orderSuccess)
                 clearCartDevices()
+                setOrder(postOrderResponse.data)
+                setIsNextModalShown(true)
                 setIsModalShown(false)
             }
         } catch (error) {

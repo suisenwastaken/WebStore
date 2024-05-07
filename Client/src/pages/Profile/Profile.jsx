@@ -12,14 +12,17 @@ import AlertContext from '../../storage/AlertContext.jsx'
 import AlertState from '../../components/Alert/AlertState.js'
 import { useNavigate } from 'react-router-dom'
 import { storeURL } from '../../hoc/routerLinks.js'
+import OrderModal from '../../components/OrderModal/OrderModal.jsx'
 
 const Profile = () => {
     const { user } = useContext(UserContext)
     const [loading, setLoading] = useState(false)
     const [orders, setOrders] = useState()
-    const {setAlert} = useContext(AlertContext)
-    const {setUser} = useContext(UserContext)
+    const { setAlert } = useContext(AlertContext)
+    const { setUser } = useContext(UserContext)
     const navigate = useNavigate()
+    const [isModalShown, setIsModalShown] = useState(false)
+    const [orderInModal, setOrderInModal] = useState()
     useEffect(() => {
         const getOrders = async () => {
             setLoading(true)
@@ -70,8 +73,11 @@ const Profile = () => {
                         text={'Выйти из аккаунта'}
                         type={'lightRed'}
                         icon={<BiLogOut />}
-                        style={{width: '100%',}}
-                        pStyle={{ display: 'flex', flexDirection: 'row-reverse',}}
+                        style={{ width: '100%' }}
+                        pStyle={{
+                            display: 'flex',
+                            flexDirection: 'row-reverse',
+                        }}
                         onClick={() => {
                             RemoveAccessTokenCookie()
                             setAlert(AlertState.logoutSuccess)
@@ -89,11 +95,23 @@ const Profile = () => {
                         <div className={styles.h1}>Ваши заказы:</div>
                         <div className={styles.OrderList}>
                             {orders?.map((order, i) => (
-                                <Order orderInfo={order} key={i} />
+                                <Order
+                                    orderInfo={order}
+                                    key={i}
+                                    onClick={() => {
+                                        setIsModalShown(true)
+                                        setOrderInModal(order)
+                                    }}
+                                />
                             ))}
                         </div>
                     </div>
                 )}
+                <OrderModal
+                    orderInfo={orderInModal}
+                    isModalShown={isModalShown}
+                    setIsModalShown={setIsModalShown}
+                />
             </div>
         )
     }

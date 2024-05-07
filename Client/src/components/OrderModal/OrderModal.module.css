@@ -1,0 +1,75 @@
+.ModalWindow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.CenterBlock {
+    max-height: 80vh;
+    width: max(650px, 50%);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+
+    overflow: scroll;
+}
+
+.OrderHead {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.OrderNumber {
+    font-size: 24px;
+    font-weight: 500;
+    color: #989898;
+}
+
+.OrderInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.h3 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.OrderInfoText {
+    font-size: 16px;
+    color: #989898;
+    font-weight: 400;
+}
+
+.TotalPrice {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-size: 20px;
+}
+
+.Price{
+    font-weight: 500;
+}

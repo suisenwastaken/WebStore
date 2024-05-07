@@ -7,6 +7,7 @@ import { CartProvider } from './storage/CartContext.jsx'
 import { FavoriteProvider } from './storage/FavoriteContext.jsx'
 import InitialInfo from './hoc/InitialInfo.jsx'
 import { LoginModalProvider } from './storage/LoginModalContext.jsx'
+import { DeliveryPointsContextProvider } from './storage/deliveryPointsContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <UserContextProvider>
@@ -14,11 +15,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <FavoriteProvider>
                 <AlertProvider>
                     <LoginModalProvider>
-                        <InitialInfo>
-                            <React.StrictMode>
-                                <App />
-                            </React.StrictMode>
-                        </InitialInfo>
+                        <DeliveryPointsContextProvider>
+                            <InitialInfo>
+                                <React.StrictMode>
+                                    <App />
+                                </React.StrictMode>
+                            </InitialInfo>
+                        </DeliveryPointsContextProvider>
                     </LoginModalProvider>
                 </AlertProvider>
             </FavoriteProvider>

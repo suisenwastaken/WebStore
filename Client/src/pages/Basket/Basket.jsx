@@ -5,13 +5,24 @@ import DevicePay from '../../components/DevicePay/DevicePay'
 import CartContext from '../../storage/CartContext'
 import EmptyComponent from '../../components/EmptyComponent'
 import DeliveryModal from '../../components/DeliveryModal/DeliveryModal'
+import OrderModal from '../../components/OrderModal/OrderModal'
+import { useNavigate } from 'react-router-dom'
+import { storeURL } from '../../hoc/routerLinks'
 
 const Basket = () => {
     const { cartDevices } = useContext(CartContext)
+    const navigate = useNavigate()
     const [devices, setDevices] = useState()
     const [payObject, setPayObject] = useState()
     const [totalPrice, setTotalPrice] = useState()
     const [isDeliveryModalShown, setIsDeliveryModalShown] = useState(false)
+    const [isOrderModalShown, setIsOrderModalShown] = useState(false)
+    const [order, setOrder] = useState()
+
+    useEffect(() => {
+        console.log(order)
+        console.log(isOrderModalShown)
+    }, [order, isOrderModalShown])
 
     useEffect(() => {
         setTotalPrice(
@@ -56,6 +67,12 @@ const Basket = () => {
         return (
             <div className={styles.Page} style={{ justifyContent: 'center' }}>
                 <EmptyComponent type={'basket'} />
+                <OrderModal
+                    isModalShown={isOrderModalShown}
+                    setIsModalShown={setIsOrderModalShown}
+                    orderInfo={order}
+                    type={'newOrder'}
+                />
             </div>
         )
     } else {
@@ -91,15 +108,13 @@ const Basket = () => {
                         />
                     )}
                 </div>
-                {isDeliveryModalShown ? (
-                    <DeliveryModal
-                        isModalShown={isDeliveryModalShown}
-                        setIsModalShown={setIsDeliveryModalShown}
-                        deliveryDates={latestDates}
-                    />
-                ) : (
-                    ''
-                )}
+                <DeliveryModal
+                    isModalShown={isDeliveryModalShown}
+                    setIsModalShown={setIsDeliveryModalShown}
+                    deliveryDates={latestDates}
+                    setIsNextModalShown={setIsOrderModalShown}
+                    setOrder={setOrder}
+                />
             </div>
         )
     }
