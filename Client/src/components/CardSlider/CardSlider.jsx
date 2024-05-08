@@ -6,6 +6,8 @@ import Carousel from 'nuka-carousel'
 import { GET, Request } from '../../api/APIFile'
 import { DEVICE_PROMO_URL } from '../../api/Urls'
 import { devicePageURL } from '../../hoc/routerLinks'
+import { BiLeftArrowAlt } from "react-icons/bi";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 const CardSlider = ({ SliderName }) => {
     const navigate = useNavigate()
@@ -36,8 +38,8 @@ const CardSlider = ({ SliderName }) => {
                     pagingDotsClassName: styles.Dots,
                     prevButtonClassName: styles.Arrow,
                     nextButtonClassName: styles.Arrow,
-                    prevButtonText: '<',
-                    nextButtonText: '>',
+                    prevButtonText: <BiLeftArrowAlt/>,
+                    nextButtonText: <BiRightArrowAlt/>,
                 }}
             >
                 {data.map((d, i) => (
