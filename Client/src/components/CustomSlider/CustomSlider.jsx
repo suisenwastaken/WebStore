@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import './style.css'
+import { useIsMount } from '../../hooks/useIsMount'
 
 const CustomSlider = ({ min, max, onChange }) => {
     const [minVal, setMinVal] = useState(min)
@@ -8,6 +9,7 @@ const CustomSlider = ({ min, max, onChange }) => {
     const minValRef = useRef(min)
     const maxValRef = useRef(max)
     const range = useRef(null)
+    const isMount = useIsMount()
 
     // Convert to percentage
     const getPercent = useCallback(
@@ -38,7 +40,9 @@ const CustomSlider = ({ min, max, onChange }) => {
 
     // Get min and max values when their state changes
     useEffect(() => {
-        onChange({ min: minVal, max: maxVal })
+        if (!isMount) {
+            onChange({ min: minVal, max: maxVal })
+        }
     }, [minVal, maxVal])
 
     return (

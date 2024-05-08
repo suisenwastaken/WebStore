@@ -1,7 +1,12 @@
+.Slider {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .Category {
     width: 100%;
     font-size: 30px;
-    margin-bottom: 20px;
     font-weight: bold;
 }
 

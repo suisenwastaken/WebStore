@@ -19,8 +19,10 @@ import { BASKET_URL, FAVORITES_URL } from '../../api/Urls'
 import AlertContext from '../../storage/AlertContext'
 import UserContext from '../../storage/UserContext'
 import AlertState from '../Alert/AlertState'
+import { devicePageURL } from '../../hoc/routerLinks'
 
 const Card = ({ device, onClick, place, onChangeItems }) => {
+    const [shareState, setShareState] = useState(false)
     const [hoverState, setHoverState] = useState(false)
     const [cartState, setCartState] = useState(false)
     const [favoriteState, setFavoriteState] = useState(false)
@@ -152,8 +154,22 @@ const Card = ({ device, onClick, place, onChangeItems }) => {
                         <CustomButton
                             icon={<PiShare />}
                             className={styles.Button}
-                            type={'lightNoBorder'}
+                            type={shareState ? 'default' : 'lightNoBorder'}
                             pStyle={{ fontSize: '20px' }}
+                            onClick={() => {
+                                setShareState(true)
+                                navigator.clipboard
+                                    .writeText(window.location.href + devicePageURL.substring(1) + device.id)
+                                    .then(() => {
+                                        setAlert(AlertState.linkCopied)
+                                    })
+                                    .catch((error) => {
+                                        console.error(
+                                            'Ошибка копирования текста:',
+                                            error
+                                        )
+                                    })
+                            }}
                         />
                     </div>
                 )}

@@ -24,8 +24,7 @@ const CardSlider = ({ SliderName }) => {
     }, [])
 
     return (
-        <>
-            {/* {console.log(data)} */}
+        <div className={styles.Slider}>
             <div className={styles.Category}>{SliderName}</div>
             <Carousel
                 speed={1000}
@@ -50,7 +49,7 @@ const CardSlider = ({ SliderName }) => {
                     />
                 ))}
             </Carousel>
-        </>
+        </div>
     )
 }
 

@@ -1,0 +1,23 @@
+.Card{
+    width: 32%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+    color: #594ae3;
+    background-color: #594ae310;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Icon{
+    font-size: 50px;
+}
+
+.Text {
+  font-size: 18px;
+  font-weight: 400;
+}

@@ -71,6 +71,12 @@ export default {
         color: 'purple',
     },
 
+    linkCopied : {
+        headText: 'Успех',
+        mainText: 'Ссылка на товар скопирована',
+        color: 'purple',
+    },
+
     unhandledError : {
         headText: 'Ошибка',
         mainText: 'Произошла непредвиденная ошибка',

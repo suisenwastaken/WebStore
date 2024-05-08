@@ -7,4 +7,30 @@
     background-color: #594ae305;
     box-sizing: border-box;
     min-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+
+.Categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.CategoryCards {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.h1 {
+    font-size: 30px;
+    font-weight: bold;
 }

@@ -58,14 +58,14 @@ export async function get(req, res) {
   let offset = page * limit - limit;
   let whereClause = {};
 
-  const brandIdArray = brandId?.split(",").map(Number);
+  const brandIdArray = brandId ? brandId?.split(",").map(Number) : [];
   if (Array.isArray(brandIdArray) && brandIdArray.length > 0) {
     whereClause.brandId = { [Op.or]: brandIdArray };
   } else if (brandId) {
     whereClause.brandId = brandId;
   }
 
-  const typeIdArray = typeId?.split(",").map(Number);
+  const typeIdArray = typeId? typeId?.split(",").map(Number) : [];
   if (Array.isArray(typeIdArray) && typeIdArray.length > 0) {
     whereClause.typeId = { [Op.or]: typeIdArray };
   } else if (typeId) {
@@ -73,7 +73,23 @@ export async function get(req, res) {
   }
 
   if (search) {
-    whereClause[Op.or] = { name: { [Op.iLike]: `%${search}%` } };
+    const foundBrands = await model.Brand.findAll({
+      where: { name: { [Op.iLike]: `%${search}%` } },
+      attributes: ["id"],
+    });
+    if (foundBrands.length > 0) {
+      const brandIds = foundBrands.map((brand) => brand.id);
+      brandIdArray.push(...brandIds);
+    }
+
+    const foundTypes = await model.Type.findAll({
+      where: { name: { [Op.iLike]: `%${search}%` } },
+      attributes: ["id"],
+    });
+    if (foundTypes.length > 0) {
+      const typeIds = foundTypes.map((type) => type.id);
+      typeIdArray.push(...typeIds);
+    }
   }
 
   if (minPrice && maxPrice) {

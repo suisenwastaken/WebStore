@@ -23,6 +23,26 @@ const AuthorizedPage = ({ children }) => {
     useEffect(() => {
         const getUser = async () => {
             setLoading(true)
+
+            const deliveryPointsResponse = await Request.send({
+                method: GET,
+                url: DELIVERY_POINT_URL,
+                useToken: false,
+            })
+
+            if (deliveryPointsResponse) {
+                const formattedDeliveryPoints = deliveryPointsResponse.data.map(
+                    (point) => ({
+                        value: point.id,
+                        label:
+                            point.id === 1
+                                ? `${point.name}`
+                                : `${point.name} - ${point.address}`,
+                    })
+                )
+                setDeliveryPoints(formattedDeliveryPoints)
+            }
+
             try {
                 const userResponse = await Request.send({
                     method: GET,
@@ -30,31 +50,13 @@ const AuthorizedPage = ({ children }) => {
                     useToken: true,
                 })
                 if (userResponse) {
+                    setLoading(false)
                     setUser(userResponse.data.userInfo.user)
                     setDevicesInCart(userResponse.data.userInfo.basketDevices)
                     setDevicesInFavorite(
                         userResponse.data.userInfo.favoriteDevices
                     )
                     SetAccessTokenCookie(userResponse.data.token)
-                }
-
-                const deliveryPointsResponse = await Request.send({
-                    method: GET,
-                    url: DELIVERY_POINT_URL,
-                    useToken: false,
-                })
-
-                if (deliveryPointsResponse) {
-                    setLoading(false)
-                    const formattedDeliveryPoints =
-                        deliveryPointsResponse.data.map((point) => ({
-                            value: point.id,
-                            label:
-                                point.id === 1
-                                    ? `${point.name}`
-                                    : `${point.name} - ${point.address}`,
-                        }))
-                    setDeliveryPoints(formattedDeliveryPoints)
                 }
             } catch (error) {
                 setLoading(false)

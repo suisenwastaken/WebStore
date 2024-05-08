@@ -38,6 +38,12 @@ export async function post(req, res) {
 
     await Promise.all(
       basketDevices.map(async (basketDevice) => {
+        
+        await model.Device.increment("soldCount", {
+          by: basketDevice.count,
+          where: { id: basketDevice.device.id },
+        });
+
         await model.OrderDevice.create({
           orderId: order.id,
           deviceId: basketDevice.device.id,
@@ -48,7 +54,6 @@ export async function post(req, res) {
 
     await model.BasketDevices.destroy({ where: { userId } });
 
-    // Получаем созданный заказ с устройствами
     const createdOrder = await model.Order.findOne({
       where: { id: order.id },
       include: [{ model: model.Device }],
@@ -60,7 +65,6 @@ export async function post(req, res) {
     return res.status(500).json({ error: "Internal server error" });
   }
 }
-
 
 export async function get(req, res) {
   try {
