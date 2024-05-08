@@ -51,7 +51,7 @@ export async function post(req, res, next) {
 }
 
 export async function get(req, res) {
-  let { brandId, typeId, page, limit, search } = req.query;
+  let { brandId, typeId, page, limit, search, minPrice, maxPrice } = req.query;
 
   page = page ?? 1;
   limit = limit ?? 20;
@@ -74,6 +74,14 @@ export async function get(req, res) {
 
   if (search) {
     whereClause[Op.or] = { name: { [Op.iLike]: `%${search}%` } };
+  }
+
+  if (minPrice && maxPrice) {
+    whereClause.price = { [Op.between]: [minPrice, maxPrice] };
+  } else if (minPrice) {
+    whereClause.price = { [Op.gte]: minPrice };
+  } else if (maxPrice) {
+    whereClause.price = { [Op.lte]: maxPrice };
   }
 
   const devices = await model.Device.findAndCountAll({

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import styles from './SideBarSearch.module.css'
 import { BrandEnum, TypeEnum } from '../../publicFunctions'
 import CustomCheckbox from '../CustomCheckbox/CustomCheckbox'
@@ -6,13 +6,20 @@ import CustomDropDown from '../CustomDropDown/CustomDropDown'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { searchPageURL } from '../../hoc/routerLinks'
 import { useIsMount } from '../../hooks/useIsMount'
+import CustomSlider from '../CustomSlider/CustomSlider'
 
 const SideBarSearch = ({}) => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [brandState, setBrandState] = useState([])
     const [typeState, setTypeState] = useState([])
+    const [priceState, setPriceState] = useState({
+        minPrice: 0,
+        maxPrice: 100000
+    })
+    const [rangeSliderValue, setRangeValueSlider] = useState([0, 20])
     const navigate = useNavigate()
     const isMount = useIsMount()
+    const timeoutRef = useRef(null)
 
     useEffect(() => {
         if (isMount) {
@@ -27,12 +34,18 @@ const SideBarSearch = ({}) => {
                 ? prevTypeState.filter((el) => el !== id)
                 : [...prevTypeState, id]
 
-            const searchParams = new URLSearchParams(window.location.search)
-            searchParams.delete('typeId')
-            updatedTypeState.forEach((el) =>
-                searchParams.append('typeId', el.toString())
-            )
-            navigate(searchPageURL + '?' + searchParams.toString())
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+
+            timeoutRef.current = setTimeout(() => {
+                const searchParams = new URLSearchParams(window.location.search)
+                searchParams.delete('typeId')
+                updatedTypeState.forEach((el) =>
+                    searchParams.append('typeId', el.toString())
+                )
+                navigate(searchPageURL + '?' + searchParams.toString())
+            }, 1000)
 
             return updatedTypeState
         })
@@ -44,21 +57,58 @@ const SideBarSearch = ({}) => {
                 ? prevTypeState.filter((el) => el !== id)
                 : [...prevTypeState, id]
 
-            const searchParams = new URLSearchParams(window.location.search)
-            searchParams.delete('brandId')
-            updatedTypeState.forEach((el) =>
-                searchParams.append('brandId', el.toString())
-            )
-            navigate(searchPageURL + '?' + searchParams.toString())
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+            }
+
+            timeoutRef.current = setTimeout(() => {
+                const searchParams = new URLSearchParams(window.location.search)
+                searchParams.delete('brandId')
+                updatedTypeState.forEach((el) =>
+                    searchParams.append('brandId', el.toString())
+                )
+                navigate(searchPageURL + '?' + searchParams.toString())
+            }, 1000)
 
             return updatedTypeState
         })
+    }
+
+    const handleChangePrice = (obj) => {
+        setPriceState({
+            minPrice: obj.min,
+            maxPrice: obj.max
+        })
+
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current)
+        }
+
+        timeoutRef.current = setTimeout(() => {
+            const searchParams = new URLSearchParams(window.location.search)
+            searchParams.delete('minPrice')
+            searchParams.delete('maxPrice')
+            searchParams.append('minPrice', obj.min.toString())
+            searchParams.append('maxPrice', obj.max.toString())
+            navigate(searchPageURL + '?' + searchParams.toString())
+        }, 1000)
     }
 
     return (
         <>
             <div className={styles.SideSearchBar}>
                 <div className={styles.h2}>Фильтры</div>
+                <CustomDropDown
+                    title={'Цена'}
+                    key={'price'}
+                    children={
+                        <CustomSlider
+                            min={0}
+                            max={100000}
+                            onChange={(values) => handleChangePrice(values)}
+                        />
+                    }
+                />
                 <CustomDropDown
                     title={'Категории'}
                     key={'categories'}

@@ -33,6 +33,12 @@ const Search = () => {
                     search: searchParams.has('search')
                         ? searchParams.getAll('search')
                         : undefined,
+                    minPrice: searchParams.has('minPrice')
+                        ? searchParams.getAll('minPrice')
+                        : undefined,
+                    maxPrice: searchParams.has('maxPrice')
+                        ? searchParams.getAll('maxPrice')
+                        : undefined,
                 }
 
                 Object.keys(params).forEach(
