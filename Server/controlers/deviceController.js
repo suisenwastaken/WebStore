@@ -65,7 +65,7 @@ export async function get(req, res) {
     whereClause.brandId = brandId;
   }
 
-  const typeIdArray = typeId? typeId?.split(",").map(Number) : [];
+  const typeIdArray = typeId ? typeId?.split(",").map(Number) : [];
   if (Array.isArray(typeIdArray) && typeIdArray.length > 0) {
     whereClause.typeId = { [Op.or]: typeIdArray };
   } else if (typeId) {
@@ -73,23 +73,29 @@ export async function get(req, res) {
   }
 
   if (search) {
+    console.log("-----------------", search);
+    let searchConditions = [];
+
     const foundBrands = await model.Brand.findAll({
       where: { name: { [Op.iLike]: `%${search}%` } },
       attributes: ["id"],
     });
     if (foundBrands.length > 0) {
       const brandIds = foundBrands.map((brand) => brand.id);
-      brandIdArray.push(...brandIds);
+      searchConditions.push({ brandId: { [Op.in]: brandIds } });
     }
-
     const foundTypes = await model.Type.findAll({
-      where: { name: { [Op.iLike]: `%${search}%` } },
+      where: { name: { [Op.iLike]: `%${search[0].toUpperCase() + search.substring(1).toLowerCase()}%` } },
       attributes: ["id"],
     });
     if (foundTypes.length > 0) {
       const typeIds = foundTypes.map((type) => type.id);
-      typeIdArray.push(...typeIds);
+      searchConditions.push({ typeId: { [Op.in]: typeIds } });
     }
+
+    searchConditions.push({ name: { [Op.iLike]: `%${search}%` } });
+
+    whereClause[Op.or] = searchConditions;
   }
 
   if (minPrice && maxPrice) {

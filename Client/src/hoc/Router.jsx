@@ -10,6 +10,7 @@ import Layout from '../components/Layout'
 import Favorites from '../pages/Favorites/Favorites'
 import { CartProvider } from '../storage/CartContext'
 import {
+    DiscountPageURL,
     basketURL,
     brandPageURL,
     devicePageURL,
@@ -20,6 +21,7 @@ import {
     typePageURL,
 } from './routerLinks'
 import Search from '../pages/Search/Search'
+import DiscountPage from '../pages/DiscountPage/DiscountPage'
 
 const Router = () => {
     const location = useLocation()
@@ -62,6 +64,8 @@ const Router = () => {
                 />
 
                 <Route element={<Search />} path={searchPageURL} />
+
+                <Route element={<DiscountPage />} path={DiscountPageURL + ':id'} />
 
                 <Route element={<Store />} index />
             </Route>

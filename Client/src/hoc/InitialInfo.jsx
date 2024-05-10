@@ -24,26 +24,25 @@ const AuthorizedPage = ({ children }) => {
         const getUser = async () => {
             setLoading(true)
 
-            const deliveryPointsResponse = await Request.send({
-                method: GET,
-                url: DELIVERY_POINT_URL,
-                useToken: false,
-            })
-
-            if (deliveryPointsResponse) {
-                const formattedDeliveryPoints = deliveryPointsResponse.data.map(
-                    (point) => ({
-                        value: point.id,
-                        label:
-                            point.id === 1
-                                ? `${point.name}`
-                                : `${point.name} - ${point.address}`,
-                    })
-                )
-                setDeliveryPoints(formattedDeliveryPoints)
-            }
-
             try {
+                const deliveryPointsResponse = await Request.send({
+                    method: GET,
+                    url: DELIVERY_POINT_URL,
+                    useToken: false,
+                })
+
+                if (deliveryPointsResponse) {
+                    const formattedDeliveryPoints =
+                        deliveryPointsResponse.data.map((point) => ({
+                            value: point.id,
+                            label:
+                                point.id === 1
+                                    ? `${point.name}`
+                                    : `${point.name} - ${point.address}`,
+                        }))
+                    setDeliveryPoints(formattedDeliveryPoints)
+                }
+
                 const userResponse = await Request.send({
                     method: GET,
                     url: GET_USER_URL,

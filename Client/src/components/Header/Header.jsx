@@ -16,8 +16,7 @@ import {
     storeURL,
 } from '../../hoc/routerLinks'
 import LoginModalContext from '../../storage/LoginModalContext'
-const Header = ({}) => {
-    const [showModal, setShowModal] = useState(false)
+const Header = ({ isHeaderHoverShown, setIsHeaderHoverShown }) => {
     const [searchValue, setSearchValue] = useState('')
     const { showLoginModal, setShowLoginModal } = useContext(LoginModalContext)
     const navigate = useNavigate()
@@ -30,19 +29,11 @@ const Header = ({}) => {
     return (
         <>
             <div
-                className={styles.FakeElement}
-                style={{
-                    // opacity: !showModal ? '0': '1'
-                    display: !showModal ? 'none' : 'block',
-                }}
-            />
-
-            <div
                 className={styles.Header}
-                style={{
-                    position: !showModal ? 'relative' : 'fixed',
-                }}
-                onClick={() => (showModal ? setShowModal(false) : '')}
+                // style={{
+                //     position: !showModal ? 'relative' : 'fixed',
+                // }}
+                onClick={() => (isHeaderHoverShown ? setIsHeaderHoverShown(false) : '')}
             >
                 <div className={styles.Logo} onClick={() => navigate(storeURL)}>
                     <img
@@ -53,7 +44,9 @@ const Header = ({}) => {
                 </div>
                 <div className={styles.NavTools}>
                     <CustomButton
-                        onClick={() => setShowModal(!showModal)}
+                        onClick={() =>
+                            setIsHeaderHoverShown(!isHeaderHoverShown)
+                        }
                         icon={<BiMenu />}
                         text={'Каталог'}
                     />
@@ -101,14 +94,6 @@ const Header = ({}) => {
                     />
                 </div>
             </div>
-
-            <HeaderHover
-                style={{
-                    display: !showModal ? 'none' : 'flex',
-                }}
-                setShowState={setShowModal}
-                showState={showModal}
-            />
 
             <LoginModal
                 showLoginModal={showLoginModal}
