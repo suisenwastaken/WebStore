@@ -12,8 +12,9 @@ export async function post(req, res, next) {
       price,
       brandId,
       typeId,
-      info,
+      deviceInfo,
       img,
+      description,
       salePercent,
       deliveryHome,
       deliveryPoint,
@@ -25,7 +26,7 @@ export async function post(req, res, next) {
       price,
       brandId,
       typeId,
-      info,
+      description,
       img,
       salePercent,
       deliveryHome,
@@ -33,9 +34,8 @@ export async function post(req, res, next) {
       soldCount,
     });
 
-    if (info) {
-      const infoData = JSON.parse(info);
-      infoData.forEach(async (e) => {
+    if (deviceInfo) {
+      deviceInfo.forEach(async (e) => {
         await model.DeviceInfo.create({
           title: e.title,
           description: e.description,
@@ -108,8 +108,9 @@ export async function get(req, res) {
 
   const devices = await model.Device.findAndCountAll({
     where: whereClause,
-    limit,
-    offset,
+    order: [['id', 'ASC']],
+    // limit,
+    // offset,
   });
 
   return res.json(devices);

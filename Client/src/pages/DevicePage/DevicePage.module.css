@@ -1,15 +1,15 @@
 .Page {
-    margin: 5% 10%;
+    margin: 5% 7%;
     min-height: calc(100vh - 140px);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 60px;
 }
 
 .TopBlock {
     width: 100%;
-
+    padding: 20px 0;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -19,13 +19,18 @@
 }
 
 .ImageBlock {
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40%;
     height: 100%;
     /* background-color: aqua; */
 }
 
 .ImageBlock > img {
-    width: 100%;
-    height: 100%;
-    object-fit:contain;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
 }

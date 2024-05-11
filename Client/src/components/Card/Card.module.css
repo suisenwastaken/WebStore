@@ -26,9 +26,12 @@
 }
 
 .PictureContainer {
-    height: 250px;
-    width: 250px;
+    height: 220px;
+    width: 220px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* background-color: aliceblue; */
     /* border-bottom: 1px solid #0c68f4; */
 }

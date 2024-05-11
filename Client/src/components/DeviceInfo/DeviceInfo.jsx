@@ -29,7 +29,7 @@ const DeviceInfo = ({deviceInfo}) => {
                 </div>
             </div>
 
-            <div className={styles.Statuses}>
+            {/* <div className={styles.Statuses}>
                 <div className={styles.StatusGroup}>
                     <BiShoppingBag className={styles.Icon} /> В наличии
                 </div>
@@ -39,7 +39,7 @@ const DeviceInfo = ({deviceInfo}) => {
                 <div className={styles.StatusGroup}>
                     <BiBox className={styles.Icon} /> Бесплатная доставка
                 </div>
-            </div>
+            </div> */}
 
             {/* <div className={styles.SelectColor}>
                 Цвет
@@ -72,10 +72,10 @@ const DeviceInfo = ({deviceInfo}) => {
             </div> */}
 
             <div className={styles.ShortInfo}>
-                {deviceInfo?.device_chars?.map((inf, i) => (
+                {deviceInfo?.info?.map((inf, i) => (
                     <div className={styles.ShortInfoRow} key={i}>
                         <div className={styles.InfoKey}>• {inf.title}</div>
-                        <div className={styles.InfoValue}>{inf.name}</div>
+                        <div className={styles.InfoValue}>{inf.description}</div>
                     </div>
                 ))}
             </div>

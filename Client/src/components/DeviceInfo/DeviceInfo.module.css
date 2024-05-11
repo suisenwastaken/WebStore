@@ -103,10 +103,17 @@
 .ShortInfoRow {
     display: flex;
     flex-direction: row;
+    gap: 10px;
     /* justify-content: space-between; */
 }
 
 .InfoKey {
     color: #989898;
-    width: 50%;
+    width: 40%;
+    word-break: break-all;
+}
+
+.InfoValue {
+  width: 60%;
+  word-break: break-all;
 }

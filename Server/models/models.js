@@ -38,14 +38,15 @@ const OrderDevice = sequelize.define("order_device", {
 
 const Device = sequelize.define("device", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  name: { type: DataTypes.STRING, unique: true, allowNull: false },
+  name: { type: DataTypes.STRING, unique: false, allowNull: false },
+  description: { type: DataTypes.TEXT, unique: false, allowNull: false  },
   price: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
   salePercent: { type: DataTypes.INTEGER, allowNull: true, defaultValue: 0 },
   deliveryHome: { type: DataTypes.DATE, unique: false, allowNull: false },
   deliveryPoint: { type: DataTypes.DATE, unique: false, allowNull: false },
   soldCount: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
   rating: { type: DataTypes.DOUBLE, allowNull: false, defaultValue: 0 },
-  img: { type: DataTypes.STRING, allowNull: false },
+  img: { type: DataTypes.TEXT, allowNull: false },
 });
 
 const Type = sequelize.define("type", {
@@ -72,7 +73,7 @@ const Comment = sequelize.define("comment", {
 const DeviceInfo = sequelize.define("device_info", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   title: { type: DataTypes.STRING, allowNull: false },
-  description: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.TEXT, allowNull: false },
 });
 
 User.hasMany(FavoriteDevices);

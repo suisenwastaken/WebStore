@@ -9,11 +9,17 @@ import CartContext from '../../storage/CartContext'
 import UserContext from '../../storage/UserContext'
 import AlertState from '../Alert/AlertState'
 
-const DevicePay = ({ deviceInfo, style, buttonText, type, setDeliveryModal }) => {
+const DevicePay = ({
+    deviceInfo,
+    style,
+    buttonText,
+    type,
+    setDeliveryModal,
+}) => {
     const { setAlert } = useContext(AlertContext)
     const { addDeviceToCart, getDeviceCountInCart, editDeviceCountInCart } =
         useContext(CartContext)
-        const { user } = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     const [deviceCount, setDeviceCount] = useState(null)
 
@@ -41,7 +47,7 @@ const DevicePay = ({ deviceInfo, style, buttonText, type, setDeliveryModal }) =>
             setAlert(AlertState.notAuthorized)
             return
         }
-        if(newCount === 0){
+        if (newCount === 0) {
             setAlert(AlertState.deletedFromCart)
         }
         setDeviceCount(newCount)
@@ -79,8 +85,8 @@ const DevicePay = ({ deviceInfo, style, buttonText, type, setDeliveryModal }) =>
                             ₽{' '}
                             {validatePrice(
                                 Math.round(
-                                    deviceInfo.price *
-                                        (1 + deviceInfo?.salePercent * 0.01)
+                                    deviceInfo.price /
+                                        (1 - deviceInfo.salePercent * 0.01)
                                 )
                             )}
                         </div>

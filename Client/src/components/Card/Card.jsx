@@ -117,8 +117,8 @@ const Card = ({ device, onClick, place, onChangeItems }) => {
                         <div className={styles.PreviousPrice}>
                             {validatePrice(
                                 Math.round(
-                                    device.price *
-                                        (1 + device.salePercent * 0.01)
+                                    device.price /
+                                        (1 - device.salePercent * 0.01)
                                 )
                             )}
                             ₽
@@ -159,7 +159,11 @@ const Card = ({ device, onClick, place, onChangeItems }) => {
                             onClick={() => {
                                 setShareState(true)
                                 navigator.clipboard
-                                    .writeText(window.location.href + devicePageURL.substring(1) + device.id)
+                                    .writeText(
+                                        window.location.href +
+                                            devicePageURL.substring(1) +
+                                            device.id
+                                    )
                                     .then(() => {
                                         setAlert(AlertState.linkCopied)
                                     })

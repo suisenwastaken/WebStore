@@ -1,6 +1,6 @@
 .PriceBlock {
     width: 25%;
-    height: auto;
+    height: 100%;
 
     -webkit-box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);
     -moz-box-shadow: -4px -4px 35px 0px rgba(34, 60, 80, 0.16);

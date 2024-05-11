@@ -137,11 +137,11 @@ const CardSmall = ({ device, onCountChange, type = 'active' }) => {
                             ₽{' '}
                             {validatePrice(
                                 Math.round(
-                                    device.price *
                                         (type === 'active'
-                                            ? deviceCount
-                                            : device.order_device.count) *
-                                        (1 + device.salePercent * 0.01)
+                                            ? device.price * deviceCount /
+                                              (1 - device.salePercent * 0.01)
+                                            : device.price * device.order_device.count /
+                                              (1 - device.salePercent * 0.01))
                                 )
                             )}
                         </div>
