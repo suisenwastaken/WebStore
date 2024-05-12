@@ -1,0 +1,66 @@
+.Pending {
+    max-width: fit-content;
+    min-width: auto;
+
+    box-sizing: content-box;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+
+    border-radius: 10px;
+
+    background-color: #d7d13c33;
+    color: #cac202;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Approved {
+    max-width: fit-content;
+    min-width: auto;
+
+    box-sizing: content-box;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+
+    border-radius: 10px;
+
+    background-color: #76d79133;
+    color: #76d791;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Removed {
+    max-width: fit-content;
+    min-width: auto;
+
+    box-sizing: content-box;
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+
+    border-radius: 10px;
+
+    background-color: #e56a6a26;
+    color: #e56a6a;
+
+    white-space: nowrap;
+    overflow: scroll;
+}
+
+.Choice {
+    white-space: nowrap;
+    overflow: scroll;
+    scrollbar-width: none;
+    padding: 7px 10px;
+}
+
+.Choice::-webkit-scrollbar {
+    display: none;
+}

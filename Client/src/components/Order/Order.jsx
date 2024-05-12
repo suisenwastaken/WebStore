@@ -4,15 +4,16 @@ import styles from './Order.module.css'
 import { devicePageURL } from '../../hoc/routerLinks'
 import OrderModal from '../OrderModal/OrderModal'
 import { useState } from 'react'
+import OrderStatus from '../OrderStatus'
 const Order = ({ orderInfo, onClick }) => {
     return (
-        <div
-            className={styles.Card}
-            onClick={onClick}
-        >
+        <div className={styles.Card} onClick={onClick}>
             <div className={styles.TopRow}>
-                <div className={styles.OrderDate}>
-                    Заказ от {validateDate(orderInfo.createdAt)}
+                <div className={styles.LeftBlock}>
+                    <div className={styles.OrderDate}>
+                        Заказ от {validateDate(orderInfo.createdAt)}
+                    </div>
+                    <OrderStatus statusId={orderInfo.orderStatus}/>
                 </div>
                 <div className={styles.OrderPrice}>
                     {validatePrice(orderInfo.totalPrice) + '  ₽'}

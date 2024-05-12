@@ -12,6 +12,7 @@ const User = sequelize.define("user", {
 const Order = sequelize.define("order", {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   totalPrice: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
+  orderStatus: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
   homeDeliveryAddress: { type: DataTypes.STRING },
   deliveryDate: { type: DataTypes.DATE, allowNull: false},
 });

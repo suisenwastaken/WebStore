@@ -6,6 +6,8 @@ import UserContext from '../../storage/UserContext'
 import CardSmall from '../CardSmall/CardSmall'
 import { useNavigate } from 'react-router-dom'
 import { storeURL } from '../../hoc/routerLinks'
+import OrderStatus from '../OrderStatus'
+
 const OrderModal = ({ isModalShown, setIsModalShown, orderInfo, type }) => {
     const { deliveryPoints } = useContext(DeliveryPointsContext)
     const { user } = useContext(UserContext)
@@ -40,7 +42,7 @@ const OrderModal = ({ isModalShown, setIsModalShown, orderInfo, type }) => {
                         {type === 'newOrder' ? (
                             <div className={styles.h2}> успешно размещен! </div>
                         ) : (
-                            ''
+                            <OrderStatus statusId={orderInfo.orderStatus} />
                         )}
                     </div>
 

@@ -25,6 +25,7 @@ const CustomSelect = ({
                 isSearchable={false}
                 value={selectedOption}
                 onChange={onChange}
+                // menuIsOpen={true}
             />
             <div
                 className={styles.error}

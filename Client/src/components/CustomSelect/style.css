@@ -82,7 +82,11 @@
     color: #292929 !important;
 }
 
+.input__option--is-focused{
+    background-color: #d7d3ff !important;
+}
+
 .input__option--is-selected {
-    background-color: #016ee5 !important;
+    background-color: #594ae3 !important;
     color: white !important;
 }

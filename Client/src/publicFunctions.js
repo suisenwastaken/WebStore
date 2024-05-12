@@ -12,6 +12,12 @@ export const validatePrice = (price) => {
 
 export const AuthorizationTokenType = 'Bearer'
 
+export const statusEnum = [
+    { id: 0, text: 'Доставка' },
+    { id: 1, text: 'Доставлен' },
+    { id: 2, text: 'Отменен' },
+]
+
 export const BrandEnum = [
     { id: 1, name: 'Apple', logo: '/brandLogos/appleLogo.png' },
     { id: 2, name: 'Samsung', logo: '/brandLogos/samsungLogo.png' },
@@ -24,7 +30,7 @@ export const BrandEnum = [
 export const TypeEnum = [
     {
         name: 'Наушники',
-        id: [1,2,3,4],
+        id: [1, 2, 3, 4],
         values: [
             { id: 1, name: 'Беспроводные наушники' },
             { id: 2, name: 'Наушники TWS' },
@@ -34,7 +40,7 @@ export const TypeEnum = [
     },
     {
         name: 'Бытовая техника',
-        id: [5,6,7,8],
+        id: [5, 6, 7, 8],
         values: [
             { id: 5, name: 'Холодильники' },
             { id: 6, name: 'Стиральные машины' },
@@ -44,35 +50,35 @@ export const TypeEnum = [
     },
     {
         name: 'Компьютеры',
-        id: [9,10],
+        id: [9, 10],
         values: [
             { id: 9, name: 'Системные блоки' },
             { id: 10, name: 'Моноблоки' },
         ],
     },
     {
-        id: [11,12],
+        id: [11, 12],
         name: 'Периферия',
         values: [
-            {id: 11, name: 'Компьютерные мыши'},
-            {id: 12, name: 'Клавиатуры'}
-        ]
+            { id: 11, name: 'Компьютерные мыши' },
+            { id: 12, name: 'Клавиатуры' },
+        ],
     },
     {
         name: 'Телефоны',
-        id: [13,14],
+        id: [13, 14],
         values: [
-            {id: 13, name: 'Смартфоны'},
-            {id: 14, name: 'Кнопочные телефоны'}
-        ]
+            { id: 13, name: 'Смартфоны' },
+            { id: 14, name: 'Кнопочные телефоны' },
+        ],
     },
     {
-        id: [15,16],
+        id: [15, 16],
         name: 'Ноутбуки',
         values: [
-            {id: 15, name: 'Сенсорные ноутбуки'},
-            {id: 16, name: 'Ноутбуки'}
-        ]
+            { id: 15, name: 'Сенсорные ноутбуки' },
+            { id: 16, name: 'Ноутбуки' },
+        ],
     },
 ]
 
