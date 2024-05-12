@@ -54,7 +54,7 @@ export async function get(req, res) {
   let { brandId, typeId, page, limit, search, minPrice, maxPrice } = req.query;
 
   page = page ?? 1;
-  limit = limit ?? 20;
+  limit = limit ?? 12;
   let offset = page * limit - limit;
   let whereClause = {};
 
@@ -109,8 +109,8 @@ export async function get(req, res) {
   const devices = await model.Device.findAndCountAll({
     where: whereClause,
     order: [['id', 'ASC']],
-    // limit,
-    // offset,
+    limit,
+    offset,
   });
 
   return res.json(devices);

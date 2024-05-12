@@ -1,7 +1,8 @@
 import styles from './EmptyComponent.module.css'
 import { BiCartAdd } from 'react-icons/bi'
 import { BiDonateHeart } from 'react-icons/bi'
-import { BiPackage } from "react-icons/bi";
+import { BiPackage } from 'react-icons/bi'
+import { BiConfused } from "react-icons/bi";
 const EmptyComponent = ({ type }) => {
     const renderComponent = {
         basket: (
@@ -34,6 +35,17 @@ const EmptyComponent = ({ type }) => {
                 <div className={styles.Text}>
                     Похоже что вы еще ничего не заказали.
                     <br /> Как насчет пройтись по топ категориям?
+                </div>
+            </div>
+        ),
+        devices: (
+            <div className={styles.EmptyComponent}>
+                <BiConfused className={styles.Icon} />
+
+                <div className={styles.h2}>По вашему запросу ничего не найдено</div>
+                <div className={styles.Text}>
+                    Похоже что вы ошиблись в написании.
+                    <br /> Ну или мы пока не продаем это устройство.
                 </div>
             </div>
         ),
