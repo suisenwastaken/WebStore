@@ -140,7 +140,7 @@ export async function getById(req, res) {
       { model: model.DeviceInfo, as: "info" },
       {
         model: model.Comment,
-        include: [{ model: model.User, attributes: ["name"] }],
+        include: [{ model: model.User, attributes: ["name", "email"] }],
       },
     ],
   });
