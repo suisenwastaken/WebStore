@@ -14,7 +14,6 @@
     box-sizing: border-box;
 }
 
-
 .Card > * {
     /* width: 80%; */
 }
@@ -37,11 +36,13 @@
 }
 
 .PriceInfo {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-end;
-    gap: 15px;
+    align-items:center;
+    gap: 10px;
+    flex-wrap: wrap-reverse;
 }
 
 .Price {
@@ -101,7 +102,7 @@
     width: 100%;
 }
 
-.Buttons > *{
+.Buttons > * {
     width: 30%;
 }
 
@@ -110,7 +111,6 @@
 }
 
 .Rate {
-
     color: #023179;
     display: flex;
     align-items: center;

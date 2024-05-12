@@ -29,17 +29,17 @@ const DeviceInfo = ({deviceInfo}) => {
                 </div>
             </div>
 
-            {/* <div className={styles.Statuses}>
+            <div className={styles.Statuses}>
                 <div className={styles.StatusGroup}>
                     <BiShoppingBag className={styles.Icon} /> В наличии
                 </div>
-                <div className={styles.StatusGroup}>
+                {/* <div className={styles.StatusGroup}>
                     <BiBadgeCheck className={styles.Icon} /> Гарантия
-                </div>
+                </div> */}
                 <div className={styles.StatusGroup}>
                     <BiBox className={styles.Icon} /> Бесплатная доставка
                 </div>
-            </div> */}
+            </div>
 
             {/* <div className={styles.SelectColor}>
                 Цвет

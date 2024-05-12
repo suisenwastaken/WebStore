@@ -12,14 +12,14 @@ import { BiMobile } from 'react-icons/bi'
 import { BiLaptop } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
 import { searchPageURL } from '../../hoc/routerLinks'
-import { BiMouse } from "react-icons/bi";
+import { BiMouse } from 'react-icons/bi'
 
 const Store = () => {
     const icons = [
         <BiHeadphone />,
         <BiTv />,
         <BiDesktop />,
-        <BiMouse/>,
+        <BiMouse />,
         <BiMobile />,
         <BiLaptop />,
     ]
@@ -40,7 +40,9 @@ const Store = () => {
                             icon={icons[i]}
                             onClick={() => {
                                 const searchParams = new URLSearchParams()
-                                searchParams.append('typeId', type.id)
+                                type.id.forEach((el) =>
+                                    searchParams.append('typeId', el.toString())
+                                )
                                 navigate(
                                     searchPageURL +
                                         '?' +
