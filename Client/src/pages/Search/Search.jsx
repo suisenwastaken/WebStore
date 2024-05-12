@@ -22,6 +22,7 @@ const Search = () => {
     const [page, setPage] = useState(1)
     const [countOfDevices, setCountOfDevices] = useState(0)
     const navigate = useNavigate()
+    const devicesPerPage = 12
 
     useEffect(() => {
         const getDevices = async () => {
@@ -44,6 +45,7 @@ const Search = () => {
                         ? searchParams.getAll('maxPrice')
                         : undefined,
                     page: page,
+                    limit: devicesPerPage
                 }
 
                 Object.keys(params).forEach(
@@ -94,7 +96,7 @@ const Search = () => {
                             <CustomPagination
                                 currentPage={page}
                                 totalCount={countOfDevices}
-                                pageSize={12}
+                                pageSize={devicesPerPage}
                                 onPageChange={(page) => setPage(page)}
                             />
                         </>
