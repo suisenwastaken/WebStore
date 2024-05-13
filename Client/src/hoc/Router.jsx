@@ -3,22 +3,18 @@ import DevicePage from '../pages/DevicePage'
 import Basket from '../pages/Basket'
 import AuthorizedPage from './AuthorizedPage'
 import Store from '../pages/Store'
-import Alert from '../components/Alert/Alert'
 import { DevicePageProvider } from '../storage/DevicePageContext'
 import Profile from '../pages/Profile'
 import Layout from '../components/Layout'
 import Favorites from '../pages/Favorites/Favorites'
-import { CartProvider } from '../storage/CartContext'
 import {
     DiscountPageURL,
     basketURL,
-    brandPageURL,
     devicePageURL,
     favoriteURL,
     profileURL,
     searchPageURL,
     storeURL,
-    typePageURL,
 } from './routerLinks'
 import Search from '../pages/Search/Search'
 import DiscountPage from '../pages/DiscountPage/DiscountPage'
