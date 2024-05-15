@@ -91,6 +91,7 @@ _Не обращайте внимания на сами товары, больш
 - [![React][React.js]][React-url]
 - [![Axios][Axios]][Axios-url]
 - [![router][router]][router-url]
+- [![mobx][mobx]][mobx-url]
 - [![sequelize][sequelize]][sequelize-url]
 - [![expressJs][expressJs]][expressJs-url]
 - [![postgres][postgres]][postgres-url]
@@ -294,3 +295,5 @@ Project Link: [https://github.com/suisenwastaken/WebStore](https://github.com/su
 [expressJs-url]: https://expressjs.com/
 [postgres]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
 [postgres-url]: https://www.postgresql.org/
+[mobx]: https://img.shields.io/badge/mobx-orange?style=for-the-badge&logo=mobx&logoColor=white
+[mobx-url]: https://mobx.js.org/README.html
